@@ -227,6 +227,7 @@ MonoBehaviour:
   projectile: {fileID: 211159825716821553, guid: d86d8b370edcb41ecaf95801e9200337,
     type: 3}
   maxSpeed: 3
+  lifetime: 5
 --- !u!212 &865803131
 SpriteRenderer:
   m_ObjectHideFlags: 0

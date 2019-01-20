@@ -9,6 +9,8 @@ public class ShootProjectile : MonoBehaviour
 
     public float maxSpeed;
 
+    public float lifetime = 5;
+
 
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
@@ -32,7 +34,11 @@ public class ShootProjectile : MonoBehaviour
 
     void Shoot(Vector2 trajectory)
     {
+        // Spawn projectile and set trajectory
         Projectile proj = GameObject.Instantiate(projectile, transform.position, transform.rotation);
         proj.SetDirection(trajectory);
+
+        // Destroy when lifetime elapses
+        GameObject.Destroy(proj.gameObject, lifetime);
     }
 }
