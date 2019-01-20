@@ -10,7 +10,7 @@ public class BalloonController : MonoBehaviour
 
     [SerializeField]
     private float balloonSpeed;
-    [SerializeField]
+
     private Vector3 charPos;
 
     // Start is called before the first frame update
