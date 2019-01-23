@@ -8,7 +8,7 @@ public class ClickBurst : MonoBehaviour
 
     public int particleCount;
 
-    Gradient selectedGradient;
+    public GameObject trigger;
 
     public Gradient fireGradient;
 
@@ -18,14 +18,13 @@ public class ClickBurst : MonoBehaviour
     void Start()
     {
         psystem = GetComponent<ParticleSystem>();
-        selectedGradient = fireGradient;
     }
 
     public void Burst(Vector2 position)
     {
         psystem.transform.position = position;
         psystem.Emit(particleCount);
-
+        Instantiate(trigger, position, transform.rotation);
         
     }
 
