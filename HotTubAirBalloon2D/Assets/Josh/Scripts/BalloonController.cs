@@ -9,7 +9,7 @@ public class BalloonController : MonoBehaviour
     public float temperature, tempMultiplier;//, balloonSpeed;
 
     [SerializeField]
-    private float balloonSpeed;
+    private float balloonVerticalSpeed, balloonHorizontalSpeed;
     [SerializeField]
     private Vector3 charPos;
 
@@ -17,13 +17,17 @@ public class BalloonController : MonoBehaviour
     void Start()
     {
         charPos = BalloonChar.transform.position;
+        balloonHorizontalSpeed = .005f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        balloonSpeed = temperature / tempMultiplier;
-        charPos.y += balloonSpeed;
-        BalloonChar.transform.position = new Vector3(charPos.x, charPos.y, charPos.z);
+        balloonVerticalSpeed = temperature / tempMultiplier;
+        charPos.y += balloonVerticalSpeed;
+
+        charPos.x += balloonHorizontalSpeed;
+
+        BalloonChar.transform.position = charPos;
     }
 }
