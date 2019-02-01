@@ -906,6 +906,11 @@ PrefabInstance:
       propertyPath: tempMultiplier
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 8845161632690398579, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
         type: 3}
       propertyPath: fireGradient.key0.r
