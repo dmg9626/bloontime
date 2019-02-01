@@ -13,6 +13,7 @@ public class HandleClick : MonoBehaviour
     public ShootProjectile shootProjectile;
 
     public ClickBurst clickBurst;
+    public Transform cursor;
 
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
@@ -29,6 +30,20 @@ public class HandleClick : MonoBehaviour
                 
                 case ShootMode.CLICK_BURST:
                     clickBurst.Burst(mousePos);
+                    break;
+            }
+
+        }
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            Vector2 cursorPos = cursor.position;
+
+            switch(shootMode) {
+                case ShootMode.MOVING_PROJECTILE:
+                    shootProjectile.Shoot(cursorPos);
+                    break;
+                
+                case ShootMode.CLICK_BURST:
+                    clickBurst.Burst(cursorPos);
                     break;
             }
 

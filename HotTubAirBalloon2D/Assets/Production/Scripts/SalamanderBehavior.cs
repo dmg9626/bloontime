@@ -42,4 +42,9 @@ public class SalamanderBehavior : MonoBehaviour
         fb.transform.LookAt(player.transform.position);
         Destroy (fb, 1.5f);
     }
+
+    public void takeDamage(float temp)
+    {
+        Destroy(this.gameObject);
+    }
 }

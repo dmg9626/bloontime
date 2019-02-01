@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CursorMovement : MonoBehaviour
 {
+
+    public GameObject cursor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,16 @@ public class CursorMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector2 pos = cursor.transform.position;
+        if (Input.GetKey(KeyCode.A))
+            pos.x -= .1f;
+        if (Input.GetKey(KeyCode.D))
+            pos.x += .1f;
+        if (Input.GetKey(KeyCode.W))
+            pos.y += .1f;
+        if (Input.GetKey(KeyCode.S))
+            pos.y -= .1f;
+
+        cursor.transform.position = pos;
     }
 }

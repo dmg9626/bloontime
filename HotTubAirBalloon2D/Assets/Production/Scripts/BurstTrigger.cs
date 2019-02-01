@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurstTrigger : MonoBehaviour
+public class BurstTrigger : AbstractProjectile
 {
     public float lifetime;
 
@@ -17,6 +17,8 @@ public class BurstTrigger : MonoBehaviour
         if (LayerMask.LayerToName(obj.layer) == "Vulnerable")
         {
             Debug.Log("Collided with vulnerable object " + obj.name);
+            if(collision.tag == "Enemy")
+                collision.GetComponent<SalamanderBehavior>().takeDamage(tempChange);
             Destroy(gameObject);
 
             // Execute code here
