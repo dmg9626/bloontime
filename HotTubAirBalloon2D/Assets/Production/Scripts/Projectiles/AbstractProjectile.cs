@@ -29,9 +29,21 @@ public abstract class AbstractProjectile : MonoBehaviour
         return comfortChange;
     }
 
-    public void setTemp(float newTemp)
+    void setTemp(float newTemp)
     {
         tempChange = newTemp;
+    }
+
+    public void setTemp(ClickBurst.EffectType effectType)
+    {
+        if (effectType.Equals(ClickBurst.EffectType.FIRE))
+        {
+            setTemp(1);
+        }
+        else if (effectType.Equals(ClickBurst.EffectType.ICE))
+        {
+            setTemp(-1);
+        }
     }
 
     public void setComfort(float newComfort)
