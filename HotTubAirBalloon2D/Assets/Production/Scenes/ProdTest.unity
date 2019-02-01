@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -905,6 +905,356 @@ PrefabInstance:
         type: 3}
       propertyPath: tempMultiplier
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key0.g
+      value: 0.8311321
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key0.b
+      value: 0.15566039
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key1.r
+      value: 0.96304107
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key1.g
+      value: 0.39238945
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key1.b
+      value: 0.017505318
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key1.a
+      value: 0.20784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key2.r
+      value: 0.8867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key2.g
+      value: 0.037646834
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key2.b
+      value: 0.053619895
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key2.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key3.r
+      value: 0.8867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key3.g
+      value: 0.037646834
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key3.b
+      value: 0.053619895
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key3.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key4.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key4.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key4.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key4.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key5.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key5.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key5.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key5.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key6.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key6.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key6.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key6.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key7.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key7.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key7.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.key7.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.ctime1
+      value: 8867
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: fireGradient.ctime3
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key0.r
+      value: 0.15686274
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key0.b
+      value: 0.98397994
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key1.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key1.g
+      value: 0.6349025
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key1.a
+      value: 0.20784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key2.r
+      value: 0.039215703
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key2.g
+      value: 0.34828514
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key2.b
+      value: 0.8862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key2.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key3.r
+      value: 0.8867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key3.g
+      value: 0.037646834
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key3.b
+      value: 0.053619895
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key3.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key4.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key4.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key4.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key4.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key5.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key5.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key5.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key5.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key6.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key6.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key6.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key6.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key7.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key7.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key7.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.key7.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.ctime1
+      value: 13685
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: iceGradient.ctime3
+      value: 65535
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef509f8445375cc449bde52a697f48fe, type: 3}

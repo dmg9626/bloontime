@@ -22,6 +22,15 @@ public class ClickBurst : MonoBehaviour
     void Start()
     {
         psystem = GetComponent<ParticleSystem>();
+        if(effectType.Equals(EffectType.FIRE))
+        {
+            SetColorOverLifetime(fireGradient);
+        }
+        else if (effectType.Equals(EffectType.ICE))
+        {
+            SetColorOverLifetime(iceGradient);
+        }
+
     }
 
     public void Burst(Vector2 position)
@@ -34,16 +43,16 @@ public class ClickBurst : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            SetColorOverLifetime(fireGradient);
-            effectType = EffectType.FIRE;
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            SetColorOverLifetime(iceGradient);
-            effectType = EffectType.ICE;
-        }
+        //if(Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    SetColorOverLifetime(fireGradient);
+        //    effectType = EffectType.FIRE;
+        //}
+        //else if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    SetColorOverLifetime(iceGradient);
+        //    effectType = EffectType.ICE;
+        //}
     }
 
     void SetColorOverLifetime(Gradient gradient)
