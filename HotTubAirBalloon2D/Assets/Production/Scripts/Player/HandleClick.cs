@@ -23,30 +23,28 @@ public class HandleClick : MonoBehaviour
         if(Input.GetMouseButtonDown(0)) {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            switch(shootMode) {
-                case ShootMode.MOVING_PROJECTILE:
-                    shootProjectile.Shoot(mousePos);
-                    break;
-                
-                case ShootMode.CLICK_BURST:
-                    clickBurst.Burst(mousePos);
-                    break;
-            }
-
+            Shoot(mousePos);
         }
+
         if(Input.GetKeyDown(KeyCode.Space)) {
             Vector2 cursorPos = cursor.position;
+            Shoot(cursorPos);
+            
 
-            switch(shootMode) {
-                case ShootMode.MOVING_PROJECTILE:
-                    shootProjectile.Shoot(cursorPos);
-                    break;
-                
-                case ShootMode.CLICK_BURST:
-                    clickBurst.Burst(cursorPos);
-                    break;
-            }
+        }
+    }
 
+    void Shoot(Vector2 position)
+    {
+        switch (shootMode)
+        {
+            case ShootMode.MOVING_PROJECTILE:
+                shootProjectile.Shoot(position);
+                break;
+
+            case ShootMode.CLICK_BURST:
+                clickBurst.Burst(position);
+                break;
         }
     }
 }
