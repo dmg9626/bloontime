@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class BalloonController : MonoBehaviour
 {
 /**************************************************************************Public Fields */
-    public GameObject BalloonChar, cursor;
+    public GameObject BalloonChar;
     public float temperature, tempMultiplier, cursorSpeed;//, balloonSpeed;
     public bool bottomCollision;
 
