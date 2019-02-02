@@ -28,19 +28,12 @@ public class BalloonController : MonoBehaviour
     void Start()
     {
         charPos = BalloonChar.transform.position;
-        balloonHorizontalSpeed = .005f;
-        bottomCollision = false;
-        if(tempMultiplier == 0)
-        {
-            tempMultiplier = 1;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
         BalloonMovement();
-        CursorMovement();
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
@@ -61,22 +54,6 @@ public class BalloonController : MonoBehaviour
         }
 
         BalloonChar.transform.position = charPos;
-    }
-
-    //moves the cursor with WASD or arrows
-    void CursorMovement()
-    {
-        Vector2 pos = cursor.transform.position;
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            pos.x -= cursorSpeed;
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            pos.x += cursorSpeed;
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-            pos.y += cursorSpeed;
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-            pos.y -= cursorSpeed;
-
-        cursor.transform.position = pos;
     }
 
 /***************************************************************************Public Methods */
