@@ -13,7 +13,6 @@ public class BalloonController : MonoBehaviour
 {
 /**************************************************************************Public Fields */
     public GameObject BalloonChar, cursor;
-    public ClickBurst clickBurst;
     public float temperature, tempMultiplier, cursorSpeed;//, balloonSpeed;
     public bool bottomCollision;
 
