@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandleClick : MonoBehaviour
+public class AttackManager : MonoBehaviour
 {
     public enum ShootMode {
         MOVING_PROJECTILE,
