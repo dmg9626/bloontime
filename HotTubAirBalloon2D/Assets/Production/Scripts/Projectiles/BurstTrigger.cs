@@ -6,9 +6,18 @@ public class BurstTrigger : AbstractProjectile
 {
     public float lifetime;
 
-    private void Start()
+    public ClickBurst.EffectType effectType;
+
+    private void OnEnable()
     {
-        Destroy(gameObject, lifetime);
+        // Disable in a second so it doesn't sit there waiting for balloon to collide
+        StartCoroutine(SetInactiveDelay(1));
+    }
+
+    IEnumerator SetInactiveDelay(float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,7 +30,7 @@ public class BurstTrigger : AbstractProjectile
                 collision.GetComponent<SalamanderBehavior>().takeDamage(getTemp());
             if(collision.tag == "Player")
             {
-                collision.GetComponent<BalloonController>().changeTemp(getTemp());
+                collision.GetComponent<BalloonController>().changeTemp(effectType);
                 // Debug.Log("TempChange: " + getTemp());
                 // Debug.Log("new Temp: " + collision.GetComponent<BalloonController>().temperature);
             }

@@ -72,6 +72,16 @@ public class BalloonController : MonoBehaviour
         temperature += tempChange;
     }
 
+    public void changeTemp(ClickBurst.EffectType effectType)
+    {
+        if(effectType.Equals(ClickBurst.EffectType.FIRE)) {
+            changeTemp(1);
+        }
+        else if(effectType.Equals(ClickBurst.EffectType.ICE)) {
+            changeTemp(-1);
+        }
+    }
+
     public void changeComfort(float comfortChange)
     {
         comfort += comfortChange;

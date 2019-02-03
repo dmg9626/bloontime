@@ -8,7 +8,9 @@ public class ClickBurst : MonoBehaviour
 
     public int particleCount;
 
-    public GameObject trigger;
+    public GameObject burstTriggerPrefab;
+
+    public BurstTrigger burstTrigger;
 
     public Gradient fireGradient;
 
@@ -37,8 +39,16 @@ public void Burst(Vector2 position)
     {
         psystem.transform.position = position;
         psystem.Emit(particleCount);
-        Instantiate(trigger, position, transform.rotation);
-        trigger.GetComponent<BurstTrigger>().setTemp(effectType);
+
+        if(burstTrigger == null) {
+            burstTrigger = Instantiate(burstTriggerPrefab, position, transform.rotation).GetComponent<BurstTrigger>();
+            burstTrigger.effectType = effectType;
+        }
+        else {
+            burstTrigger.transform.position = position;
+            burstTrigger.gameObject.SetActive(true);
+        }
+        
     }
 
     private void Update()

@@ -1048,6 +1048,11 @@ PrefabInstance:
       propertyPath: tempMultiplier
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 8845161633209413590, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: balloonHorizontalSpeed
+      value: 0.015
+      objectReference: {fileID: 0}
     - target: {fileID: 8845161632690398579, guid: ef509f8445375cc449bde52a697f48fe,
         type: 3}
       propertyPath: moveSpeed
@@ -1403,6 +1408,12 @@ PrefabInstance:
       propertyPath: iceGradient.ctime3
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: burstTriggerPrefab
+      value: 
+      objectReference: {fileID: 2995179753382932844, guid: d33b2d14b3a534a4d814ca2e1f2cd618,
+        type: 3}
     - target: {fileID: 8845161633541279629, guid: ef509f8445375cc449bde52a697f48fe,
         type: 3}
       propertyPath: m_RootOrder
@@ -1437,6 +1448,32 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625361226514847440, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: m_Name
+      value: ClickBurst_PlayerTwo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633541279626, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: m_Name
+      value: ClickBurst_PlayerOne
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761938443469522600, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790534383175638143, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: burstTriggerPrefab
+      value: 
+      objectReference: {fileID: 2995179753382932844, guid: d33b2d14b3a534a4d814ca2e1f2cd618,
+        type: 3}
+    - target: {fileID: 8988967853613666201, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5590871659491735033, guid: ef509f8445375cc449bde52a697f48fe,
         type: 3}
