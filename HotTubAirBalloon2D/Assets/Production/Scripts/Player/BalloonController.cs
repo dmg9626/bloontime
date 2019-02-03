@@ -14,7 +14,7 @@ public class BalloonController : MonoBehaviour
 /**************************************************************************Public Fields */
     public GameObject BalloonChar;
     public float temperature, tempMultiplier, comfort, comfortRegain, comfortTemp, maxComfort, cursorSpeed;//, balloonSpeed;
-    public bool bottomCollision;
+    public bool bottomCollision, topCollision;
 
 /****************************************************************************Private Fields */
     [SerializeField]
@@ -36,8 +36,9 @@ public class BalloonController : MonoBehaviour
         BalloonMovement();
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        changeComfort(-2);
     }
 
 /*************************************************************************Methods*/
@@ -48,7 +49,8 @@ public class BalloonController : MonoBehaviour
 
         if(!bottomCollision || balloonVerticalSpeed > 0)
         {
-            charPos.y += balloonVerticalSpeed;
+            if((!topCollision && balloonVerticalSpeed > 0) || balloonVerticalSpeed < 0)
+                charPos.y += balloonVerticalSpeed;
 
             charPos.x += balloonHorizontalSpeed;
         }

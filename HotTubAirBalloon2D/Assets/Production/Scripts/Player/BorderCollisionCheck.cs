@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class BorderCollisionCheck : MonoBehaviour
 {
+    
+    public enum SIDE { TOP, BOTTOM, LEFT, RIGHT };
+
     public BalloonController player;
+    public SIDE colliderSide;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -19,14 +23,34 @@ public class BorderCollisionCheck : MonoBehaviour
     {
         if(other.gameObject.tag == "Environment")
         {
-            player.bottomCollision = true;
+            player.changeComfort(-2);
+            switch(colliderSide){
+                case SIDE.BOTTOM: 
+                    player.bottomCollision = true;
+                    break;
+                case SIDE.TOP:
+                    player.topCollision = true;
+                    break;
+                default:
+                    break;
+            }
+            
         }
     }
     private void OnCollisionExit2D(Collision2D other)
     {
         if(other.gameObject.tag == "Environment")
         {
-            player.bottomCollision = false;
+            switch(colliderSide){
+                case SIDE.BOTTOM: 
+                    player.bottomCollision = false;
+                    break;
+                case SIDE.TOP:
+                    player.topCollision = false;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
