@@ -5205,9 +5205,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BalloonChar: {fileID: 8845161633209413585}
-  cursor: {fileID: 8845161632690398577}
   temperature: 0
   tempMultiplier: 100
+  comfort: 5
+  comfortRegain: 0.5
+  comfortTemp: 2
+  maxComfort: 10
   cursorSpeed: 0.1
   bottomCollision: 0
   balloonVerticalSpeed: 0

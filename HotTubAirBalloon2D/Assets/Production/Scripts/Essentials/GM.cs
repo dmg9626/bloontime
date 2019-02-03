@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class GM : MonoBehaviour
 {
     public BalloonController BCtrl;
-    public Slider tempSlider;
-    public Text tempNum, maxTemp, minTemp;
+    public Slider tempSlider, comfortSlider;
+    public Text tempNum, maxTemp, minTemp, comfortNum, maxComfort, minComfort;
 
     // Start is called before the first frame update
     void Start()
@@ -22,5 +22,10 @@ public class GM : MonoBehaviour
         tempNum.text = BCtrl.temperature + "";
         maxTemp.text = tempSlider.maxValue + "";
         minTemp.text = tempSlider.minValue + "";
+
+        comfortSlider.value = BCtrl.comfort;
+        comfortNum.text = BCtrl.comfort + "";
+        maxComfort.text = comfortSlider.maxValue + "";
+        minComfort.text = comfortSlider.minValue + "";
     }
 }

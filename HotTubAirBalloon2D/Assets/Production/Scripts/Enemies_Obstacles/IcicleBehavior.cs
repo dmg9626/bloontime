@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IcicleBehavior : MonoBehaviour
+public class IcicleBehavior : AbstractProjectile
 {
     public GameObject player;
     public float attackRange;
@@ -24,13 +24,13 @@ public class IcicleBehavior : MonoBehaviour
 
     IEnumerator takeTheShot() 
     {
-        while(true){
-            Debug.Log("looking");
+        bool notFall = true;
+        while(notFall){
             float playerDist = player.transform.position.x - transform.position.x;
             if(Mathf.Abs(playerDist) < attackRange)
             {
                 StartCoroutine("fall");
-                yield return new WaitForSeconds(1f);
+                notFall = false;
             }
             yield return null;
         }
@@ -45,6 +45,29 @@ public class IcicleBehavior : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("something is happening");
+        GameObject obj = collision.gameObject;
+        if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
+        {
+            Debug.Log("Collided with vulnerable object " + obj.name);
+            if(collision.tag == "Player")
+            {
+                collision.GetComponent<BalloonController>().changeTemp(getTemp());
+                collision.GetComponent<BalloonController>().changeComfort(getComfort());
+            }
+            Destroy(gameObject);
+
+            // Execute code here
+        }
+    }
+
+    public void takeDamage(float temp)
+    {
+        Destroy(this.gameObject);
     }
 
 }

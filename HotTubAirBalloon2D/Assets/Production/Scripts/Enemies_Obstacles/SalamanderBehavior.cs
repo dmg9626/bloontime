@@ -25,7 +25,6 @@ public class SalamanderBehavior : MonoBehaviour
     IEnumerator takeTheShot() 
     {
         while(true){
-            Debug.Log("looking");
             float playerDist = Vector2.Distance(player.transform.position, transform.position);
             if(Mathf.Abs(playerDist) < attackRange)
             {
@@ -39,7 +38,7 @@ public class SalamanderBehavior : MonoBehaviour
 
     void shootFireball(){
         GameObject fb = Instantiate(fireball, transform.position, transform.rotation);
-        fb.transform.LookAt(player.transform.position);
+        fb.transform.right = player.transform.position - fb.transform.position;
         Destroy (fb, 1.5f);
     }
 

@@ -13,7 +13,7 @@ public class BalloonController : MonoBehaviour
 {
 /**************************************************************************Public Fields */
     public GameObject BalloonChar;
-    public float temperature, tempMultiplier, cursorSpeed;//, balloonSpeed;
+    public float temperature, tempMultiplier, comfort, comfortRegain, comfortTemp, maxComfort, cursorSpeed;//, balloonSpeed;
     public bool bottomCollision;
 
 /****************************************************************************Private Fields */
@@ -27,6 +27,7 @@ public class BalloonController : MonoBehaviour
     void Start()
     {
         charPos = BalloonChar.transform.position;
+        StartCoroutine("regainComfort");
     }
 
     // Update is called once per frame
@@ -55,10 +56,24 @@ public class BalloonController : MonoBehaviour
         BalloonChar.transform.position = charPos;
     }
 
+    IEnumerator regainComfort(){
+        while(true){
+            if((temperature < comfortTemp) && (temperature > (0-comfortTemp) && (comfort < maxComfort))){
+                comfort += comfortRegain;
+            }  
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
 /***************************************************************************Public Methods */
     //takes in temp to change temperature
     public void changeTemp(float tempChange)
     {
         temperature += tempChange;
+    }
+
+    public void changeComfort(float comfortChange)
+    {
+        comfort += comfortChange;
     }
 }

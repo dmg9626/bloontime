@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireballBehaviour : MonoBehaviour
+public class FireballBehaviour : AbstractProjectile
 {
 
     public float speedFactor;
@@ -15,6 +15,29 @@ public class FireballBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.forward * Time.deltaTime * speedFactor;
+        transform.position += transform.right * Time.deltaTime * speedFactor;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("something is happening");
+        GameObject obj = collision.gameObject;
+        if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
+        {
+            Debug.Log("Collided with vulnerable object " + obj.name);
+            if(collision.tag == "Player")
+            {
+                collision.GetComponent<BalloonController>().changeTemp(getTemp());
+                collision.GetComponent<BalloonController>().changeComfort(getComfort());
+            }
+            Destroy(gameObject);
+
+            // Execute code here
+        }
+    }
+
+    public void takeDamage(float temp)
+    {
+        Destroy(this.gameObject);
     }
 }
