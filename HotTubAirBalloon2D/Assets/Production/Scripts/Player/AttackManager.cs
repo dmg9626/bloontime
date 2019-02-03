@@ -10,6 +10,12 @@ public class AttackManager : MonoBehaviour
     }
     public ShootMode shootMode;
 
+    public enum Player {
+        ONE, TWO
+    }
+
+    public Player playerNum;
+
     public ShootProjectile shootProjectile;
 
     public ClickBurst clickBurst;
@@ -20,17 +26,20 @@ public class AttackManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)) {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // if(Input.GetMouseButtonDown(0)) {
+        //     Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            Shoot(mousePos);
-        }
+        //     Shoot(mousePos);
+        // }
 
-        if(Input.GetKeyDown(KeyCode.Space)) {
+        if(Input.GetKeyDown(KeyCode.LeftShift) && playerNum.Equals(Player.ONE)) {
             Vector2 cursorPos = cursor.position;
             Shoot(cursorPos);
-            
+        }
 
+        if(Input.GetKeyDown(KeyCode.RightShift) && playerNum.Equals(Player.TWO)) {
+            Vector2 cursorPos = cursor.position;
+            Shoot(cursorPos);
         }
     }
 

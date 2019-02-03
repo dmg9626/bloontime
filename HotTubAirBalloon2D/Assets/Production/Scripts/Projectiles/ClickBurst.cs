@@ -33,7 +33,7 @@ public class ClickBurst : MonoBehaviour
 
     }
 
-    public void Burst(Vector2 position)
+public void Burst(Vector2 position)
     {
         psystem.transform.position = position;
         psystem.Emit(particleCount);
