@@ -23,7 +23,6 @@ public class BorderCollisionCheck : MonoBehaviour
     {
         if(other.gameObject.tag == "Environment")
         {
-            player.changeComfort(-2);
             switch(colliderSide){
                 case SIDE.BOTTOM: 
                     player.bottomCollision = true;

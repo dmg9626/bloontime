@@ -8,6 +8,7 @@ public class SalamanderBehavior : MonoBehaviour
     public float attackRange;
 
     public GameObject fireball;
+    public GameObject Cannon;
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +30,11 @@ public class SalamanderBehavior : MonoBehaviour
             if(Mathf.Abs(playerDist) < attackRange)
             {
                 shootFireball();
+                Cannon.SetActive(true);
+                Cannon.transform.right = player.transform.position - Cannon.transform.position;
                 yield return new WaitForSeconds(1f);
             }
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         
     }

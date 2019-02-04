@@ -32,7 +32,7 @@ public class IcicleBehavior : AbstractProjectile
                 StartCoroutine("fall");
                 notFall = false;
             }
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         
     }
@@ -43,7 +43,7 @@ public class IcicleBehavior : AbstractProjectile
             
             transform.position = new Vector2(transform.position.x, transform.position.y - speedFactor);
 
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 
