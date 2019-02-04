@@ -27,5 +27,19 @@ public class GM : MonoBehaviour
         comfortNum.text = BCtrl.comfort + "";
         maxComfort.text = comfortSlider.maxValue + "";
         minComfort.text = comfortSlider.minValue + "";
+
+        if(BCtrl.comfort <= 0){
+            GameOver();
+        }
     }
+    
+    public void Victory(){
+        Debug.Log("We Win");
+    }
+
+    public void GameOver(){
+        Debug.Log("You Lost Nerd");
+    }
+
+
 }
