@@ -67,7 +67,6 @@ public class GM : MonoBehaviour
     }
     
     public void Victory(){
-        Debug.Log("We Win");
         isEnd = true;
         endText.text = "You Win";
         Pause();

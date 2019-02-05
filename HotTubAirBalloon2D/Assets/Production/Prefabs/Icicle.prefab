@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 9157311879588645203}
   m_Layer: 8
   m_Name: Icicle
-  m_TagString: Environment
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tempChange: -2
   comfortChange: -2
+  typeVunerable: 0
   player: {fileID: 0}
   attackRange: 1
   speedFactor: 0.1

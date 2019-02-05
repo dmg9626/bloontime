@@ -231,8 +231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d8bc41bf974f3419793cab0fef8857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeVunerable: 1
   player: {fileID: 0}
-  attackRange: 5
+  attackRange: 7.5
   fireball: {fileID: 2065789242731696616, guid: 2f309d601ef6f0a4ea876b0785600a09,
     type: 3}
   Cannon: {fileID: 3447095198783712066}

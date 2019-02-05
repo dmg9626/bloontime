@@ -6,6 +6,7 @@ public abstract class AbstractProjectile : MonoBehaviour
 {
 
     public float tempChange, comfortChange;
+    public ClickBurst.EffectType typeVunerable;
 
     // Start is called before the first frame update
     void Start()
@@ -49,5 +50,13 @@ public abstract class AbstractProjectile : MonoBehaviour
     public void setComfort(float newComfort)
     {
         comfortChange = newComfort;
+    }
+
+    public void takeDamage(ClickBurst.EffectType effectType)
+    {
+        if (effectType.Equals(typeVunerable))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

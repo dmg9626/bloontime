@@ -49,7 +49,6 @@ public class IcicleBehavior : AbstractProjectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("something is happening");
         GameObject obj = collision.gameObject;
         if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
         {

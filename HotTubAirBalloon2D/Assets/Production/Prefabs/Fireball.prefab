@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 400903575836986024}
   m_Layer: 8
   m_Name: Fireball
-  m_TagString: Enemy
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tempChange: 3
   comfortChange: -2
-  speedFactor: 3
+  typeVunerable: 1
+  speedFactor: 4
 --- !u!61 &400903575836986024
 BoxCollider2D:
   m_ObjectHideFlags: 0

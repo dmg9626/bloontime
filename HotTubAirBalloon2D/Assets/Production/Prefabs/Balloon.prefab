@@ -5437,15 +5437,16 @@ MonoBehaviour:
   temperature: 0
   tempMultiplier: 150
   comfort: 5
-  comfortRegain: 0.5
+  comfortRegain: 0.1
   comfortTemp: 2
   maxComfort: 10
   cursorSpeed: 0.1
   collisionComfortLoss: -2
+  tempSmoothTime: 0.25
   bottomCollision: 0
   topCollision: 0
   balloonVerticalSpeed: 0
-  balloonHorizontalSpeed: 0.015
+  balloonHorizontalSpeed: 0.02
   charPos: {x: 0, y: 0}
 --- !u!50 &8845161633209413416
 Rigidbody2D:
@@ -5457,7 +5458,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 8845161633209413585}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -5482,7 +5483,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.4, y: 0.1}
-  m_Size: {x: 2, y: 2.6}
+  m_Size: {x: 1.7, y: 2.7}
   m_Direction: 0
 --- !u!1 &8845161633541279626
 GameObject:

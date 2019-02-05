@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SalamanderBehavior : MonoBehaviour
+public class SalamanderBehavior : AbstractObstacle
 {
     public GameObject player;
     public float attackRange;

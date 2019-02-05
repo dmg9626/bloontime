@@ -26,8 +26,10 @@ public class BurstTrigger : AbstractProjectile
         if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
         {
             Debug.Log("Collided with vulnerable object " + obj.name);
-            if(collision.tag == "Enemy" && collision.GetComponent<SalamanderBehavior>() != null)
-                collision.GetComponent<SalamanderBehavior>().takeDamage(getTemp());
+            if(collision.tag == "Enemy" && collision.GetComponent<AbstractObstacle>() != null)
+                collision.GetComponent<AbstractObstacle>().takeDamage(effectType);
+            if(collision.tag == "Projectile" && collision.GetComponent<AbstractProjectile>() != null)
+                collision.GetComponent<AbstractProjectile>().takeDamage(effectType);
             if(collision.tag == "Player")
             {
                 collision.GetComponent<BalloonController>().changeTemp(effectType);
