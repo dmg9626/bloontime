@@ -24,12 +24,12 @@ public class GM : MonoBehaviour
     void FixedUpdate()
     {
         tempSlider.value = BCtrl.temperature;
-        tempNum.text = BCtrl.temperature + "";
+        tempNum.text = BCtrl.temperature.ToString("F2");
         maxTemp.text = tempSlider.maxValue + "";
         minTemp.text = tempSlider.minValue + "";
 
         comfortSlider.value = BCtrl.comfort;
-        comfortNum.text = BCtrl.comfort + "";
+        comfortNum.text = BCtrl.comfort.ToString("F2");
         maxComfort.text = comfortSlider.maxValue + "";
         minComfort.text = comfortSlider.minValue + "";
 
