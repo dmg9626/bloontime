@@ -6,17 +6,21 @@ using UnityEngine.UI;
 // SliderUpdate - Sets sliderBG color based on slider value and corresponding gradient key. Calls SetSliderColor() each time slider value changes.
 // Ex. if slider has min 0 and max 10, a slider value of 5 would set sliderBG color to the middle color on the gradient (where key = .5)
 // If slider has min -10 and max 10, a value of 10 would set the color to the rightmost color on gradient (where key = 1)
+[RequireComponent(typeof(Image))]
 public class SliderUpdate : MonoBehaviour
 {
     public Gradient gradient;
 
-    public Slider slider;
+    Slider slider;
 
-    public Image sliderBG;
+    Image sliderBG;
 
     // Start is called before the first frame update
     void Start()
     {
+        slider = GetComponent<Slider>();
+        sliderBG = GetComponent<Image>();
+        
         // Set color at start
         sliderBG.color = gradient.Evaluate(GetSliderValue01(slider.value));
 
@@ -31,8 +35,7 @@ public class SliderUpdate : MonoBehaviour
     /// <returns></returns>
     float GetSliderValue01(float value)
     {
-        float value01 = value / (slider.maxValue + slider.minValue);
-        Debug.Log(name + " | value / (max / min) = " + value01);
+        float value01 = (value - slider.minValue) / (slider.maxValue - slider.minValue);
         return value01;
     }
 
