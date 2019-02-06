@@ -16,7 +16,7 @@ public class BorderCollisionCheck : MonoBehaviour
     /// </summary>
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<BalloonController>();
+        // player = GameObject.FindGameObjectWithTag("Player").GetComponent<BalloonController>();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
