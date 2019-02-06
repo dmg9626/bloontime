@@ -26,16 +26,25 @@ public class BurstTrigger : AbstractProjectile
         if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
         {
             Debug.Log("Collided with vulnerable object " + obj.name);
-            if(collision.tag == "Enemy" && collision.GetComponent<AbstractObstacle>() != null)
+
+            // Damage enemy
+            if(collision.tag == "Enemy" && collision.GetComponent<AbstractObstacle>() != null) {
                 collision.GetComponent<AbstractObstacle>().takeDamage(effectType);
-            if(collision.tag == "Projectile" && collision.GetComponent<AbstractProjectile>() != null)
+            }
+
+            // Damage projectile
+            if(collision.tag == "Projectile" && collision.GetComponent<AbstractProjectile>() != null) {
                 collision.GetComponent<AbstractProjectile>().takeDamage(effectType);
-            if(collision.tag == "Player")
+            }
+
+            // Increase balloon temperature
+            if(collision.tag == "Player" && collision.GetComponent<BalloonController>() != null)
             {
                 collision.GetComponent<BalloonController>().changeTemp(effectType);
                 // Debug.Log("TempChange: " + getTemp());
                 // Debug.Log("new Temp: " + collision.GetComponent<BalloonController>().temperature);
             }
+            
             Destroy(gameObject);
 
             // Execute code here

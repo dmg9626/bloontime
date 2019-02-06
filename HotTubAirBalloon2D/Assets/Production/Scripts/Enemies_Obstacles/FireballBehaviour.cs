@@ -20,15 +20,16 @@ public class FireballBehaviour : AbstractProjectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("something is happening");
         GameObject obj = collision.gameObject;
         if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
         {
             Debug.Log("Collided with vulnerable object " + obj.name);
-            if(collision.tag == "Player")
+            if(collision.tag == "Player" && collision.GetComponent<BalloonController>() != null)
             {
-                collision.GetComponent<BalloonController>().changeTemp(getTemp());
-                collision.GetComponent<BalloonController>().changeComfort(getComfort());
+                // update temperature/confort meters
+                BalloonController balloon = collision.GetComponent<BalloonController>();
+                balloon.changeTemp(getTemp());
+                balloon.changeComfort(getComfort());
             }
             Destroy(gameObject);
 

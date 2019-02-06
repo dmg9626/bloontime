@@ -53,7 +53,7 @@ public class IcicleBehavior : AbstractProjectile
         if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
         {
             Debug.Log("Collided with vulnerable object " + obj.name);
-            if(collision.tag == "Player")
+            if(collision.tag == "Player" && collision.GetComponent<BalloonController>() != null)
             {
                 collision.GetComponent<BalloonController>().changeTemp(getTemp());
                 collision.GetComponent<BalloonController>().changeComfort(getComfort());
