@@ -32,12 +32,12 @@ public class AttackManager : MonoBehaviour
         //     Shoot(mousePos);
         // }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && playerNum.Equals(Player.ONE)) {
+        if(Input.GetKeyDown(KeyCode.LeftControl) && playerNum.Equals(Player.ONE)) {
             Vector2 cursorPos = cursor.position;
             Shoot(cursorPos);
         }
 
-        if(Input.GetKeyDown(KeyCode.RightShift) && playerNum.Equals(Player.TWO)) {
+        if(Input.GetKeyDown(KeyCode.RightControl) && playerNum.Equals(Player.TWO)) {
             Vector2 cursorPos = cursor.position;
             Shoot(cursorPos);
         }

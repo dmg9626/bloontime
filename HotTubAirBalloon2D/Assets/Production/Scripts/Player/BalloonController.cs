@@ -13,7 +13,17 @@ public class BalloonController : MonoBehaviour
 {
 /**************************************************************************Public Fields */
     public GameObject BalloonChar;
-    public float temperature, tempMultiplier, comfort, comfortRegain, comfortTemp, maxComfort, cursorSpeed, collisionComfortLoss, tempSmoothTime;//, balloonSpeed;
+    public float 
+        temperature, 
+        tempMultiplier, 
+        comfort,
+        comfortRegain,
+        comfortTemp,
+        maxComfort,
+        cursorSpeed,
+        collisionComfortLoss,
+        tempSmoothTime;
+        //, balloonSpeed;
     public bool bottomCollision, topCollision;
 
 /****************************************************************************Private Fields */
