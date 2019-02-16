@@ -26,18 +26,12 @@ public class AttackManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        // if(Input.GetMouseButtonDown(0)) {
-        //     Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        //     Shoot(mousePos);
-        // }
-
-        if(Input.GetKeyDown(KeyCode.LeftControl) && playerNum.Equals(Player.ONE)) {
+        if(Input.GetButtonDown("Fire1") && playerNum.Equals(Player.ONE)) {
             Vector2 cursorPos = cursor.position;
             Shoot(cursorPos);
         }
 
-        if(Input.GetKeyDown(KeyCode.RightControl) && playerNum.Equals(Player.TWO)) {
+        if(Input.GetButtonDown("Fire2") && playerNum.Equals(Player.TWO)) {
             Vector2 cursorPos = cursor.position;
             Shoot(cursorPos);
         }
