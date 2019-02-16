@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public GameObject Player;
     private GameObject currentTarget;
-    public GameObject[] cameraTargets;
+    // public GameObject[] cameraTargets;
     private int targetIndex = 0;
 
     /// <summary>
@@ -23,14 +23,13 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentTarget = cameraTargets[0];
+        // currentTarget = cameraTargets[0];
+        currentTarget = CreateCameraWaypoint();
         UpdateYIncrement();
-        Debug.Log(yIncrement);
         transform.position = new Vector3(Player.transform.position.x, transform.position.y, transform.position.z);
-
     }
 
-    void CreateCameraWaypoint()
+    GameObject CreateCameraWaypoint()
     {
         // Get layer index
         int layerIndex = LayerMask.NameToLayer("Environment");
@@ -48,7 +47,7 @@ public class CameraController : MonoBehaviour
         
         if(raycastUp.collider == null || raycastDown.collider == null) {
             Debug.LogWarning("WARNING: raycast failed - no collision found");
-            return;
+            return null;
         }
 
         // float topDistance = (raycastUp.point - (Vector2)CameraTargetOffset.transform.position).magnitude;
@@ -63,7 +62,7 @@ public class CameraController : MonoBehaviour
         // Calculate middle of level
         float midBound = (topBound + bottomBound) / 2;
 
-        GameObject.Instantiate(cameraWaypoint, new Vector3(CameraTargetOffset.position.x, midBound, 0), transform.rotation);
+        return GameObject.Instantiate(cameraWaypoint, new Vector3(CameraTargetOffset.position.x, midBound, 0), transform.rotation);
     }
 
     // Update is called once per frame
@@ -75,9 +74,10 @@ public class CameraController : MonoBehaviour
         // If player passed current target
         if(playerPos.x >= currentTarget.transform.position.x){
 
-            // Set current target to next
-            targetIndex++;
-            currentTarget = cameraTargets[targetIndex];
+            // // Set current target to next
+            // targetIndex++;
+            // currentTarget = cameraTargets[targetIndex];
+            currentTarget = CreateCameraWaypoint();
 
             UpdateYIncrement();
         }
@@ -86,9 +86,9 @@ public class CameraController : MonoBehaviour
 
         transform.position = new Vector3(playerPos.x, newY, transform.position.z);
 
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            CreateCameraWaypoint();
-        }
+        // if(Input.GetKeyDown(KeyCode.Space)) {
+        //     CreateCameraWaypoint();
+        // }
     }
 
     void UpdateYIncrement()
