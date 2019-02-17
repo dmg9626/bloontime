@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject Player;
+    public Transform Player;
     private GameObject currentTarget;
     // public GameObject[] cameraTargets;
     private int targetIndex = 0;
@@ -23,10 +23,9 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // currentTarget = cameraTargets[0];
+        // Create initial waypoint
         currentTarget = CreateCameraWaypoint();
         UpdateYIncrement();
-        transform.position = new Vector3(Player.transform.position.x, transform.position.y, transform.position.z);
     }
 
     GameObject CreateCameraWaypoint()
@@ -50,29 +49,27 @@ public class CameraController : MonoBehaviour
             return null;
         }
 
+        // TODO: consider using these to determine if player is visible on screen
         // float topDistance = (raycastUp.point - (Vector2)CameraTargetOffset.transform.position).magnitude;
         // float bottomDistance = (raycastDown.point - (Vector2)CameraTargetOffset.transform.position).magnitude;
 
         // Calculate top/bottom of level
         topBound = raycastUp.point.y;
         bottomBound = raycastDown.point.y;
-        Debug.LogWarningFormat("Upwards raycast collided with {0} at y = {1}", raycastUp.collider.gameObject.name, topBound);
-        Debug.LogWarningFormat("Downwards raycast collided with {0} at y = {1}", raycastDown.collider.gameObject.name, bottomBound);
 
         // Calculate middle of level
         float midBound = (topBound + bottomBound) / 2;
-
+        
         return GameObject.Instantiate(cameraWaypoint, new Vector3(CameraTargetOffset.position.x, midBound, 0), transform.rotation);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        Vector2 playerPos = Player.transform.position;
+        float playerPos = Player.position.x;
 
         // If player passed current target
-        if(playerPos.x >= currentTarget.transform.position.x){
+        if(playerPos >= currentTarget.transform.position.x){
 
             // // Set current target to next
             // targetIndex++;
@@ -82,18 +79,13 @@ public class CameraController : MonoBehaviour
             UpdateYIncrement();
         }
     
-        float newY = ((playerPos.x - transform.position.x) * yIncrement) + transform.position.y;
+        float newY = ((playerPos - transform.position.x) * yIncrement) + transform.position.y;
 
-        transform.position = new Vector3(playerPos.x, newY, transform.position.z);
-
-        // if(Input.GetKeyDown(KeyCode.Space)) {
-        //     CreateCameraWaypoint();
-        // }
+        transform.position = new Vector3(playerPos, newY, transform.position.z);
     }
 
     void UpdateYIncrement()
     {
-        yIncrement = (currentTarget.transform.position.y - transform.position.y)/(currentTarget.transform.position.x - Player.transform.position.x);
-        Debug.LogWarning("Y Increment: " + yIncrement);
+        yIncrement = (currentTarget.transform.position.y - transform.position.y)/(currentTarget.transform.position.x - Player.position.x);
     }
 }
