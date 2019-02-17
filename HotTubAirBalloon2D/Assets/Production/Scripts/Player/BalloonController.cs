@@ -107,4 +107,8 @@ public class BalloonController : MonoBehaviour
     {
         comfort += comfortChange;
     }
+
+    public void moveBalloon(Vector2 newPos){
+        charPos = newPos;
+    }
 }
