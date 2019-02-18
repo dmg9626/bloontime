@@ -22,10 +22,16 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // currentTarget = cameraTargets[0];
+        StartCoroutine(Init());
+    }
+
+    IEnumerator Init()
+    {
+        yield return null;
+        
         currentTarget = CreateCameraWaypoint();
         UpdateYIncrement();
-        // transform.position = new Vector3(Player.transform.position.x, transform.position.y, transform.position.z);
+        transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
     }
 
     GameObject CreateCameraWaypoint()
@@ -69,11 +75,9 @@ public class CameraController : MonoBehaviour
         Vector2 playerPos = Player.position;
 
         // If player passed current target
-        if(playerPos.x >= currentTarget.transform.position.x){
+        if(currentTarget != null && playerPos.x >= currentTarget.transform.position.x){
 
             // // Set current target to next
-            // targetIndex++;
-            // currentTarget = cameraTargets[targetIndex];
             currentTarget = CreateCameraWaypoint();
 
             UpdateYIncrement();
