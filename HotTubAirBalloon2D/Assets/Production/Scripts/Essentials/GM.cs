@@ -9,7 +9,7 @@ public class GM : MonoBehaviour
     public Slider tempSlider, comfortSlider;
     public Text tempNum, maxTemp, minTemp, comfortNum, maxComfort, minComfort, endText;
     public bool isEnd = false;
-    public GameObject Cursor1, Cursor2, endMenu, pauseMenu;
+    public GameObject Player1, Player2, endMenu, pauseMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -50,8 +50,8 @@ public class GM : MonoBehaviour
     public void Pause(){
         if (Time.timeScale == 1.0f) {           
             Time.timeScale = 0.0f;
-            Cursor1.SetActive(false);
-            Cursor2.SetActive(false);
+            Player1.SetActive(false);
+            Player2.SetActive(false);
             if(isEnd){
                 endMenu.SetActive(true);
             }else{
@@ -59,8 +59,8 @@ public class GM : MonoBehaviour
             }
         }else{
             Time.timeScale = 1.0f;
-            Cursor1.SetActive(true);
-            Cursor2.SetActive(true);
+            Player1.SetActive(true);
+            Player2.SetActive(true);
             endMenu.SetActive(false);
             pauseMenu.SetActive(false);
         }   
