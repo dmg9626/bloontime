@@ -5410,7 +5410,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8845161633209413588}
   - component: {fileID: 8845161633209413590}
-  - component: {fileID: 8591266435857336893}
   - component: {fileID: 8845161633209413416}
   - component: {fileID: 8845161633209413587}
   m_Layer: 9
@@ -5466,18 +5465,6 @@ MonoBehaviour:
   balloonVerticalSpeed: 0
   balloonHorizontalSpeed: 0.02
   charPos: {x: 0, y: 0}
---- !u!114 &8591266435857336893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8845161633209413585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8825b0354ab6ca408af1ed09281cc41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &8845161633209413416
 Rigidbody2D:
   serializedVersion: 4
