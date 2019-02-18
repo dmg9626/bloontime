@@ -6,14 +6,11 @@ public class CameraController : MonoBehaviour
 {
     public Transform Player;
     private GameObject currentTarget;
-    private int targetIndex = 0;
 
     /// <summary>
     /// X-offset from camera position used when creating the next camera waypoint
     /// </summary>
     public Transform CameraTargetOffset;
-
-    public GameObject cameraWaypoint;
 
     private float yIncrement;
 
@@ -28,13 +25,15 @@ public class CameraController : MonoBehaviour
     IEnumerator Init()
     {
         yield return null;
+
+        currentTarget = new GameObject("Camera Waypoint");
         
-        currentTarget = CreateCameraWaypoint();
+        UpdateCameraWaypoint();
         UpdateYIncrement();
         transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
     }
 
-    GameObject CreateCameraWaypoint()
+    void UpdateCameraWaypoint()
     {
         // Get layer index
         int layerIndex = LayerMask.NameToLayer("Environment");
@@ -52,7 +51,7 @@ public class CameraController : MonoBehaviour
         
         if(raycastUp.collider == null || raycastDown.collider == null) {
             Debug.LogWarning("WARNING: raycast failed - no collision found");
-            return null;
+            return;
         }
 
         // float topDistance = (raycastUp.point - (Vector2)CameraTargetOffset.transform.position).magnitude;
@@ -65,7 +64,8 @@ public class CameraController : MonoBehaviour
         // Calculate middle of level
         float midBound = (topBound + bottomBound) / 2;
 
-        return GameObject.Instantiate(cameraWaypoint, new Vector3(CameraTargetOffset.position.x, midBound, 0), transform.rotation);
+        Debug.Log("Generated new camera waypoint");
+        currentTarget.transform.position = new Vector3(CameraTargetOffset.position.x, midBound, 0);
     }
 
     // Update is called once per frame
@@ -76,10 +76,9 @@ public class CameraController : MonoBehaviour
 
         // If player passed current target
         if(currentTarget != null && playerPos.x >= currentTarget.transform.position.x){
-
-            // // Set current target to next
-            currentTarget = CreateCameraWaypoint();
-
+            // Set current target to next
+            UpdateCameraWaypoint();
+            
             UpdateYIncrement();
         }
     
