@@ -21171,6 +21171,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 321251152}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &588148956 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8845161633209413588, guid: ef509f8445375cc449bde52a697f48fe,
+    type: 3}
+  m_PrefabInstance: {fileID: 321251152}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &590698517 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8691173825693620436, guid: 0c47859198323da4fba8b490565a4682,
@@ -21711,7 +21717,7 @@ PrefabInstance:
     - target: {fileID: 8691173825526903356, guid: 0c47859198323da4fba8b490565a4682,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7412610581848896870, guid: 0c47859198323da4fba8b490565a4682,
         type: 3}
@@ -21958,7 +21964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7259b1f2930f241498b8172285a4b70b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 588148953}
+  Player: {fileID: 588148956}
   CameraTargetOffset: {fileID: 916550746}
   cameraWaypoint: {fileID: 8945827125001801681, guid: a791233ff7ed14f668c47eb1dd0924db,
     type: 3}

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject Player;
+    public Transform Player;
     private GameObject currentTarget;
-    // public GameObject[] cameraTargets;
     private int targetIndex = 0;
 
     /// <summary>
@@ -26,7 +25,7 @@ public class CameraController : MonoBehaviour
         // currentTarget = cameraTargets[0];
         currentTarget = CreateCameraWaypoint();
         UpdateYIncrement();
-        transform.position = new Vector3(Player.transform.position.x, transform.position.y, transform.position.z);
+        // transform.position = new Vector3(Player.transform.position.x, transform.position.y, transform.position.z);
     }
 
     GameObject CreateCameraWaypoint()
@@ -56,8 +55,6 @@ public class CameraController : MonoBehaviour
         // Calculate top/bottom of level
         topBound = raycastUp.point.y;
         bottomBound = raycastDown.point.y;
-        Debug.LogWarningFormat("Upwards raycast collided with {0} at y = {1}", raycastUp.collider.gameObject.name, topBound);
-        Debug.LogWarningFormat("Downwards raycast collided with {0} at y = {1}", raycastDown.collider.gameObject.name, bottomBound);
 
         // Calculate middle of level
         float midBound = (topBound + bottomBound) / 2;
@@ -69,7 +66,7 @@ public class CameraController : MonoBehaviour
     void FixedUpdate()
     {
 
-        Vector2 playerPos = Player.transform.position;
+        Vector2 playerPos = Player.position;
 
         // If player passed current target
         if(playerPos.x >= currentTarget.transform.position.x){
@@ -85,15 +82,10 @@ public class CameraController : MonoBehaviour
         float newY = ((playerPos.x - transform.position.x) * yIncrement) + transform.position.y;
 
         transform.position = new Vector3(playerPos.x, newY, transform.position.z);
-
-        // if(Input.GetKeyDown(KeyCode.Space)) {
-        //     CreateCameraWaypoint();
-        // }
     }
 
     void UpdateYIncrement()
     {
-        yIncrement = (currentTarget.transform.position.y - transform.position.y)/(currentTarget.transform.position.x - Player.transform.position.x);
-        Debug.LogWarning("Y Increment: " + yIncrement);
+        yIncrement = (currentTarget.transform.position.y - transform.position.y)/(currentTarget.transform.position.x - Player.position.x);
     }
 }
