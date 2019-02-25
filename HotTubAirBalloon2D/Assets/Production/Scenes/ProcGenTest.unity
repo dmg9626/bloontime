@@ -124,11 +124,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essentials
       objectReference: {fileID: 0}
-    - target: {fileID: 8691173825491148357, guid: 0c47859198323da4fba8b490565a4682,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8691173825279543754, guid: 0c47859198323da4fba8b490565a4682,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -191,16 +186,6 @@ PrefabInstance:
       objectReference: {fileID: 414670792}
     - target: {fileID: 8691173825605012015, guid: 0c47859198323da4fba8b490565a4682,
         type: 3}
-      propertyPath: Cursor1
-      value: 
-      objectReference: {fileID: 1667905623}
-    - target: {fileID: 8691173825605012015, guid: 0c47859198323da4fba8b490565a4682,
-        type: 3}
-      propertyPath: Cursor2
-      value: 
-      objectReference: {fileID: 108668080}
-    - target: {fileID: 8691173825605012015, guid: 0c47859198323da4fba8b490565a4682,
-        type: 3}
       propertyPath: Player1
       value: 
       objectReference: {fileID: 1667905623}
@@ -209,11 +194,6 @@ PrefabInstance:
       propertyPath: Player2
       value: 
       objectReference: {fileID: 108668080}
-    - target: {fileID: 8691173825320866177, guid: 0c47859198323da4fba8b490565a4682,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8132436211469633395, guid: 0c47859198323da4fba8b490565a4682,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -243,6 +223,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1965403150}
+    - target: {fileID: 1766552714, guid: 0c47859198323da4fba8b490565a4682, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1259592359, guid: 0c47859198323da4fba8b490565a4682, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c47859198323da4fba8b490565a4682, type: 3}
 --- !u!1 &108668080 stripped
@@ -360,6 +348,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633209413590, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: minTemperature
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633209413590, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: maxTemperature
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef509f8445375cc449bde52a697f48fe, type: 3}

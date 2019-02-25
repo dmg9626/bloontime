@@ -13,13 +13,19 @@ public class BalloonController : MonoBehaviour
 {
 /**************************************************************************Public Fields */
     public GameObject BalloonChar;
-    public float 
-        temperature, 
-        tempMultiplier, 
+
+    public float temperature,
+        minTemperature,
+        maxTemperature,
+
         comfort,
+        minComfort,
+        maxComfort,
+
+        tempMultiplier,
+
         comfortRegain,
         comfortTemp,
-        maxComfort,
         cursorSpeed,
         collisionComfortLoss,
         tempSmoothTime;
@@ -71,7 +77,8 @@ public class BalloonController : MonoBehaviour
 
     IEnumerator regainComfort(){
         while(true){
-            if((temperature < comfortTemp) && (temperature > (0-comfortTemp) && (comfort < maxComfort))){
+            if((temperature < comfortTemp) && (temperature > (-comfortTemp) 
+                && (comfort < maxComfort))){
                 comfort += comfortRegain;
             }  
             yield return new WaitForSeconds(1f);
