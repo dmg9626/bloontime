@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GM : MonoBehaviour
 {
     public BalloonController BCtrl;
-    public Slider tempSlider, comfortSlider;
+    public Slider comfortSlider;
     public Text endText;
     public bool isEnd = false;
     public GameObject Player1, Player2, endMenu, pauseMenu;
@@ -24,7 +24,6 @@ public class GM : MonoBehaviour
     void FixedUpdate()
     {
         // Update slider values
-        tempSlider.value = BCtrl.temperature;
         comfortSlider.value = BCtrl.comfort;
 
         if(BCtrl.comfort <= 0){

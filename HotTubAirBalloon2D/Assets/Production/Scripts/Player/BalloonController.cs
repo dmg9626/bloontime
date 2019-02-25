@@ -16,21 +16,32 @@ public class BalloonController : MonoBehaviour
 
     public float temperature,
         minTemperature,
-        maxTemperature,
+        maxTemperature;
 
+    public float
         comfort,
         minComfort,
-        maxComfort,
+        maxComfort;
 
+    public float
         tempMultiplier,
-
         comfortRegain,
-        comfortTemp,
+        comfortTemp;
+
+    public float
         cursorSpeed,
         collisionComfortLoss,
         tempSmoothTime;
         //, balloonSpeed;
     public bool bottomCollision, topCollision;
+
+
+
+    public delegate void OnTempChanged();
+    public OnTempChanged onTempChanged;
+
+    public delegate void OnComfortChanged();
+    public OnComfortChanged onComfortChanged;
 
 /****************************************************************************Private Fields */
     [SerializeField]
@@ -45,6 +56,10 @@ public class BalloonController : MonoBehaviour
         charPos = BalloonChar.transform.position;
         StartCoroutine("regainComfort");
         StartCoroutine("regainTemperature");
+
+        // Initialize temperature/comfort to neutral values
+        temperature = (minTemperature + maxTemperature) / 2;
+        comfort = (minComfort + maxComfort) / 2;
     }
 
     // Update is called once per frame
@@ -98,6 +113,10 @@ public class BalloonController : MonoBehaviour
     public void changeTemp(float tempChange)
     {
         temperature += tempChange;
+
+        // Fire event
+        Debug.LogWarning("onTempChanged()");
+        onTempChanged();
     }
 
     public void changeTemp(ClickBurst.EffectType effectType)
@@ -113,9 +132,23 @@ public class BalloonController : MonoBehaviour
     public void changeComfort(float comfortChange)
     {
         comfort += comfortChange;
+
+        Debug.LogWarning("onComfortChanged()");
+        onComfortChanged?.Invoke();
     }
 
     public void moveBalloon(Vector2 newPos){
         charPos = newPos;
+    }
+
+
+    public float GetScaledTemp()
+    {
+        return (temperature - minTemperature) / (maxTemperature - minTemperature);
+    }
+
+    public float GetScaledComfort()
+    {
+        return (comfort - minComfort) / (maxComfort - minComfort);
     }
 }

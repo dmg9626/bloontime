@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1965403150}
+    - target: {fileID: 559810685, guid: 0c47859198323da4fba8b490565a4682, type: 3}
+      propertyPath: balloonController
+      value: 
+      objectReference: {fileID: 414670792}
     - target: {fileID: 1766552714, guid: 0c47859198323da4fba8b490565a4682, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
