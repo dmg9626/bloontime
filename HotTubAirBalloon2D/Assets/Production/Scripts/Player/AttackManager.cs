@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class AttackManager : MonoBehaviour
 {
@@ -10,28 +11,34 @@ public class AttackManager : MonoBehaviour
     }
     public ShootMode shootMode;
 
-    public enum Player {
+    public enum PlayerNumber {
         ONE, TWO
     }
 
-    public Player playerNum;
+    public PlayerNumber playerNum;
 
     public ShootProjectile shootProjectile;
 
     public ClickBurst clickBurst;
     public Transform cursor;
 
+    public Rewired.Player player;
+
+    void Start(){
+        player = ReInput.players.GetPlayer(0);
+    }
+
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") && playerNum.Equals(Player.ONE)) {
+        if((Input.GetButtonDown("Fire1") || player.GetButtonDown("FireBurst")) && playerNum.Equals(PlayerNumber.ONE)) {
             Vector2 cursorPos = cursor.position;
             Shoot(cursorPos);
         }
 
-        if(Input.GetButtonDown("Fire2") && playerNum.Equals(Player.TWO)) {
+        if((Input.GetButtonDown("Fire2") || player.GetButtonDown("IceBurst")) && playerNum.Equals(PlayerNumber.TWO)) {
             Vector2 cursorPos = cursor.position;
             Shoot(cursorPos);
         }
