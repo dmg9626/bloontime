@@ -102,7 +102,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d74ea6f6de8212d4a9a73d2755cc397b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27b617cf043b24c0a86258f662797184, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -120,10 +120,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 559810683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd584977b27bd84eaf4f1365f362ab2, type: 3}
+  m_Script: {fileID: 11500000, guid: 26ca7997dd8af4a458bef08f7e282a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needle: {fileID: 559810684}
   balloonController: {fileID: 0}
   minAngle: 100
   maxAngle: -100
@@ -195,7 +194,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b69c06fee7a004f4883bddef5875c297, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 604a59acffe4f498da5264206c92b451, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

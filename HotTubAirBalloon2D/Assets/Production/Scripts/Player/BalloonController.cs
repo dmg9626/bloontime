@@ -113,11 +113,11 @@ public class BalloonController : MonoBehaviour
     //takes in temp to change temperature
     public void changeTemp(float tempChange)
     {
+        // Update temperature
         temperature += tempChange;
 
         // Fire event
-        Debug.LogWarning("onTempChanged()");
-        onTempChanged();
+        onTempChanged?.Invoke();
     }
 
     public void changeTemp(ClickBurst.EffectType effectType)
@@ -132,9 +132,10 @@ public class BalloonController : MonoBehaviour
 
     public void changeComfort(float comfortChange)
     {
+        // Update comfort
         comfort += comfortChange;
 
-        Debug.LogWarning("onComfortChanged()");
+        // Fire event
         onComfortChanged?.Invoke();
     }
 

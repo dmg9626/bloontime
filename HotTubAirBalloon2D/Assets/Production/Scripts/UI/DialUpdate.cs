@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class DialUpdate : MonoBehaviour
 {
-    public RectTransform needle;
+    RectTransform needle;
 
     public BalloonController balloonController;
 
@@ -28,6 +28,8 @@ public class DialUpdate : MonoBehaviour
                 balloonController.onComfortChanged += UpdateDial;
                 break;
         }
+
+        needle = GetComponent<RectTransform>();
 
         // Set needle to center of dial
         float angle = (minAngle + maxAngle) / 2;
