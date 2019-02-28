@@ -96,6 +96,9 @@ public class BalloonController : MonoBehaviour
             if((temperature < comfortTemp) && (temperature > (-comfortTemp) 
                 && (comfort < maxComfort))){
                 comfort += comfortRegain;
+
+                // Fire comfort change events
+                onComfortChanged?.Invoke();
             }  
             yield return new WaitForSeconds(1f);
         }
@@ -105,6 +108,9 @@ public class BalloonController : MonoBehaviour
         float velocity = 0.0f;
         while(true){
             temperature = Mathf.SmoothDamp(temperature, 0f, ref velocity, tempSmoothTime);
+
+            // Fire temperature change events
+            onTempChanged?.Invoke();
             yield return new WaitForSeconds(0.1f);
         }
     }
