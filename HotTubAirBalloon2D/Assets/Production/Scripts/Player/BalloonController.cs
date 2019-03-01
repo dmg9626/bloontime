@@ -22,11 +22,17 @@ public class BalloonController : MonoBehaviour
     public float
         comfort,
         minComfort,
-        maxComfort;
+        defaultMaxComfort,
+        maxComfort,
+        firePower,
+        icePower,
+        fireResist,
+        iceResist;
 
     public float
         tempMultiplier,
-        comfortRegain,
+        defaultComfortRegen,
+        comfortRegen,
         comfortTemp;
 
     public float
@@ -34,9 +40,8 @@ public class BalloonController : MonoBehaviour
         collisionComfortLoss,
         tempSmoothTime;
         //, balloonSpeed;
+
     public bool bottomCollision, topCollision;
-
-
 
     public delegate void OnTempChanged();
     public OnTempChanged onTempChanged;
@@ -57,6 +62,9 @@ public class BalloonController : MonoBehaviour
         charPos = BalloonChar.transform.position;
         StartCoroutine("regainComfort");
         StartCoroutine("regainTemperature");
+
+        maxComfort = defaultMaxComfort;
+        comfortRegen = defaultComfortRegen;
 
         // Initialize temperature/comfort to neutral values
         temperature = (minTemperature + maxTemperature) / 2;
@@ -95,7 +103,7 @@ public class BalloonController : MonoBehaviour
         while(true){
             if((temperature < comfortTemp) && (temperature > (-comfortTemp) 
                 && (comfort < maxComfort))){
-                comfort += comfortRegain;
+                comfort += comfortRegen;
 
                 // Fire comfort change events
                 onComfortChanged?.Invoke();
@@ -129,10 +137,10 @@ public class BalloonController : MonoBehaviour
     public void changeTemp(ClickBurst.EffectType effectType)
     {
         if(effectType.Equals(ClickBurst.EffectType.FIRE)) {
-            changeTemp(1);
+            changeTemp(firePower);
         }
         else if(effectType.Equals(ClickBurst.EffectType.ICE)) {
-            changeTemp(-1);
+            changeTemp(-icePower);
         }
     }
 
@@ -149,6 +157,53 @@ public class BalloonController : MonoBehaviour
         charPos = newPos;
     }
 
+    public void setFirePower(float f){
+        firePower = f;
+    }
+
+    public void setIcePower(float i){
+        icePower = i;
+    }
+
+    public void setMaxComfort(float c){
+        maxComfort = c;
+    }
+
+    public void setComfortRegen(float r){
+        comfortRegen = r;
+    }
+
+    public void setIceRes(float r){
+        iceResist = r;
+    }
+
+    public void setFireRes(float r){
+        fireResist = r;
+    }
+    
+    public float getMaxComfort(){
+        return maxComfort;
+    }
+
+    public float getComfortRegen(){
+        return comfortRegen;
+    }
+
+    public float getIceResist(){
+        return iceResist;
+    }
+
+    public float getFireResist(){
+        return fireResist;
+    }
+
+    public float getDefaultRegen(){
+        return defaultComfortRegen;
+    }
+
+    public float getDefaultMaxComfort(){
+        return defaultMaxComfort;
+    }
 
     public float GetScaledTemp()
     {

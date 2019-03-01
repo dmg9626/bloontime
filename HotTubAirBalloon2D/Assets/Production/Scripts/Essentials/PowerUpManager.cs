@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class PowerUpManager : MonoBehaviour
 {
-    public enum PowerUp
+    public enum PowerUpName
     {
-        COMFORTREG,
+        WATERJETS,
         TEMPREG,
         SNOCONE,
         HOTCOCOA
     };
+
+    public class PowerUp
+    {
+        public PowerUp(PowerUpName n){
+            name = n;
+            isApplied = false;
+        }
+        public PowerUpName name;
+        public bool isApplied;
+    }
 
     public GameObject Player;
     public BalloonController BCtrl;
@@ -20,6 +30,7 @@ public class PowerUpManager : MonoBehaviour
     void Start()
     {
         Player = gameObject;
+        Player = GameObject.FindGameObjectWithTag("Player");
         BCtrl = Player.GetComponent<BalloonController>();
         activePowerUps = new List<PowerUp>();
     }
@@ -27,18 +38,58 @@ public class PowerUpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Power Up"))
-            addPowerUp(PowerUp.COMFORTREG);
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+            addPowerUp(PowerUpName.WATERJETS);
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+            addPowerUp(PowerUpName.TEMPREG);
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+            addPowerUp(PowerUpName.HOTCOCOA);
+        if(Input.GetKeyDown(KeyCode.Alpha4))
+            addPowerUp(PowerUpName.SNOCONE);
     }
 
-    public void addPowerUp(PowerUp p)
+    public void addPowerUp(PowerUpName p)
     {
-        if(!activePowerUps.Contains(p))
-            activePowerUps.Add(p);
+        PowerUp n = new PowerUp(p);
+        if(!activePowerUps.Contains(n))
+            activePowerUps.Add(n);
+        checkPowerUps();
     }
 
-    public void checkPowerUps()
+    public List<PowerUp> getPowerUps()
     {
+        return activePowerUps;
+    }
 
+    void checkPowerUps(){
+        activePowerUps.ForEach(e =>{
+            if(!e.isApplied)
+            {
+                switch(e.name)
+                {
+                    case PowerUpName.WATERJETS:
+                        float newMax = (float)(Mathf.RoundToInt(BCtrl.getDefaultMaxComfort() * 1.5f));
+                        BCtrl.setMaxComfort(newMax);
+                        float newRegen = BCtrl.getDefaultRegen() * 1.5f;
+                        BCtrl.setComfortRegen(newRegen);
+                        e.isApplied = true;
+                        break;
+                    case PowerUpName.TEMPREG:
+                        BCtrl.setFireRes(BCtrl.getFireResist() + 1);
+                        BCtrl.setIceRes(BCtrl.getIceResist() + 1);
+                        e.isApplied = true;
+                        break;
+                    case PowerUpName.HOTCOCOA:
+                        BCtrl.setFirePower(2);
+                        e.isApplied = true;
+                        break;
+                    case PowerUpName.SNOCONE:
+                        BCtrl.setIcePower(2);
+                        e.isApplied = true;
+                        break;
+                    default: break;
+                }
+            }
+        });
     }
 }
