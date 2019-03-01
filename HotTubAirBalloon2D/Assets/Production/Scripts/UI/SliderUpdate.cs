@@ -15,6 +15,8 @@ public class SliderUpdate : MonoBehaviour
 
     Image sliderBG;
 
+    public List<Graphic> graphicsToUpdate;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,8 @@ public class SliderUpdate : MonoBehaviour
         sliderBG = GetComponent<Image>();
         
         // Set color at start
-        sliderBG.color = gradient.Evaluate(GetSliderValue01(slider.value));
+        // sliderBG.color = gradient.Evaluate(GetSliderValue01(slider.value));
+        // SetSliderColor(slider.value);
 
         // Call SetSliderColor() with slider value each time value changes
         slider.onValueChanged.AddListener(SetSliderColor);
@@ -46,6 +49,10 @@ public class SliderUpdate : MonoBehaviour
     /// <param name="value"></param>
     public void SetSliderColor(float value)
     {
-        sliderBG.color = gradient.Evaluate(GetSliderValue01(slider.value));
+        foreach(Graphic graphic in graphicsToUpdate) {
+            graphic.color = gradient.Evaluate(GetSliderValue01(value));
+            Debug.Log("slider level: " + GetSliderValue01(value));
+        }
+        // sliderBG.color = gradient.Evaluate(GetSliderValue01(slider.value));
     }
 }

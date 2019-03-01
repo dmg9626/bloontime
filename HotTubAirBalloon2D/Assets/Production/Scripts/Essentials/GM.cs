@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class GM : MonoBehaviour
 {
     public BalloonController BCtrl;
-    public Slider tempSlider, comfortSlider;
-    public Text tempNum, maxTemp, minTemp, comfortNum, maxComfort, minComfort, endText;
+    public Slider comfortSlider;
+    public Text endText;
     public bool isEnd = false;
     public GameObject Player1, Player2, endMenu, pauseMenu;
 
@@ -23,15 +23,8 @@ public class GM : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        tempSlider.value = BCtrl.temperature;
-        tempNum.text = BCtrl.temperature.ToString("F2");
-        maxTemp.text = tempSlider.maxValue + "";
-        minTemp.text = tempSlider.minValue + "";
-
+        // Update slider values
         comfortSlider.value = BCtrl.comfort;
-        comfortNum.text = BCtrl.comfort.ToString("F2");
-        maxComfort.text = comfortSlider.maxValue + "";
-        minComfort.text = comfortSlider.minValue + "";
 
         if(BCtrl.comfort <= 0){
             GameOver();
