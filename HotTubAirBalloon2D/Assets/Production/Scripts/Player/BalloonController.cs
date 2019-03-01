@@ -110,5 +110,6 @@ public class BalloonController : MonoBehaviour
 
     public void moveBalloon(Vector2 newPos){
         charPos = newPos;
+        BalloonChar.transform.position = charPos;
     }
 }

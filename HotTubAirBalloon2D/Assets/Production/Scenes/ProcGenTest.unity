@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 757809205}
   m_Layer: 10
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,7 +513,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 757809201}
   m_BodyType: 2
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -589,15 +589,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelMap: {fileID: 757809204}
-  tile: {fileID: 11400000, guid: 217d2252382b5d449864c57e24392294, type: 2}
+  tile: {fileID: 11400000, guid: a4f32fc107a79034bb944bea689dc70a, type: 2}
   height: 100
-  width: 300
+  width: 200
   tunnelHeight: 10
   buffer: 10
   maxSlope: 40
   maxDisturb: 30
+  minShapes: 2
+  maxShapes: 7
+  maxBoulderHeight: 5
+  maxBoulderWidth: 8
+  minBoulderNum: 7
+  maxBoulderNum: 15
+  minEnemyNum: 7
+  maxEnemyNum: 15
   levelShape: 140000002d0000002300000037000000140000001e000000
   player: {fileID: 1965403147}
+  goalPost: {fileID: 9075341021122426737, guid: d6ed14c176240ed4ab448208523596fd,
+    type: 3}
+  enemyList:
+  - {fileID: 5170851323378231382, guid: da1e92d2ae85dea4b830e52bf1da067e, type: 3}
+  - {fileID: 2472763730620242514, guid: 422e917754d6a26449d46c3f5a90d34d, type: 3}
+  enemyPositions: 0000000001000000
 --- !u!1 &1912512671
 GameObject:
   m_ObjectHideFlags: 0
