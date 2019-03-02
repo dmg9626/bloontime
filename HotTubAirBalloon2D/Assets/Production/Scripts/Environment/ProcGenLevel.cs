@@ -173,7 +173,6 @@ public class ProcGenLevel : MonoBehaviour
                         ceiling[boulderPlaces[x]-i] -= bHeight;
                     }
                 }
-                Debug.Log("bHeight: " + bHeight + " fallOff: " + heightFalloff + " height: " + bHeight + " width: " + bWidth);
                 bHeight = Mathf.FloorToInt(bHeight-heightFalloff);
             }
 

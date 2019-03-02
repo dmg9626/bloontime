@@ -5454,21 +5454,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BalloonChar: {fileID: 8845161633209413585}
   temperature: 0
-  minTemperature: 0
-  maxTemperature: 0
+  minTemperature: -25
+  maxTemperature: 25
   comfort: 5
   minComfort: 0
+  defaultMaxComfort: 10
   maxComfort: 10
-  firePower: 0
-  icePower: 0
+  firePower: 1
+  icePower: 1
   fireResist: 0
   iceResist: 0
   tempMultiplier: 150
-  comfortRegain: 0.1
+  defaultComfortRegen: 0.1
+  comfortRegen: 0
   comfortTemp: 2
   cursorSpeed: 0.1
   collisionComfortLoss: -1
-  tempSmoothTime: 0.35
+  tempSmoothTime: 1
   bottomCollision: 0
   topCollision: 0
   balloonVerticalSpeed: 0
