@@ -199,6 +199,7 @@ MonoBehaviour:
   moveSpeed: 0.15
   playerNum: 0
   cursor: {fileID: 8845161632690398578}
+  centralizedAnalog: 0
 --- !u!114 &3867545352096485828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5079,7 +5080,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3538006640327585825}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -5288,6 +5289,7 @@ MonoBehaviour:
   moveSpeed: 0.15
   playerNum: 1
   cursor: {fileID: 9003574820412403997}
+  centralizedAnalog: 0
 --- !u!114 &5590871659491735033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5452,14 +5454,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BalloonChar: {fileID: 8845161633209413585}
   temperature: 0
-  tempMultiplier: 150
+  minTemperature: -25
+  maxTemperature: 25
   comfort: 5
-  comfortRegain: 0.1
-  comfortTemp: 2
+  minComfort: 0
+  defaultMaxComfort: 10
   maxComfort: 10
+  firePower: 1
+  icePower: 1
+  fireResist: 0
+  iceResist: 0
+  tempMultiplier: 150
+  defaultComfortRegen: 0.1
+  comfortRegen: 0
+  comfortTemp: 2
   cursorSpeed: 0.1
   collisionComfortLoss: -1
-  tempSmoothTime: 0.35
+  tempSmoothTime: 1
   bottomCollision: 0
   topCollision: 0
   balloonVerticalSpeed: 0
