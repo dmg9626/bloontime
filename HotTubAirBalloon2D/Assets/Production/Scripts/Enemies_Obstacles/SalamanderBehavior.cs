@@ -14,13 +14,7 @@ public class SalamanderBehavior : AbstractObstacle
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        StartCoroutine("takeTheShot");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
+        StartCoroutine(takeTheShot());
     }
 
     IEnumerator takeTheShot() 
@@ -43,10 +37,5 @@ public class SalamanderBehavior : AbstractObstacle
         GameObject fb = Instantiate(fireball, transform.position, transform.rotation);
         fb.transform.right = player.transform.position - fb.transform.position;
         Destroy (fb, 1.5f);
-    }
-
-    public void takeDamage(float temp)
-    {
-        Destroy(this.gameObject);
     }
 }

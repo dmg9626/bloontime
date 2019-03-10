@@ -13,13 +13,7 @@ public class IcicleBehavior : AbstractProjectile
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        StartCoroutine("takeTheShot");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
+        StartCoroutine(takeTheShot());
     }
 
     IEnumerator takeTheShot() 
@@ -29,12 +23,11 @@ public class IcicleBehavior : AbstractProjectile
             float playerDist = player.transform.position.x - transform.position.x;
             if(Mathf.Abs(playerDist) < attackRange)
             {
-                StartCoroutine("fall");
+                StartCoroutine(fall());
                 notFall = false;
             }
             yield return new WaitForFixedUpdate();
         }
-        
     }
 
     IEnumerator fall() 
@@ -63,10 +56,4 @@ public class IcicleBehavior : AbstractProjectile
             // Execute code here
         }
     }
-
-    public void takeDamage(float temp)
-    {
-        Destroy(this.gameObject);
-    }
-
 }
