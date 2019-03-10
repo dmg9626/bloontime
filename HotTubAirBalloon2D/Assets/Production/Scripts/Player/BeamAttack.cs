@@ -42,9 +42,17 @@ public class BeamAttack : MonoBehaviour
 
     public EffectManager effectManager;
 
+    /// <summary>
+    /// Settings used for animating beam
+    /// </summary>
     EffectManager.BeamColorSettings beamColorSettings;
 
     SpriteRenderer spriteRenderer;
+    
+    /// <summary>
+    /// Default transform.scale values
+    /// </summary>
+    Vector3 initalScale;
 
     void Start()
     {
@@ -61,6 +69,9 @@ public class BeamAttack : MonoBehaviour
 
         // Get sprite renderer and set initial color
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Capture initial scale values
+        initalScale = transform.localScale;
     }
 
     void Update()
@@ -74,7 +85,7 @@ public class BeamAttack : MonoBehaviour
         else
         {
             // Shrink beam back to inital scale
-            transform.localScale = Vector3.one;
+            transform.localScale = initalScale;
 
             // Set curve values back to 0
             beamInterpolationValue = 0;
@@ -107,7 +118,7 @@ public class BeamAttack : MonoBehaviour
 
         // Scale beam length towards distanceToCursor
         float beamLength = Mathfx.Sinerp(1, distanceToCursor, beamInterpolationValue);
-        transform.localScale = new Vector3(1, beamLength, 1);
+        transform.localScale = new Vector3(initalScale.x, beamLength, initalScale.z);
 
         // Flash beam color
         AnimateBeamColor(animationSpeed);
