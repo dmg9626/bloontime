@@ -6,19 +6,7 @@ public class AbstractObstacle : MonoBehaviour
 {
     public ClickBurst.EffectType typeVunerable;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void takeDamage(ClickBurst.EffectType effectType)
+    public void takeDamage(ClickBurst.EffectType effectType, float damage)
     {
         if (effectType.Equals(typeVunerable))
         {

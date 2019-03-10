@@ -8,6 +8,8 @@ public class BurstTrigger : AbstractProjectile
 
     public ClickBurst.EffectType effectType;
 
+    public float damage;
+
     private void OnEnable()
     {
         // Disable in a second so it doesn't sit there waiting for balloon to collide
@@ -29,12 +31,12 @@ public class BurstTrigger : AbstractProjectile
 
             // Damage enemy
             if(collision.tag == "Enemy" && collision.GetComponent<AbstractObstacle>() != null) {
-                collision.GetComponent<AbstractObstacle>().takeDamage(effectType);
+                collision.GetComponent<AbstractObstacle>().takeDamage(effectType, damage);
             }
 
             // Damage projectile
             if(collision.tag == "Projectile" && collision.GetComponent<AbstractProjectile>() != null) {
-                collision.GetComponent<AbstractProjectile>().takeDamage(effectType);
+                collision.GetComponent<AbstractProjectile>().takeDamage(effectType, damage);
             }
 
             // Increase balloon temperature

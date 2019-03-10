@@ -51,20 +51,6 @@ public void Burst(Vector2 position)
         
     }
 
-    private void Update()
-    {
-        //if(Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    SetColorOverLifetime(fireGradient);
-        //    effectType = EffectType.FIRE;
-        //}
-        //else if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    SetColorOverLifetime(iceGradient);
-        //    effectType = EffectType.ICE;
-        //}
-    }
-
     void SetColorOverLifetime(Gradient gradient)
     {
         var colorModule = psystem.colorOverLifetime;

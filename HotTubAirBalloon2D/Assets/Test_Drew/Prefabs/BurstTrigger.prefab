@@ -133,4 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tempChange: 0
   comfortChange: 0
+  typeVunerable: 0
   lifetime: 0.1
+  effectType: 0
+  damage: 5

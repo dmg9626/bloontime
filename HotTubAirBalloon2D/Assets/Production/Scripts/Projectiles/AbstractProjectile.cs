@@ -8,18 +8,6 @@ public abstract class AbstractProjectile : MonoBehaviour
     public float tempChange, comfortChange;
     public ClickBurst.EffectType typeVunerable;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public float getTemp()
     {
         return tempChange;
@@ -52,7 +40,7 @@ public abstract class AbstractProjectile : MonoBehaviour
         comfortChange = newComfort;
     }
 
-    public void takeDamage(ClickBurst.EffectType effectType)
+    public void takeDamage(ClickBurst.EffectType effectType, float damage)
     {
         if (effectType.Equals(typeVunerable))
         {
