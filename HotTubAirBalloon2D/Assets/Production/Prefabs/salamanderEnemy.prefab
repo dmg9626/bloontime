@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeVunerable: 1
+  maxHealth: 5
   player: {fileID: 0}
   attackRange: 7.5
   fireball: {fileID: 2065789242731696616, guid: 2f309d601ef6f0a4ea876b0785600a09,

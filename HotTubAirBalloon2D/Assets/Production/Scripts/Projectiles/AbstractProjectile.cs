@@ -40,7 +40,7 @@ public abstract class AbstractProjectile : MonoBehaviour
         comfortChange = newComfort;
     }
 
-    public void takeDamage(ClickBurst.EffectType effectType, float damage)
+    public void takeDamage(ClickBurst.EffectType effectType)
     {
         if (effectType.Equals(typeVunerable))
         {

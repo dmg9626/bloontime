@@ -34,22 +34,18 @@ public class BurstTrigger : AbstractProjectile
                 collision.GetComponent<AbstractObstacle>().takeDamage(effectType, damage);
             }
 
-            // Damage projectile
+            // Destroy projectile
             if(collision.tag == "Projectile" && collision.GetComponent<AbstractProjectile>() != null) {
-                collision.GetComponent<AbstractProjectile>().takeDamage(effectType, damage);
+                collision.GetComponent<AbstractProjectile>().takeDamage(effectType);
             }
 
             // Increase balloon temperature
             if(collision.tag == "Player" && collision.GetComponent<BalloonController>() != null)
             {
                 collision.GetComponent<BalloonController>().changeTemp(effectType);
-                // Debug.Log("TempChange: " + getTemp());
-                // Debug.Log("new Temp: " + collision.GetComponent<BalloonController>().temperature);
             }
             
             Destroy(gameObject);
-
-            // Execute code here
         }
     }
 }
