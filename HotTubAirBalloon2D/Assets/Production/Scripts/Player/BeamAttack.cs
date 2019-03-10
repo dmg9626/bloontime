@@ -54,11 +54,10 @@ public class BeamAttack : MonoBehaviour
     /// </summary>
     Vector3 initalScale;
 
+    Rigidbody2D rb;
+
     void Start()
     {
-        // Initialize curve value to 0
-        beamInterpolationValue = 0;
-
         // Get color effect settings
         if (effectType.Equals(ClickBurst.EffectType.FIRE)) {
             beamColorSettings = effectManager.fireBeamColorSettings;
@@ -69,27 +68,49 @@ public class BeamAttack : MonoBehaviour
 
         // Get sprite renderer and set initial color
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
 
         // Capture initial scale values
         initalScale = transform.localScale;
+
+        // Set curve values to 0
+        beamInterpolationValue = 0;
+        colorAnimationValue = 0;
     }
 
     void Update()
     {
         RotateTowardsCursor();
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            FireBeam();
-        }
-        else
-        {
-            // Shrink beam back to inital scale
-            transform.localScale = initalScale;
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    FireBeam();
+        //}
+        //else
+        //{
+        //    // Shrink beam back to inital scale
+        //    transform.localScale = initalScale;
 
-            // Set curve values back to 0
+        //    // Set curve values back to 0
+        //    beamInterpolationValue = 0;
+        //    colorAnimationValue = 0;
+        //}
+    }
+
+    public void SetActive(bool active)
+    {
+        // Hide beam and disable collision
+        spriteRenderer.enabled = active;
+        rb.simulated = active;
+
+        if(!active)
+        {
+            // Set curve values to 0
             beamInterpolationValue = 0;
             colorAnimationValue = 0;
+
+            // Reset scale
+            transform.localScale = initalScale;
         }
     }
 
@@ -107,7 +128,7 @@ public class BeamAttack : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FireBeam()
+    public void FireBeam()
     {
         // Calculate distance to cursor
         Vector3 vectorToCursor = cursor.position - transform.position;

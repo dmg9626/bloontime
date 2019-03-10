@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using System;
 
 public class AttackManager : MonoBehaviour
 {
     public enum ShootMode {
-        MOVING_PROJECTILE,
+        BEAM,
         CLICK_BURST
     }
     public ShootMode shootMode;
@@ -17,10 +18,11 @@ public class AttackManager : MonoBehaviour
 
     public PlayerNumber playerNum;
 
-    public ShootProjectile shootProjectile;
+    public BeamAttack beam;
+
+    public Transform cursor;
 
     public ClickBurst clickBurst;
-    public Transform cursor;
 
     public Rewired.Player player;
 
@@ -33,28 +35,52 @@ public class AttackManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if((Input.GetButtonDown("Fire1") || player.GetButtonDown("FireBurst")) && playerNum.Equals(PlayerNumber.ONE)) {
+        HandleBurstAttack();
+
+        HandleBeamAttack();
+    }
+
+    void HandleBeamAttack()
+    {
+        // Beam attack P1
+        if (Input.GetKey(KeyCode.LeftControl) && playerNum.Equals(PlayerNumber.ONE))
+        {
+            beam.SetActive(true);
+
             Vector2 cursorPos = cursor.position;
-            Shoot(cursorPos);
+            beam.FireBeam();
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftControl) && playerNum.Equals(PlayerNumber.ONE))
+        {
+            beam.SetActive(false);
         }
 
-        if((Input.GetButtonDown("Fire2") || player.GetButtonDown("IceBurst")) && playerNum.Equals(PlayerNumber.TWO)) {
+        // Beam attack P2
+        if (Input.GetKey(KeyCode.RightControl) && playerNum.Equals(PlayerNumber.TWO))
+        {
+            beam.SetActive(true);
+
             Vector2 cursorPos = cursor.position;
-            Shoot(cursorPos);
+            beam.FireBeam();
+        }
+        else if (Input.GetKeyUp(KeyCode.RightControl) && playerNum.Equals(PlayerNumber.TWO))
+        {
+            beam.SetActive(false);
         }
     }
 
-    void Shoot(Vector2 position)
+    void HandleBurstAttack()
     {
-        switch (shootMode)
+        // Burst attack P1
+        if ((Input.GetButtonDown("Fire1") || player.GetButtonDown("FireBurst")) && playerNum.Equals(PlayerNumber.ONE))
         {
-            case ShootMode.MOVING_PROJECTILE:
-                shootProjectile.Shoot(position);
-                break;
+            clickBurst.Burst(cursor.position);
+        }
 
-            case ShootMode.CLICK_BURST:
-                clickBurst.Burst(position);
-                break;
+        // Burst attack P2
+        if ((Input.GetButtonDown("Fire2") || player.GetButtonDown("IceBurst")) && playerNum.Equals(PlayerNumber.TWO))
+        {
+            clickBurst.Burst(cursor.position);
         }
     }
 }
