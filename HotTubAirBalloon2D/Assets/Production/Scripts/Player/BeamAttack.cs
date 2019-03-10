@@ -19,18 +19,48 @@ public class BeamAttack : MonoBehaviour
     /// Rate at which beam expands towards cursor
     /// </summary>
     public float expansionSpeed;
+    
+    /// <summary>
+    /// Rate at which beam color iterates over gradient
+    /// </summary>
+    public float animationSpeed;
+
+    /// <summary>
+    /// Rate of animation while hitting enemy/obstacle
+    /// </summary>
+    public float hitAnimationSpeed;
 
     /// <summary>
     /// Interpolation value used for beam growth in FireBeam()
     /// </summary>
     private float beamInterpolationValue;
 
-    BoxCollider2D col;
+    /// <summary>
+    /// Value used to animate beam color over gradient
+    /// </summary>
+    private float colorAnimationValue;
+
+    public EffectManager effectManager;
+
+    EffectManager.BeamColorSettings beamColorSettings;
+
+    SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        col = GetComponent<BoxCollider2D>();
+        // Initialize curve value to 0
         beamInterpolationValue = 0;
+
+        // Get color effect settings
+        if (effectType.Equals(ClickBurst.EffectType.FIRE)) {
+            beamColorSettings = effectManager.fireBeamColorSettings;
+        }
+        else if (effectType.Equals(ClickBurst.EffectType.ICE)) {
+            beamColorSettings = effectManager.iceBeamColorSettings;
+        }
+
+        // Get sprite renderer and set initial color
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -43,8 +73,12 @@ public class BeamAttack : MonoBehaviour
         }
         else
         {
+            // Shrink beam back to inital scale
             transform.localScale = Vector3.one;
+
+            // Set curve values back to 0
             beamInterpolationValue = 0;
+            colorAnimationValue = 0;
         }
     }
 
@@ -74,6 +108,9 @@ public class BeamAttack : MonoBehaviour
         // Scale beam length towards distanceToCursor
         float beamLength = Mathfx.Sinerp(1, distanceToCursor, beamInterpolationValue);
         transform.localScale = new Vector3(1, beamLength, 1);
+
+        // Flash beam color
+        AnimateBeamColor(animationSpeed);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -94,5 +131,20 @@ public class BeamAttack : MonoBehaviour
                 collision.GetComponent<AbstractProjectile>().takeDamage(effectType);
             }
         }
+    }
+
+    /// <summary>
+    /// Animate beam color over gradient at rate
+    /// </summary>
+    /// <param name="rate">Speed of color animation</param>
+    void AnimateBeamColor(float rate)
+    {
+        // Calculate gradient position
+        colorAnimationValue += Time.fixedDeltaTime * rate;
+        float pingPong = Mathf.PingPong(colorAnimationValue, 1);
+
+        // Evaluate gradient at pingPong and update beam
+        Color color = beamColorSettings.hitEffectGradient.Evaluate(pingPong);
+        spriteRenderer.color = color;
     }
 }
