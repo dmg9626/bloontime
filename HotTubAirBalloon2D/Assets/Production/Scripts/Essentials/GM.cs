@@ -10,7 +10,8 @@ public class GM : MonoBehaviour
     public Slider comfortSlider;
     public Text endText;
     public bool isEnd = false;
-    public GameObject Player1, Player2, endMenu, pauseMenu;
+    public GameObject Player1, Player2, endMenu, pauseMenu, victoryMenu;
+    public ProcGenLevel procGen;
 
     // Start is called before the first frame update
     void Start()
@@ -36,50 +37,57 @@ public class GM : MonoBehaviour
 
         if((Input.GetKeyDown("escape")) && (!isEnd))     
         {
-            Pause();     
+            if(Time.timeScale == 1.0f){
+                if(!isEnd){
+                    Pause();
+                    pauseMenu.SetActive(true);
+                }
+            }else{
+                UnPause();
+                pauseMenu.SetActive(false);
+            }
+                
         }
 
     }
 
     public void Pause(){
-        if (Time.timeScale == 1.0f) {           
-            Time.timeScale = 0.0f;
-            Player1.SetActive(false);
-            Player2.SetActive(false);
-            if(isEnd){
-                endMenu.SetActive(true);
-            }else{
-                pauseMenu.SetActive(true);
-            }
-        }else{
-            Time.timeScale = 1.0f;
-            Player1.SetActive(true);
-            Player2.SetActive(true);
-            endMenu.SetActive(false);
-            pauseMenu.SetActive(false);
-        }   
+        Time.timeScale = 0.0f;
+        Player1.SetActive(false);
+        Player2.SetActive(false);
+    }
+    
+    public void UnPause(){
+        Time.timeScale = 1.0f;
+        Player1.SetActive(true);
+        Player2.SetActive(true);
     }
     
     public void Victory(){
+        victoryMenu.SetActive(true);
         isEnd = true;
-        endText.text = "You Win";
         Pause();
     }
 
     public void GameOver(){
-        endText.text ="Game Over";
+        endMenu.SetActive(true);
         isEnd = true;
         Pause();
     }
 
     public void Retry(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
+    public void NextLevel(){
+        procGen.NextLevel();
+        victoryMenu.SetActive(false);
+        isEnd = false;
+        UnPause();
     }
 
     public void Quit(){
         Application.Quit();
-        
     }
 
 

@@ -27,10 +27,8 @@ public class CameraController : MonoBehaviour
         yield return null;
 
         currentTarget = new GameObject("Camera Waypoint");
-        
-        UpdateCameraWaypoint();
-        UpdateYIncrement();
-        transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
+
+        resetCameraToPlayer();
     }
 
     void UpdateCameraWaypoint()
@@ -90,5 +88,12 @@ public class CameraController : MonoBehaviour
     void UpdateYIncrement()
     {
         yIncrement = (currentTarget.transform.position.y - transform.position.y)/(currentTarget.transform.position.x - Player.position.x);
+    }
+
+    public void resetCameraToPlayer(){
+
+        transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
+        yIncrement = 0f;
+        
     }
 }

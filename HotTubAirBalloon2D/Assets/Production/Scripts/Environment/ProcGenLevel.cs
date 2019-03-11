@@ -12,7 +12,9 @@ public class ProcGenLevel : MonoBehaviour
 
     public List<int> levelShape;
 
-    public GameObject player, goalPost;
+    public GameObject goalPost;
+    public BalloonController player;
+    public CameraController camera;
 
     public enum EnemyPositionType { ANY, TOP, BOTTOM, CENTER };
     public List<GameObject> enemyList;
@@ -39,7 +41,29 @@ public class ProcGenLevel : MonoBehaviour
         addFloorCeilingToMap();
         renderMap();
         addEnemies();
-        player.GetComponent<BalloonController>().moveBalloon(new Vector2(buffer+1, levelShape[0]+buffer+Mathf.FloorToInt(tunnelHeight/2)));
+        player.moveBalloon(new Vector2(buffer+1, levelShape[0]+buffer+Mathf.FloorToInt(tunnelHeight/2)));
+        
+        GameObject goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + buffer + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
+        goalInstance.transform.localScale = new Vector3(10f,15f,1f);
+    }
+
+    public void NextLevel(){
+        initializeMap();
+        
+        if(Random.Range(0,2) == 0){
+            randomLevelShape();
+        }else{
+            disturbLevelShape();
+            Debug.Log("this was a defined shape");
+        }
+
+        buildFromLevelShape();
+        createBoulders();
+        addFloorCeilingToMap();
+        renderMap();
+        addEnemies();
+        player.moveBalloon(new Vector2(buffer+1, levelShape[0]+buffer+Mathf.FloorToInt(tunnelHeight/2)));
+        camera.resetCameraToPlayer();
         GameObject goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + buffer + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
         goalInstance.transform.localScale = new Vector3(10f,15f,1f);
     }
