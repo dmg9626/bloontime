@@ -215,4 +215,9 @@ public class BalloonController : MonoBehaviour
     {
         return (comfort - minComfort) / (maxComfort - minComfort);
     }
+
+    public void resetValues(){
+        temperature = (minTemperature + maxTemperature) / 2;
+        comfort = (minComfort + maxComfort) / 2;
+    }
 }

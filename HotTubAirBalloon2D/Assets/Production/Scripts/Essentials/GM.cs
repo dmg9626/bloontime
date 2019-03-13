@@ -10,7 +10,7 @@ public class GM : MonoBehaviour
     public Slider comfortSlider;
     public Text endText;
     public bool isEnd = false;
-    public GameObject Player1, Player2, endMenu, pauseMenu, victoryMenu;
+    public GameObject Player1, Player2, endMenu, pauseMenu, victoryMenu, powerUpMenu;
     public ProcGenLevel procGen;
 
     public bool isPaused;
@@ -96,8 +96,14 @@ public class GM : MonoBehaviour
     public void NextLevel(){
         procGen.NextLevel();
         victoryMenu.SetActive(false);
+        powerUpMenu.SetActive(false);
         isEnd = false;
         UnFreeze();
+    }
+
+    public void toPowerUp(){
+        victoryMenu.SetActive(false);
+        powerUpMenu.SetActive(true);
     }
 
     public void Quit(){

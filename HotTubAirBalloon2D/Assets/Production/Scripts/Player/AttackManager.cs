@@ -42,30 +42,34 @@ public class AttackManager : MonoBehaviour
 
     void HandleBeamAttack()
     {
-        // Beam attack P1
-        if (Input.GetKey(KeyCode.LeftControl) && playerNum.Equals(PlayerNumber.ONE))
-        {
-            beam.SetActive(true);
+        if(playerNum.Equals(PlayerNumber.ONE)){
+            // Beam attack P1
+            if (Input.GetKey(KeyCode.LeftControl) || player.GetButton("FireBeam"))
+            {
+                beam.SetActive(true);
 
-            Vector2 cursorPos = cursor.position;
-            beam.FireBeam();
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftControl) && playerNum.Equals(PlayerNumber.ONE))
-        {
-            beam.SetActive(false);
+                Vector2 cursorPos = cursor.position;
+                beam.FireBeam();
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftControl) || player.GetButtonUp("FireBeam"))
+            {
+                beam.SetActive(false);
+            }
         }
 
-        // Beam attack P2
-        if (Input.GetKey(KeyCode.RightControl) && playerNum.Equals(PlayerNumber.TWO))
-        {
-            beam.SetActive(true);
+        if(playerNum.Equals(PlayerNumber.TWO)){
+            // Beam attack P2
+            if (Input.GetKey(KeyCode.RightControl) || player.GetButton("IceBeam"))
+            {
+                beam.SetActive(true);
 
-            Vector2 cursorPos = cursor.position;
-            beam.FireBeam();
-        }
-        else if (Input.GetKeyUp(KeyCode.RightControl) && playerNum.Equals(PlayerNumber.TWO))
-        {
-            beam.SetActive(false);
+                Vector2 cursorPos = cursor.position;
+                beam.FireBeam();
+            }
+            else if (Input.GetKeyUp(KeyCode.RightControl) || player.GetButtonUp("IceBeam"))
+            {
+                beam.SetActive(false);
+            }
         }
     }
 

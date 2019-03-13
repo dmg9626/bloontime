@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUpManager : MonoBehaviour
 {
@@ -17,14 +18,37 @@ public class PowerUpManager : MonoBehaviour
         public PowerUp(PowerUpName n){
             name = n;
             isApplied = false;
+            switch(n){
+                case PowerUpName.WATERJETS:
+                    displayName = "Water Jets";
+                    break;
+                case PowerUpName.TEMPREG:
+                    displayName = "Temp Reg";
+                    break;
+                case PowerUpName.SNOCONE:
+                    displayName = "Sno Cone";
+                    break;
+                case PowerUpName.HOTCOCOA:
+                    displayName = "Hot Cocoa";
+                    break;
+                default:
+                    displayName = "No Name";
+                    break;
+            }
         }
         public PowerUpName name;
+        public string displayName;
         public bool isApplied;
     }
 
     public GameObject Player;
     public BalloonController BCtrl;
+
+    public Button button1, button2;
+    public Text button1Text, button2Text;
     public List<PowerUp> activePowerUps;
+
+    public GM gm;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +57,7 @@ public class PowerUpManager : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         BCtrl = Player.GetComponent<BalloonController>();
         activePowerUps = new List<PowerUp>();
+        setButtons();
     }
 
     // Update is called once per frame
@@ -55,6 +80,15 @@ public class PowerUpManager : MonoBehaviour
             activePowerUps.Add(n);
         checkPowerUps();
     }
+    public void addPowerUp(int p)
+    {
+        PowerUp n = new PowerUp((PowerUpName)p);
+        if(!activePowerUps.Contains(n))
+            activePowerUps.Add(n);
+        checkPowerUps();
+    }
+
+
 
     public List<PowerUp> getPowerUps()
     {
@@ -92,4 +126,38 @@ public class PowerUpManager : MonoBehaviour
             }
         });
     }
+
+    public void setButtons()
+    {
+
+        int rand1 = Random.Range(0,3);
+
+        int rand2 = Random.Range(0,3);
+
+        while(rand1==rand2){
+            rand2 = Random.Range(0,3);
+        }
+        
+
+        PowerUp p1 = new PowerUp((PowerUpName)rand1);
+        button1.onClick.RemoveAllListeners();
+        button1.onClick.AddListener(delegate{choosePowerUp(p1.name);});
+        button1Text.text = p1.displayName;
+
+        PowerUp p2 = new PowerUp((PowerUpName)rand2);
+        button2.onClick.RemoveAllListeners();
+        button2.onClick.AddListener(delegate{choosePowerUp(p2.name);});
+        button2Text.text = p2.displayName;
+
+    }
+
+    public void choosePowerUp(PowerUpName p){
+
+        addPowerUp(p);
+
+        gm.NextLevel();
+
+    }
+
+
 }

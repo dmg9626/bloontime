@@ -67,6 +67,7 @@ public class ProcGenLevel : MonoBehaviour
         renderMap();
         addEnemies();
         player.moveBalloon(new Vector2(buffer+1, levelShape[0]+buffer+Mathf.FloorToInt(tunnelHeight/2)));
+        player.resetValues();
         camera.resetCameraToPlayer();
         GameObject goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + buffer + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
         goalInstance.transform.localScale = new Vector3(10f,15f,1f);
