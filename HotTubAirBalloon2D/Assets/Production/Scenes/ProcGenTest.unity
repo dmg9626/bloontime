@@ -622,14 +622,6 @@ PrefabInstance:
       propertyPath: balloonController
       value: 
       objectReference: {fileID: 414670792}
-    - target: {fileID: 559810685, guid: 0c47859198323da4fba8b490565a4682, type: 3}
-      propertyPath: minAngle
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 559810685, guid: 0c47859198323da4fba8b490565a4682, type: 3}
-      propertyPath: maxAngle
-      value: -180
-      objectReference: {fileID: 0}
     - target: {fileID: 1766552714, guid: 0c47859198323da4fba8b490565a4682, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -638,31 +630,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7466615316787963361, guid: 0c47859198323da4fba8b490565a4682,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3352193774455880449, guid: 0c47859198323da4fba8b490565a4682,
-        type: 3}
-      propertyPath: BCtrl
-      value: 
-      objectReference: {fileID: 414670792}
     - target: {fileID: 3352193774455880449, guid: 0c47859198323da4fba8b490565a4682,
         type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1965403147}
-    - target: {fileID: 2563933724099845905, guid: 0c47859198323da4fba8b490565a4682,
+    - target: {fileID: 3352193774455880449, guid: 0c47859198323da4fba8b490565a4682,
         type: 3}
-      propertyPath: _dontDestroyOnLoad
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 696496064, guid: 0c47859198323da4fba8b490565a4682, type: 3}
-      propertyPath: m_Sprite
+      propertyPath: BCtrl
       value: 
-      objectReference: {fileID: 21300000, guid: df55e32c852266d44ae34dbb41c0e5cf,
-        type: 3}
+      objectReference: {fileID: 414670792}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c47859198323da4fba8b490565a4682, type: 3}
 --- !u!114 &1316125387 stripped

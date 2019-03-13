@@ -76,7 +76,13 @@ public class GM : MonoBehaviour
     }
 
     public void Retry(){
+        UnPause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Resume(){
+        pauseMenu.SetActive(false);
+        UnPause();
     }
 
     public void NextLevel(){
