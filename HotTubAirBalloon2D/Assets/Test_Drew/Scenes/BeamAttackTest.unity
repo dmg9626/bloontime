@@ -141,17 +141,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 66738888}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 766b0421a8f12f444bfa7e41bb42cdf3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f48fe2ed02f6764089d5ee38c2ffe4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 1600671040}
-  effectType: 1
+  effectType: 0
   damagePerSecond: 5
   rotationSpeed: 200
-  expansionSpeed: 1
-  animationSpeed: 2.5
-  hitAnimationSpeed: 3.25
-  effectManager: {fileID: 312605700}
+  expansionSpeed: 2
+  animationSpeed: 2
+  hitAnimationSpeed: 4
+  effectManager: {fileID: 312605702}
 --- !u!212 &66738890
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -353,6 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 312605701}
   - component: {fileID: 312605700}
+  - component: {fileID: 312605702}
   m_Layer: 0
   m_Name: EffectManager
   m_TagString: Untagged
@@ -372,20 +373,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b07e1a582ad45a4f9d744a238a642c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &312605701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312605699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.499273, y: 48.05151, z: -7.5625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &312605702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312605699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7666537f986544a87daea4a2b2aa24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   fireBeamColorSettings:
     hitEffectGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.26696306, b: 0, a: 1}
-      key1: {r: 1, g: 0.46728808, b: 0, a: 1}
-      key2: {r: 1, g: 0.21692765, b: 0, a: 0}
+      key0: {r: 1, g: 0.20669496, b: 0, a: 1}
+      key1: {r: 1, g: 0.59751904, b: 0, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 32768
-      ctime2: 65535
+      ctime1: 65535
+      ctime2: 0
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -400,22 +427,22 @@ MonoBehaviour:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_NumColorKeys: 3
+      m_NumColorKeys: 2
       m_NumAlphaKeys: 2
   iceBeamColorSettings:
     hitEffectGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.6277771, b: 1, a: 1}
-      key1: {r: 0, g: 0.7922032, b: 1, a: 1}
-      key2: {r: 0, g: 0.6277771, b: 1, a: 0}
+      key0: {r: 0, g: 0.6822901, b: 1, a: 1}
+      key1: {r: 0, g: 0.42721534, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 32768
-      ctime2: 65535
+      ctime1: 65535
+      ctime2: 0
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -430,7 +457,7 @@ MonoBehaviour:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_NumColorKeys: 3
+      m_NumColorKeys: 2
       m_NumAlphaKeys: 2
   fireBurstGradient:
     serializedVersion: 2
@@ -490,20 +517,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
---- !u!4 &312605701
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312605699}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.499273, y: 48.05151, z: -7.5625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1598389671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -686,6 +699,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2563933722978528314, guid: a1af1e34d5a7b644081ff4382c8c5e85,
+        type: 3}
+      propertyPath: m_Name
+      value: Rewired Input Manager
+      objectReference: {fileID: 0}
     - target: {fileID: 2563933722978528315, guid: a1af1e34d5a7b644081ff4382c8c5e85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -740,11 +758,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2563933722978528314, guid: a1af1e34d5a7b644081ff4382c8c5e85,
-        type: 3}
-      propertyPath: m_Name
-      value: Rewired Input Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1af1e34d5a7b644081ff4382c8c5e85, type: 3}
