@@ -29,12 +29,14 @@ public class ProcGenLevel : MonoBehaviour
         levelMap.ClearAllTiles();
         initializeMap();
         
-        if(Random.Range(0,2) == 0){
-            randomLevelShape();
-        }else{
-            disturbLevelShape();
-            Debug.Log("this was a defined shape");
-        }
+        // if(Random.Range(0,2) == 0){
+        //     randomLevelShape();
+        // }else{
+        //     disturbLevelShape();
+        //     Debug.Log("this was a defined shape");
+        // }
+
+        randomLevelShape();
 
         buildFromLevelShape();
         createBoulders();
@@ -50,12 +52,14 @@ public class ProcGenLevel : MonoBehaviour
     public void NextLevel(){
         initializeMap();
         
-        if(Random.Range(0,2) == 0){
-            randomLevelShape();
-        }else{
-            disturbLevelShape();
-            Debug.Log("this was a defined shape");
-        }
+        // if(Random.Range(0,2) == 0){
+        //     randomLevelShape();
+        // }else{
+        //     disturbLevelShape();
+        //     Debug.Log("this was a defined shape");
+        // }
+
+        randomLevelShape();
 
         buildFromLevelShape();
         createBoulders();

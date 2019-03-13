@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
-// using Rewired.ReInput;
 
 public class CursorMovement : MonoBehaviour
 {
+    public GameObject balloon;
 
     public float moveSpeed;
 
@@ -17,18 +17,36 @@ public class CursorMovement : MonoBehaviour
 
     public bool centralizedAnalog;
 
+    public GM gm;
+
+    public bool pauseTemp = false;
+
     private Rewired.Player player { get { return GetRewiredPlayer(0); } }
     private Vector2 fireMovement, iceMovement;
+
+    void Start(){
+        // cursor.position = (playerNum.Equals(PlayerNumber.ONE) ? new Vector3(1,0,0) : new Vector3(-1,0,0));
+    }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateCursor(playerNum);
-        fireMovement.x = player.GetAxis("Fire_MoveCursorX");
-        fireMovement.y = player.GetAxis("Fire_MoveCursorY");
-        iceMovement.x = player.GetAxis("Ice_MoveCursorX");
-        iceMovement.y = player.GetAxis("Ice_MoveCursorY");
+
+        if((player.GetButtonDown("Pause")) && pauseTemp){
+            gm.PauseGame();
+        }
+
+        if(!gm.isPaused)
+        {
+            UpdateCursor(playerNum);
+            fireMovement.x = player.GetAxis("Fire_MoveCursorX");
+            fireMovement.y = player.GetAxis("Fire_MoveCursorY");
+            iceMovement.x = player.GetAxis("Ice_MoveCursorX");
+            iceMovement.y = player.GetAxis("Ice_MoveCursorY");
+        }
     }
+
+
     public static Rewired.Player GetRewiredPlayer(int gamePlayerId) {
         return ReInput.players.GetPlayer(0);
     }

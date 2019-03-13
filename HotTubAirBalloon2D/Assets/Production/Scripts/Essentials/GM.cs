@@ -13,11 +13,13 @@ public class GM : MonoBehaviour
     public GameObject Player1, Player2, endMenu, pauseMenu, victoryMenu;
     public ProcGenLevel procGen;
 
+    public bool isPaused;
+
     // Start is called before the first frame update
     void Start()
     {
         if(Time.timeScale == 0.0f){
-            Pause();
+            Freeze();
         }
         
     }
@@ -34,48 +36,55 @@ public class GM : MonoBehaviour
     }
 
     void Update(){
-
-        if((Input.GetKeyDown("escape")) && (!isEnd))     
+        if(Input.GetKeyDown("escape"))
         {
-            if(Time.timeScale == 1.0f){
-                if(!isEnd){
-                    Pause();
-                    pauseMenu.SetActive(true);
-                }
-            }else{
-                UnPause();
-                pauseMenu.SetActive(false);
-            }
-                
+            PauseGame();
         }
-
     }
 
-    public void Pause(){
+    public void PauseGame()
+    {
+        if(!isEnd){
+            if(!isPaused){
+                Freeze();
+                pauseMenu.SetActive(true);
+                isPaused = true;
+            }
+            else{
+                UnFreeze();
+                pauseMenu.SetActive(false);
+                isPaused = false;
+            }
+        }
+            
+    }
+
+    public void Freeze(){
         Time.timeScale = 0.0f;
-        Player1.SetActive(false);
-        Player2.SetActive(false);
+        //Player1.SetActive(false);
+        //Player2.SetActive(false);
     }
     
-    public void UnPause(){
+    public void UnFreeze(){
         Time.timeScale = 1.0f;
-        Player1.SetActive(true);
-        Player2.SetActive(true);
+        // Player1.SetActive(true);
+        // Player2.SetActive(true);
     }
     
     public void Victory(){
         victoryMenu.SetActive(true);
         isEnd = true;
-        Pause();
+        Freeze();
     }
 
     public void GameOver(){
         endMenu.SetActive(true);
         isEnd = true;
-        Pause();
+        Freeze();
     }
 
     public void Retry(){
+        UnFreeze();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -83,7 +92,7 @@ public class GM : MonoBehaviour
         procGen.NextLevel();
         victoryMenu.SetActive(false);
         isEnd = false;
-        UnPause();
+        UnFreeze();
     }
 
     public void Quit(){

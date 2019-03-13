@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Production/Scenes/ProcGenTest.unity
+    guid: c54cc9c2b4d1a2f4aa5bc51473af70c1
   m_configObjects: {}
