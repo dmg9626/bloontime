@@ -88,6 +88,11 @@ public class GM : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void Resume(){
+        pauseMenu.SetActive(false);
+        UnFreeze();
+    }
+
     public void NextLevel(){
         procGen.NextLevel();
         victoryMenu.SetActive(false);

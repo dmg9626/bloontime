@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootMode: 1
   playerNum: 0
-  beam: {fileID: 6190121172549097602}
+  beam: {fileID: 1539353571586373523}
   cursor: {fileID: 8845161632690398578}
   clickBurst: {fileID: 8845161633541279630}
 --- !u!114 &2610525793313175226
@@ -5252,8 +5252,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5500335969258793726}
+  - component: {fileID: 5494782348152621126}
   - component: {fileID: 2014211221315715535}
-  - component: {fileID: 8783103914658423073}
   - component: {fileID: 4515637686992672238}
   - component: {fileID: 5532587443348166055}
   m_Layer: 0
@@ -5277,6 +5277,26 @@ Transform:
   m_Father: {fileID: 647312988018792802}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5494782348152621126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6510278813974473954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f48fe2ed02f6764089d5ee38c2ffe4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursor: {fileID: 9003574820412403997}
+  effectType: 1
+  damagePerSecond: 5
+  rotationSpeed: 200
+  expansionSpeed: 2
+  animationSpeed: 1.5
+  hitAnimationSpeed: 4
+  effectManager: {fileID: 0}
 --- !u!212 &2014211221315715535
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5325,26 +5345,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8783103914658423073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6510278813974473954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 766b0421a8f12f444bfa7e41bb42cdf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursor: {fileID: 9003574820412403997}
-  effectType: 1
-  damagePerSecond: 5
-  rotationSpeed: 200
-  expansionSpeed: 2
-  animationSpeed: 2.5
-  hitAnimationSpeed: 3.25
-  effectManager: {fileID: 0}
 --- !u!61 &4515637686992672238
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5455,7 +5455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootMode: 1
   playerNum: 1
-  beam: {fileID: 8783103914658423073}
+  beam: {fileID: 5494782348152621126}
   cursor: {fileID: 9003574820412403997}
   clickBurst: {fileID: 7790534383175638143}
 --- !u!114 &1559089214502734539
@@ -5483,8 +5483,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1923988207453691283}
+  - component: {fileID: 1539353571586373523}
   - component: {fileID: 1909669001690995254}
-  - component: {fileID: 6190121172549097602}
   - component: {fileID: 8681105719338963707}
   - component: {fileID: 3031859539320644664}
   m_Layer: 0
@@ -5508,6 +5508,26 @@ Transform:
   m_Father: {fileID: 8427480381808918872}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1539353571586373523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7473874584258249579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f48fe2ed02f6764089d5ee38c2ffe4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursor: {fileID: 8845161632690398578}
+  effectType: 0
+  damagePerSecond: 5
+  rotationSpeed: 200
+  expansionSpeed: 2
+  animationSpeed: 1.5
+  hitAnimationSpeed: 4
+  effectManager: {fileID: 0}
 --- !u!212 &1909669001690995254
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5556,26 +5576,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6190121172549097602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7473874584258249579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 766b0421a8f12f444bfa7e41bb42cdf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursor: {fileID: 8845161632690398578}
-  effectType: 0
-  damagePerSecond: 5
-  rotationSpeed: 200
-  expansionSpeed: 2
-  animationSpeed: 2.5
-  hitAnimationSpeed: 3.25
-  effectManager: {fileID: 0}
 --- !u!61 &8681105719338963707
 BoxCollider2D:
   m_ObjectHideFlags: 0
