@@ -844,11 +844,6 @@ PrefabInstance:
       propertyPath: BCtrl
       value: 
       objectReference: {fileID: 414670792}
-    - target: {fileID: 3463362558589487765, guid: 0c47859198323da4fba8b490565a4682,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c47859198323da4fba8b490565a4682, type: 3}
 --- !u!114 &1144901394 stripped

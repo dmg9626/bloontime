@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PowerUpManager : MonoBehaviour
 {
@@ -16,34 +16,24 @@ public class PowerUpManager : MonoBehaviour
     [System.Serializable]
     public class PowerUp
     {
-        public PowerUp(PowerUpName n){
-            name = n;
-            isApplied = false;
-            switch(n){
-                case PowerUpName.WATERJETS:
-                    displayName = "Water Jets";
-                    break;
-                case PowerUpName.TEMPREG:
-                    displayName = "Temp Reg";
-                    break;
-                case PowerUpName.SNOCONE:
-                    displayName = "Sno Cone";
-                    break;
-                case PowerUpName.HOTCOCOA:
-                    displayName = "Hot Cocoa";
-                    break;
-                default:
-                    displayName = "No Name";
-                    break;
-            }
-        }
         public PowerUpName name;
+
         public string displayName;
+        public string description;
+
         public bool isApplied;
     }
 
     public BalloonController BCtrl;
+
+    /// <summary>
+    /// Base settings for powerups
+    /// </summary>
+    public List<PowerUp> powerUps;
     
+    /// <summary>
+    /// Powerups on balloon
+    /// </summary>
     [SerializeField]
     private List<PowerUp> activePowerUps;
 
@@ -71,9 +61,12 @@ public class PowerUpManager : MonoBehaviour
 
     public void addPowerUp(PowerUpName p)
     {
-        PowerUp n = new PowerUp(p);
+        // Add to active powerup list if not already there
+        PowerUp n = powerUps.First(pow => pow.name.Equals(p));
         if(!activePowerUps.Contains(n))
             activePowerUps.Add(n);
+
+        // Apply powerups
         checkPowerUps();
     }
     public void addPowerUp(int p)

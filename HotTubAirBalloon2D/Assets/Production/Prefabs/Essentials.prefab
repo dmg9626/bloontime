@@ -1678,7 +1678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6894653244619809001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3460,12 +3460,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e035163d4720949805ce14f7c86689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button1: {fileID: 0}
-  button2: {fileID: 0}
-  button1Text: {fileID: 0}
-  button2Text: {fileID: 0}
-  powerUpManager: {fileID: 0}
-  gm: {fileID: 0}
+  button1: {fileID: 2011559204773636840}
+  button2: {fileID: 1926398926287879104}
+  button1Text: {fileID: 7779409457633722112}
+  button2Text: {fileID: 6024483352654906358}
+  powerUpManager: {fileID: 3352193774455880449}
+  gm: {fileID: 8691173825605012015}
 --- !u!1 &7143059028378742755
 GameObject:
   m_ObjectHideFlags: 0
@@ -4504,8 +4504,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
         type: 3}
+      propertyPath: powerUps.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
       propertyPath: BCtrl
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[0].displayName
+      value: Water Jets
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[0].description
+      value: Comfy Meter increases faster, decreasese slower
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[1].name
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[1].displayName
+      value: Temp Reg
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[1].description
+      value: Ice/Fire Resistance Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[2].name
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[2].displayName
+      value: Sno Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[2].description
+      value: Fire Resistance from enemies/obstacles Increases, Player Ice Power Increases
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[3].name
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[3].displayName
+      value: Hot Cocoa
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[3].description
+      value: Ice Resistance from enemies/obstacles Increases, Player Fire Power Increases
       objectReference: {fileID: 0}
     - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
         type: 3}
@@ -4520,3 +4580,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7857676081208974469}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3352193774455880449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+    type: 3}
+  m_PrefabInstance: {fileID: 7857676081208974469}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26bc8209bafc5bb4693f239828ad21f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -21,9 +21,9 @@ public class StoreManager : MonoBehaviour
 
     public void setButtons()
     {
-
+        // TODO: remove hardcoded range (0,3), replace with actual number of powerups
+        // TODO: make this a method on PowerUpManager
         int rand1 = Random.Range(0, 3);
-
         int rand2 = Random.Range(0, 3);
 
         while (rand1 == rand2)
@@ -31,16 +31,16 @@ public class StoreManager : MonoBehaviour
             rand2 = Random.Range(0, 3);
         }
 
-        PowerUpManager.PowerUp p1 = new PowerUpManager.PowerUp((PowerUpManager.PowerUpName)rand1);
+        PowerUpManager.PowerUp p1 = powerUpManager.powerUps[rand1];
+        PowerUpManager.PowerUp p2 = powerUpManager.powerUps[rand2];
+
         button1.onClick.RemoveAllListeners();
         button1.onClick.AddListener(delegate { choosePowerUp(p1.name); });
         button1Text.text = p1.displayName;
-
-        PowerUpManager.PowerUp p2 = new PowerUpManager.PowerUp((PowerUpManager.PowerUpName)rand2);
+        
         button2.onClick.RemoveAllListeners();
         button2.onClick.AddListener(delegate { choosePowerUp(p2.name); });
         button2Text.text = p2.displayName;
-
     }
 
     public void choosePowerUp(PowerUpManager.PowerUpName p)
