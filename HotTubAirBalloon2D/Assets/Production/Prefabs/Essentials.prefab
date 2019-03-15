@@ -1487,7 +1487,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8691173825605012015}
-        m_MethodName: NextLevel
+        m_MethodName: toPowerUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1673,12 +1673,12 @@ GameObject:
   - component: {fileID: 8955853602484665262}
   - component: {fileID: 2322660152215498621}
   m_Layer: 0
-  m_Name: StoreMenu
+  m_Name: Store Menu Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6894653244619809001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3417,6 +3417,55 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Resume
+--- !u!1 &6893600810982018504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1009526102186271923}
+  - component: {fileID: 2343513815808970611}
+  m_Layer: 0
+  m_Name: Store Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1009526102186271923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6893600810982018504}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8691173825279543754}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2343513815808970611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6893600810982018504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e035163d4720949805ce14f7c86689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button1: {fileID: 0}
+  button2: {fileID: 0}
+  button1Text: {fileID: 0}
+  button2Text: {fileID: 0}
+  powerUpManager: {fileID: 0}
+  gm: {fileID: 0}
 --- !u!1 &7143059028378742755
 GameObject:
   m_ObjectHideFlags: 0
@@ -4082,6 +4131,7 @@ Transform:
   - {fileID: 223276452033785452}
   - {fileID: 6894653244619809001}
   - {fileID: 715706923773342605}
+  - {fileID: 1009526102186271923}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4236,7 +4286,7 @@ MonoBehaviour:
   endMenu: {fileID: 2523325812176466104}
   pauseMenu: {fileID: 5577901132214366771}
   victoryMenu: {fileID: 5767155849365116546}
-  powerUpMenu: {fileID: 0}
+  powerUpMenu: {fileID: 3463362558589487765}
   procGen: {fileID: 0}
   isPaused: 0
   isFrozen: 0
@@ -4452,6 +4502,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUpManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: BCtrl
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 8691173825605012015}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a636ddece589e1d4ab0ccb83e77b5e63, type: 3}
 --- !u!4 &223276452033785452 stripped
