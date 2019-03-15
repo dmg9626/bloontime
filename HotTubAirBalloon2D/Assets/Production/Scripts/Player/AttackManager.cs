@@ -26,6 +26,8 @@ public class AttackManager : MonoBehaviour
 
     public Rewired.Player player;
 
+    public GM gm;
+
     void Start(){
         player = ReInput.players.GetPlayer(0);
     }
@@ -33,11 +35,14 @@ public class AttackManager : MonoBehaviour
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
-    void FixedUpdate()
+    void Update()
     {
-        HandleBurstAttack();
+        if(!gm.isFrozen)
+        {
+            HandleBurstAttack();
 
-        HandleBeamAttack();
+            HandleBeamAttack();
+        }
     }
 
     void HandleBeamAttack()

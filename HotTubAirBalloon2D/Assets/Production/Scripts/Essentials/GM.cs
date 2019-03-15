@@ -14,6 +14,7 @@ public class GM : MonoBehaviour
     public ProcGenLevel procGen;
 
     public bool isPaused;
+    public bool isFrozen;
 
     // Start is called before the first frame update
     void Start()
@@ -63,12 +64,14 @@ public class GM : MonoBehaviour
         Time.timeScale = 0.0f;
         //Player1.SetActive(false);
         //Player2.SetActive(false);
+        isFrozen = true;
     }
     
     public void UnFreeze(){
         Time.timeScale = 1.0f;
         // Player1.SetActive(true);
         // Player2.SetActive(true);
+        isFrozen = false;
     }
     
     public void Victory(){

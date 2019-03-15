@@ -36,7 +36,7 @@ public class CursorMovement : MonoBehaviour
             gm.PauseGame();
         }
 
-        if(!gm.isPaused)
+        if(!gm.isFrozen)
         {
             UpdateCursor(playerNum);
             fireMovement.x = player.GetAxis("Fire_MoveCursorX");

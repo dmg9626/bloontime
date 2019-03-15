@@ -53,9 +53,10 @@ public class PowerUpManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = gameObject;
-        Player = GameObject.FindGameObjectWithTag("Player");
-        BCtrl = Player.GetComponent<BalloonController>();
+        //Player = gameObject;
+        //Player = GameObject.FindGameObjectWithTag("Player");
+        //BCtrl = Player.GetComponent<BalloonController>();
+        Debug.Log(BCtrl.temperature);
         activePowerUps = new List<PowerUp>();
         setButtons();
     }
@@ -141,12 +142,12 @@ public class PowerUpManager : MonoBehaviour
 
         PowerUp p1 = new PowerUp((PowerUpName)rand1);
         button1.onClick.RemoveAllListeners();
-        button1.onClick.AddListener(delegate{choosePowerUp(p1.name);});
+        button1.onClick.AddListener(delegate{this.choosePowerUp(p1.name);});
         button1Text.text = p1.displayName;
 
         PowerUp p2 = new PowerUp((PowerUpName)rand2);
         button2.onClick.RemoveAllListeners();
-        button2.onClick.AddListener(delegate{choosePowerUp(p2.name);});
+        button2.onClick.AddListener(delegate{this.choosePowerUp(p2.name);});
         button2Text.text = p2.displayName;
 
     }
