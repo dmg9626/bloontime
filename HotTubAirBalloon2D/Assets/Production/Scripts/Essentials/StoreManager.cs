@@ -7,6 +7,7 @@ public class StoreManager : MonoBehaviour
 {
     public Button button1, button2;
     public Text button1Text, button2Text;
+    public Text description1, description2;
 
     public PowerUpManager powerUpManager;
 
@@ -37,10 +38,12 @@ public class StoreManager : MonoBehaviour
         button1.onClick.RemoveAllListeners();
         button1.onClick.AddListener(delegate { choosePowerUp(p1.name); });
         button1Text.text = p1.displayName;
-        
+        description1.text = p1.description;
+
         button2.onClick.RemoveAllListeners();
         button2.onClick.AddListener(delegate { choosePowerUp(p2.name); });
-        button2Text.text = p2.displayName;
+        button1Text.text = p1.displayName;
+        description2.text = p2.description;
     }
 
     public void choosePowerUp(PowerUpManager.PowerUpName p)
