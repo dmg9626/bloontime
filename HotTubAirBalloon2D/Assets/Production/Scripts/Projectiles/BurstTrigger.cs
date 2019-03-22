@@ -45,6 +45,7 @@ public class BurstTrigger : AbstractProjectile
                 collision.GetComponent<BalloonController>().changeTemp(effectType);
             }
             
+            // Consider changing to gameObject.SetActive(false)? not efficient to keep destroying/instantiating
             Destroy(gameObject);
         }
     }
