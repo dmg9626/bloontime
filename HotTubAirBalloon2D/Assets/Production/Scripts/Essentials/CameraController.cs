@@ -67,7 +67,7 @@ public class CameraController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
 
         Vector2 playerPos = Player.position;
@@ -87,12 +87,17 @@ public class CameraController : MonoBehaviour
 
     void UpdateYIncrement()
     {
-        yIncrement = (currentTarget.transform.position.y - transform.position.y)/(currentTarget.transform.position.x - Player.position.x);
+        if((currentTarget.transform.position.x - Player.position.x) == 0){
+            yIncrement = 0;
+        }else{
+            yIncrement = (currentTarget.transform.position.y - transform.position.y)/(currentTarget.transform.position.x - Player.position.x);
+        }
     }
 
     public void resetCameraToPlayer(){
 
         transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
+        currentTarget.transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
         yIncrement = 0f;
         
     }

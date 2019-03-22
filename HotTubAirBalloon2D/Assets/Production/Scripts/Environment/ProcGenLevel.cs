@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class ProcGenLevel : MonoBehaviour
 {
     public Tilemap levelMap;
-    public TileBase tile;
+    public TileBase[] tileList;
 
     public int height, width, tunnelHeight, buffer, maxSlope, maxDisturb, minShapes, maxShapes, maxBoulderHeight, maxBoulderWidth, minBoulderNum, maxBoulderNum, minEnemyNum, maxEnemyNum;
 
@@ -43,9 +43,9 @@ public class ProcGenLevel : MonoBehaviour
         addFloorCeilingToMap();
         renderMap();
         addEnemies();
-        player.moveBalloon(new Vector2(buffer+1, levelShape[0]+buffer+Mathf.FloorToInt(tunnelHeight/2)));
+        player.moveBalloon(new Vector2(buffer+1, levelShape[0]+(buffer*2)+Mathf.FloorToInt(tunnelHeight/2)));
         
-        GameObject goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + buffer + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
+        GameObject goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + (buffer*2) + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
         goalInstance.transform.localScale = new Vector3(10f,15f,1f);
     }
 
@@ -66,10 +66,10 @@ public class ProcGenLevel : MonoBehaviour
         addFloorCeilingToMap();
         renderMap();
         addEnemies();
-        player.moveBalloon(new Vector2(buffer+1, levelShape[0]+buffer+Mathf.FloorToInt(tunnelHeight/2)));
+        player.moveBalloon(new Vector2(buffer+1, levelShape[0]+(buffer*2)+Mathf.FloorToInt(tunnelHeight/2)));
         player.resetValues();
         camera.resetCameraToPlayer();
-        GameObject goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + buffer + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
+        GameObject goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + (buffer*2) + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
         goalInstance.transform.localScale = new Vector3(10f,15f,1f);
     }
 
@@ -88,9 +88,9 @@ public class ProcGenLevel : MonoBehaviour
         for (int x = 0; x < width+(buffer*2); x++)
         {
             map.Add(new List<int>());
-            for (int y = 0; y < height+(buffer*2); y++)
+            for (int y = 0; y < height+(buffer*4); y++)
             {
-                if((x<buffer || x>width+buffer || y<buffer || y>height+buffer)){
+                if((x<buffer || x>width+buffer)){
                     map[x].Add(1);
                 }else{
                     map[x].Add(0);
@@ -109,12 +109,13 @@ public class ProcGenLevel : MonoBehaviour
         for (int x = 0; x < width+(buffer*2); x++)
         {
             //Loop through the height of the map
-            for (int y = 0; y < height+(buffer*2); y++)
+            for (int y = 0; y < (height+(buffer*4)); y++)
             {
                 // 1 = tile, 0 = no tile
                 if (map[x][y] == 1) 
                 {
-                    levelMap.SetTile(new Vector3Int(x, y, 0), tile); 
+                    int tileNum = 0;
+                    levelMap.SetTile(new Vector3Int(x, y, 0), tileList[tileNum]); 
                 }
             }
         }
@@ -129,8 +130,8 @@ public class ProcGenLevel : MonoBehaviour
             float xseed = Random.Range(-1f, 1f);
 
             int newHeight = levelShape[x] + Mathf.FloorToInt(xseed * maxDisturb);
-            if(newHeight>(height-tunnelHeight)){
-                newHeight = height-tunnelHeight;
+            if(newHeight>height){
+                newHeight = height;
             }else if(newHeight<0){
                 newHeight = 0;
             }
@@ -156,8 +157,8 @@ public class ProcGenLevel : MonoBehaviour
             float ran = Random.Range(-1f, 1f);
 
             lastHeight = lastHeight + Mathf.FloorToInt(ran * maxSlope);
-            if(lastHeight>(height-tunnelHeight)){
-                lastHeight = height-tunnelHeight;
+            if(lastHeight>height){
+                lastHeight = height;
             }else if(lastHeight<0){
                 lastHeight = 0;
             }
@@ -238,7 +239,7 @@ public class ProcGenLevel : MonoBehaviour
         int x = buffer;
         foreach (int ceilingHeight in ceiling)
         {
-            for(int y = ceilingHeight+buffer; y<=height+buffer; y++){
+            for(int y = ceilingHeight+(buffer*2); y<=ceilingHeight+(buffer*3); y++){
                 map[x][y] = 1;
             }
             x++;
@@ -247,7 +248,7 @@ public class ProcGenLevel : MonoBehaviour
         x = buffer;
         foreach (int floorHeight in floor)
         {
-            for(int y = buffer; y<=floorHeight+buffer; y++){
+            for(int y = floorHeight+buffer; y<=floorHeight+(buffer*2); y++){
                 map[x][y] = 1;
             }
             x++;
@@ -263,7 +264,7 @@ public class ProcGenLevel : MonoBehaviour
 
         for(int x = 0; x < enemyNum; x++){  //this randomly picks a number of enemies to put in a level and gives them a unique x position
             lastPlace += Random.Range(3f, (float)((width-10)/(enemyNum/2)));
-            if(lastPlace<width-5){
+            if(lastPlace<width-buffer){
                 enemyPlaces.Add(lastPlace);
             }
         }
@@ -274,13 +275,13 @@ public class ProcGenLevel : MonoBehaviour
 
             float enemyHeight = -1;
             if(enemyPositions[enemyType].Equals(EnemyPositionType.TOP)){  //find enemy's y position based on how its preferences were defined, ie Top, Bottom, etc.
-                enemyHeight = ceiling[intPlace] + buffer - 1f;
+                enemyHeight = ceiling[intPlace] + (buffer*2) - 1f;
             }else if(enemyPositions[enemyType].Equals(EnemyPositionType.BOTTOM)){
-                enemyHeight = floor[intPlace] + buffer + 1f;
+                enemyHeight = floor[intPlace] + (buffer*2) + 1f;
             }else if(enemyPositions[enemyType].Equals(EnemyPositionType.CENTER)){
-                enemyHeight = floor[intPlace] + buffer + (tunnelHeight/2);
+                enemyHeight = floor[intPlace] + (buffer*2) + (tunnelHeight/2);
             }else{
-                enemyHeight = Random.Range(floor[intPlace] + buffer + 1f, ceiling[intPlace] + buffer - 1f);
+                enemyHeight = Random.Range(floor[intPlace] + (buffer*2) + 1f, ceiling[intPlace] + (buffer*2) - 1f);
             }
             
             Instantiate(enemyList[enemyType], new Vector2(enemyPlaces[x]+buffer, enemyHeight), enemyList[enemyType].transform.rotation); //create enemy
