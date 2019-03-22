@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GM : MonoBehaviour
+public class GM : Singleton<GM>
 {
     public BalloonController BCtrl;
     public Slider comfortSlider;

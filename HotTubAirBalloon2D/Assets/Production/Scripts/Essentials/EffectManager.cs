@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectManager : MonoBehaviour
+public class EffectManager : Singleton<EffectManager>
 {
     // Beam effect settings
     

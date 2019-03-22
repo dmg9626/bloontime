@@ -10,10 +10,9 @@ using Rewired;
  *  ~BalloonController.cs~
  */
 
-public class BalloonController : MonoBehaviour
+public class BalloonController : Singleton<BalloonController>
 {
 /**************************************************************************Public Fields */
-    public GameObject BalloonChar;
 
     public float temperature,
         minTemperature,
@@ -59,7 +58,7 @@ public class BalloonController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        charPos = BalloonChar.transform.position;
+        charPos = transform.position;
         StartCoroutine("regainComfort");
         StartCoroutine("regainTemperature");
 
@@ -96,7 +95,7 @@ public class BalloonController : MonoBehaviour
             charPos.x += balloonHorizontalSpeed;
         }
 
-        BalloonChar.transform.position = charPos;
+        transform.position = charPos;
     }
 
     IEnumerator regainComfort(){
@@ -155,7 +154,7 @@ public class BalloonController : MonoBehaviour
 
     public void moveBalloon(Vector2 newPos){
         charPos = newPos;
-        BalloonChar.transform.position = charPos;
+        transform.position = charPos;
     }
 
     public void setFirePower(float f){

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StoreManager : MonoBehaviour
+public class StoreManager : Singleton<StoreManager>
 {
     public Button button1, button2;
     public Text button1Text, button2Text;

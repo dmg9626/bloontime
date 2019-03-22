@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class ProcGenLevel : MonoBehaviour
+public class ProcGenLevel : Singleton<ProcGenLevel>
 {
     public Tilemap levelMap;
     public TileBase[] tileList;

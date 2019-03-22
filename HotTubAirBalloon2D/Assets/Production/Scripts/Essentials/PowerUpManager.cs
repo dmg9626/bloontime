@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PowerUpManager : MonoBehaviour
+public class PowerUpManager : Singleton<PowerUpManager>
 {
     public enum PowerUpName
     {
@@ -36,8 +36,6 @@ public class PowerUpManager : MonoBehaviour
     /// </summary>
     [SerializeField]
     private List<PowerUp> activePowerUps;
-
-    public GM gm;
 
     // Start is called before the first frame update
     void Start()
