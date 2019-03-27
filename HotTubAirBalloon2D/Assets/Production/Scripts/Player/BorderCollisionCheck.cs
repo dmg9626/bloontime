@@ -7,7 +7,6 @@ public class BorderCollisionCheck : MonoBehaviour
     
     public enum SIDE { TOP, BOTTOM, LEFT, RIGHT };
 
-    public BalloonController player;
     public SIDE colliderSide;
 
     /// <summary>
@@ -24,11 +23,11 @@ public class BorderCollisionCheck : MonoBehaviour
         if(other.gameObject.tag == "Environment")
         {
             switch(colliderSide){
-                case SIDE.BOTTOM: 
-                    player.bottomCollision = true;
+                case SIDE.BOTTOM:
+                    BalloonController.Instance.bottomCollision = true;
                     break;
                 case SIDE.TOP:
-                    player.topCollision = true;
+                    BalloonController.Instance.topCollision = true;
                     break;
                 default:
                     break;
@@ -42,10 +41,10 @@ public class BorderCollisionCheck : MonoBehaviour
         {
             switch(colliderSide){
                 case SIDE.BOTTOM: 
-                    player.bottomCollision = false;
+                    BalloonController.Instance.bottomCollision = false;
                     break;
                 case SIDE.TOP:
-                    player.topCollision = false;
+                    BalloonController.Instance.topCollision = false;
                     break;
                 default:
                     break;

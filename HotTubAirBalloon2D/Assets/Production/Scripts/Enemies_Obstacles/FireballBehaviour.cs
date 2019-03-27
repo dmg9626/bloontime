@@ -27,9 +27,8 @@ public class FireballBehaviour : AbstractProjectile
             if(collision.tag == "Player" && collision.GetComponent<BalloonController>() != null)
             {
                 // update temperature/confort meters
-                BalloonController balloon = collision.GetComponent<BalloonController>();
-                balloon.changeTemp(getTemp() - balloon.getIceResist());
-                balloon.changeComfort(getComfort());
+                BalloonController.Instance.changeTemp(getTemp() - BalloonController.Instance.getIceResist());
+                BalloonController.Instance.changeComfort(getComfort());
             }
             Destroy(gameObject);
 

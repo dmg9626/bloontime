@@ -42,7 +42,7 @@ public class BurstTrigger : AbstractProjectile
             // Increase balloon temperature
             if(collision.tag == "Player" && collision.GetComponent<BalloonController>() != null)
             {
-                collision.GetComponent<BalloonController>().changeTemp(effectType);
+                BalloonController.Instance.changeTemp(effectType);
             }
             
             // Consider changing to gameObject.SetActive(false)? not efficient to keep destroying/instantiating

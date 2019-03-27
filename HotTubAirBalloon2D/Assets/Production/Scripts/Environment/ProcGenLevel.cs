@@ -13,7 +13,6 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
     public List<int> levelShape;
 
     public GameObject goalPost;
-    public BalloonController player;
     public CameraController camera;
 
     public enum EnemyPositionType { ANY, TOP, BOTTOM, CENTER };
@@ -43,7 +42,7 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         addFloorCeilingToMap();
         renderMap();
         addEnemies();
-        player.moveBalloon(new Vector2(buffer+1, levelShape[0]+(buffer*2)+Mathf.FloorToInt(tunnelHeight/2)));
+        BalloonController.Instance.moveBalloon(new Vector2(buffer+1, levelShape[0]+(buffer*2)+Mathf.FloorToInt(tunnelHeight/2)));
         
         GameObject goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + (buffer*2) + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
         goalInstance.transform.localScale = new Vector3(10f,15f,1f);
@@ -66,8 +65,8 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         addFloorCeilingToMap();
         renderMap();
         addEnemies();
-        player.moveBalloon(new Vector2(buffer+1, levelShape[0]+(buffer*2)+Mathf.FloorToInt(tunnelHeight/2)));
-        player.resetValues();
+        BalloonController.Instance.moveBalloon(new Vector2(buffer+1, levelShape[0]+(buffer*2)+Mathf.FloorToInt(tunnelHeight/2)));
+        BalloonController.Instance.resetValues();
         camera.resetCameraToPlayer();
         GameObject goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + (buffer*2) + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
         goalInstance.transform.localScale = new Vector3(10f,15f,1f);

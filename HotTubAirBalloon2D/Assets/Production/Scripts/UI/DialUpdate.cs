@@ -8,8 +8,6 @@ public class DialUpdate : MonoBehaviour
 {
     RectTransform needle;
 
-    public BalloonController balloonController;
-
     public float minAngle;
 
     public float maxAngle;
@@ -21,11 +19,11 @@ public class DialUpdate : MonoBehaviour
     {
         switch(dialType) {
             case Type.TEMPERATURE:
-                balloonController.onTempChanged += UpdateDial;
+                BalloonController.Instance.onTempChanged += UpdateDial;
                 break;
 
             case Type.COMFORT:
-                balloonController.onComfortChanged += UpdateDial;
+                BalloonController.Instance.onComfortChanged += UpdateDial;
                 break;
         }
 
@@ -39,7 +37,7 @@ public class DialUpdate : MonoBehaviour
     void UpdateDial()
     {
         // Get temperature scaled between 0 and 1
-        float scaledTemp = balloonController.GetScaledTemp();
+        float scaledTemp = BalloonController.Instance.GetScaledTemp();
 
         // Lerp angle between min/max angle values using scaled temp
         float angle = Mathf.Lerp(minAngle, maxAngle, scaledTemp);

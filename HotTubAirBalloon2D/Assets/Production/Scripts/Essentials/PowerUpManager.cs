@@ -24,8 +24,6 @@ public class PowerUpManager : Singleton<PowerUpManager>
         public bool isApplied;
     }
 
-    public BalloonController BCtrl;
-
     /// <summary>
     /// Base settings for powerups
     /// </summary>
@@ -40,7 +38,7 @@ public class PowerUpManager : Singleton<PowerUpManager>
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(BCtrl.temperature);
+        Debug.Log(BalloonController.Instance.temperature);
         activePowerUps = new List<PowerUp>();
     }
 
@@ -85,23 +83,23 @@ public class PowerUpManager : Singleton<PowerUpManager>
                 switch(e.name)
                 {
                     case PowerUpName.WATERJETS:
-                        float newMax = (float)(Mathf.RoundToInt(BCtrl.getDefaultMaxComfort() * 1.5f));
-                        BCtrl.setMaxComfort(newMax);
-                        float newRegen = BCtrl.getDefaultRegen() * 1.5f;
-                        BCtrl.setComfortRegen(newRegen);
+                        float newMax = (float)(Mathf.RoundToInt(BalloonController.Instance.getDefaultMaxComfort() * 1.5f));
+                        BalloonController.Instance.setMaxComfort(newMax);
+                        float newRegen = BalloonController.Instance.getDefaultRegen() * 1.5f;
+                        BalloonController.Instance.setComfortRegen(newRegen);
                         e.isApplied = true;
                         break;
                     case PowerUpName.TEMPREG:
-                        BCtrl.setFireRes(BCtrl.getFireResist() + 1);
-                        BCtrl.setIceRes(BCtrl.getIceResist() + 1);
+                        BalloonController.Instance.setFireRes(BalloonController.Instance.getFireResist() + 1);
+                        BalloonController.Instance.setIceRes(BalloonController.Instance.getIceResist() + 1);
                         e.isApplied = true;
                         break;
                     case PowerUpName.HOTCOCOA:
-                        BCtrl.setFirePower(2);
+                        BalloonController.Instance.setFirePower(2);
                         e.isApplied = true;
                         break;
                     case PowerUpName.SNOCONE:
-                        BCtrl.setIcePower(2);
+                        BalloonController.Instance.setIcePower(2);
                         e.isApplied = true;
                         break;
                     default: break;

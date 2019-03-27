@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class GM : Singleton<GM>
 {
-    public BalloonController BCtrl;
     public Slider comfortSlider;
     public Text endText;
     public bool isEnd = false;
@@ -29,9 +28,9 @@ public class GM : Singleton<GM>
     void FixedUpdate()
     {
         // Update slider values
-        comfortSlider.value = BCtrl.comfort;
+        comfortSlider.value = BalloonController.Instance.comfort;
 
-        if(BCtrl.comfort <= 0){
+        if(BalloonController.Instance.comfort <= 0){
             GameOver();
         }
     }

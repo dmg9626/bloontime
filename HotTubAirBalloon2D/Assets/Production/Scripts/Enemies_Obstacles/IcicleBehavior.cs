@@ -48,8 +48,8 @@ public class IcicleBehavior : AbstractProjectile
             Debug.Log("Collided with vulnerable object " + obj.name);
             if(collision.tag == "Player" && collision.GetComponent<BalloonController>() != null)
             {
-                collision.GetComponent<BalloonController>().changeTemp(getTemp());
-                collision.GetComponent<BalloonController>().changeComfort(getComfort());
+                BalloonController.Instance.changeTemp(getTemp());
+                BalloonController.Instance.changeComfort(getComfort());
             }
             Destroy(gameObject);
 
