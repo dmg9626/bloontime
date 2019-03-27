@@ -157,6 +157,8 @@ public class BalloonController : Singleton<BalloonController>
         transform.position = charPos;
     }
 
+    #region getters_setters
+
     public void setFirePower(float f){
         firePower = f;
     }
@@ -214,6 +216,8 @@ public class BalloonController : Singleton<BalloonController>
     {
         return (comfort - minComfort) / (maxComfort - minComfort);
     }
+
+    #endregion
 
     public void resetValues(){
         temperature = (minTemperature + maxTemperature) / 2;
