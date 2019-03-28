@@ -10,7 +10,6 @@ public class GM : Singleton<GM>
     public Text endText;
     public bool isEnd = false;
     public GameObject Player1, Player2, endMenu, pauseMenu, victoryMenu, powerUpMenu;
-    public ProcGenLevel procGen;
 
     public bool isPaused;
     public bool isFrozen;
@@ -96,7 +95,7 @@ public class GM : Singleton<GM>
     }
 
     public void NextLevel(){
-        procGen.NextLevel();
+        ProcGenLevel.Instance.NextLevel();
         victoryMenu.SetActive(false);
         powerUpMenu.SetActive(false);
         isEnd = false;

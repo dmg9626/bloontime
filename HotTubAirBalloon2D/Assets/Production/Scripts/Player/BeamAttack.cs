@@ -40,8 +40,6 @@ public class BeamAttack : MonoBehaviour
     /// </summary>
     private float colorAnimationValue;
 
-    public EffectManager effectManager;
-
     /// <summary>
     /// Settings used for animating beam
     /// </summary>
@@ -60,10 +58,10 @@ public class BeamAttack : MonoBehaviour
     {
         // Get color effect settings
         if (effectType.Equals(ClickBurst.EffectType.FIRE)) {
-            beamColorSettings = effectManager.fireBeamColorSettings;
+            beamColorSettings = EffectManager.Instance.fireBeamColorSettings;
         }
         else if (effectType.Equals(ClickBurst.EffectType.ICE)) {
-            beamColorSettings = effectManager.iceBeamColorSettings;
+            beamColorSettings = EffectManager.Instance.iceBeamColorSettings;
         }
 
         // Get sprite renderer and set initial color

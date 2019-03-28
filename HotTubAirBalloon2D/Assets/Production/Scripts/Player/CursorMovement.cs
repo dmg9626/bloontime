@@ -17,8 +17,6 @@ public class CursorMovement : MonoBehaviour
 
     public bool centralizedAnalog;
 
-    public GM gm;
-
     public bool pauseTemp = false;
 
     private Rewired.Player player { get { return GetRewiredPlayer(0); } }
@@ -33,10 +31,10 @@ public class CursorMovement : MonoBehaviour
     {
 
         if((player.GetButtonDown("Pause")) && pauseTemp){
-            gm.PauseGame();
+            GM.Instance.PauseGame();
         }
 
-        if(!gm.isFrozen)
+        if(!GM.Instance.isFrozen)
         {
             UpdateCursor(playerNum);
             fireMovement.x = player.GetAxis("Fire_MoveCursorX");

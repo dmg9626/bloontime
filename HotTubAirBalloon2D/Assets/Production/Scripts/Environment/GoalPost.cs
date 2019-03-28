@@ -5,20 +5,6 @@ using UnityEngine;
 public class GoalPost : MonoBehaviour
 {
 
-    public GM gameManager;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GM>();        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject obj = collision.gameObject;
@@ -26,7 +12,7 @@ public class GoalPost : MonoBehaviour
         {
             if(collision.tag == "Player")
             {
-                gameManager.Victory();
+                GM.Instance.Victory();
             }
         }
     }

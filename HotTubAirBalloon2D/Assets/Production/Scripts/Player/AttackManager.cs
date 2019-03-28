@@ -26,8 +26,6 @@ public class AttackManager : MonoBehaviour
 
     public Rewired.Player player;
 
-    public GM gm;
-
     void Start(){
         player = ReInput.players.GetPlayer(0);
     }
@@ -37,7 +35,7 @@ public class AttackManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if(!gm.isFrozen)
+        if(!GM.Instance.isFrozen)
         {
             HandleBurstAttack();
 

@@ -9,11 +9,6 @@ public class StoreManager : Singleton<StoreManager>
     public Text button1Text, button2Text;
     public Text description1, description2;
 
-    public PowerUpManager powerUpManager;
-
-    public GM gm;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +27,8 @@ public class StoreManager : Singleton<StoreManager>
             rand2 = Random.Range(0, 3);
         }
 
-        PowerUpManager.PowerUp p1 = powerUpManager.powerUps[rand1];
-        PowerUpManager.PowerUp p2 = powerUpManager.powerUps[rand2];
+        PowerUpManager.PowerUp p1 = PowerUpManager.Instance.powerUps[rand1];
+        PowerUpManager.PowerUp p2 = PowerUpManager.Instance.powerUps[rand2];
 
         button1.onClick.RemoveAllListeners();
         button1.onClick.AddListener(delegate { choosePowerUp(p1.name); });
@@ -48,7 +43,9 @@ public class StoreManager : Singleton<StoreManager>
 
     public void choosePowerUp(PowerUpManager.PowerUpName p)
     {
-        powerUpManager.addPowerUp(p);
-        gm.NextLevel();
+        PowerUpManager.Instance.addPowerUp(p);
+
+        // Advance to next level
+        GM.Instance.NextLevel();
     }
 }

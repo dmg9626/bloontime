@@ -12,8 +12,6 @@ public class ClickBurst : MonoBehaviour
 
     public BurstTrigger burstTrigger;
 
-    public EffectManager effectManager;
-
     public enum EffectType { FIRE, ICE };
 
     public EffectType effectType;
@@ -24,11 +22,11 @@ public class ClickBurst : MonoBehaviour
         psystem = GetComponent<ParticleSystem>();
         if(effectType.Equals(EffectType.FIRE))
         {
-            SetColorOverLifetime(effectManager.fireBurstGradient);
+            SetColorOverLifetime(EffectManager.Instance.fireBurstGradient);
         }
         else if (effectType.Equals(EffectType.ICE))
         {
-            SetColorOverLifetime(effectManager.iceBurstGradient);
+            SetColorOverLifetime(EffectManager.Instance.iceBurstGradient);
         }
 
     }
