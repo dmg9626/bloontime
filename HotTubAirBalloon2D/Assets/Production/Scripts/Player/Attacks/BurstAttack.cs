@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickBurst : MonoBehaviour
+public class BurstAttack : MonoBehaviour
 {
     ParticleSystem psystem;
 

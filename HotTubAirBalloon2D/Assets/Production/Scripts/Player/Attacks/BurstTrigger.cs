@@ -6,7 +6,7 @@ public class BurstTrigger : AbstractProjectile
 {
     public float lifetime;
 
-    public ClickBurst.EffectType effectType;
+    public BurstAttack.EffectType effectType;
 
     public float damage;
 

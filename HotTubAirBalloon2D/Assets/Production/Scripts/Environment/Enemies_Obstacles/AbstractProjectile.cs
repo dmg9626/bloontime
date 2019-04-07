@@ -6,7 +6,7 @@ public abstract class AbstractProjectile : MonoBehaviour
 {
 
     public float tempChange, comfortChange;
-    public ClickBurst.EffectType typeVunerable;
+    public BurstAttack.EffectType typeVunerable;
 
     public float getTemp()
     {
@@ -23,13 +23,13 @@ public abstract class AbstractProjectile : MonoBehaviour
         tempChange = newTemp;
     }
 
-    public void setTemp(ClickBurst.EffectType effectType)
+    public void setTemp(BurstAttack.EffectType effectType)
     {
-        if (effectType.Equals(ClickBurst.EffectType.FIRE))
+        if (effectType.Equals(BurstAttack.EffectType.FIRE))
         {
             setTemp(1);
         }
-        else if (effectType.Equals(ClickBurst.EffectType.ICE))
+        else if (effectType.Equals(BurstAttack.EffectType.ICE))
         {
             setTemp(-1);
         }
@@ -40,7 +40,7 @@ public abstract class AbstractProjectile : MonoBehaviour
         comfortChange = newComfort;
     }
 
-    public void takeDamage(ClickBurst.EffectType effectType)
+    public void takeDamage(BurstAttack.EffectType effectType)
     {
         if (effectType.Equals(typeVunerable))
         {

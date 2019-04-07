@@ -140,12 +140,12 @@ public class BalloonController : Singleton<BalloonController>
         onTempChanged?.Invoke();
     }
 
-    public void changeTemp(ClickBurst.EffectType effectType)
+    public void changeTemp(BurstAttack.EffectType effectType)
     {
-        if(effectType.Equals(ClickBurst.EffectType.FIRE)) {
+        if(effectType.Equals(BurstAttack.EffectType.FIRE)) {
             changeTemp(firePower);
         }
-        else if(effectType.Equals(ClickBurst.EffectType.ICE)) {
+        else if(effectType.Equals(BurstAttack.EffectType.ICE)) {
             changeTemp(-icePower);
         }
     }

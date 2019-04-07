@@ -6,7 +6,7 @@ public class BeamAttack : MonoBehaviour
 {
     public Transform cursor;
 
-    public ClickBurst.EffectType effectType;
+    public BurstAttack.EffectType effectType;
 
     public float damagePerSecond;
 
@@ -57,10 +57,10 @@ public class BeamAttack : MonoBehaviour
     void Start()
     {
         // Get color effect settings
-        if (effectType.Equals(ClickBurst.EffectType.FIRE)) {
+        if (effectType.Equals(BurstAttack.EffectType.FIRE)) {
             beamColorSettings = EffectManager.Instance.fireBeamColorSettings;
         }
-        else if (effectType.Equals(ClickBurst.EffectType.ICE)) {
+        else if (effectType.Equals(BurstAttack.EffectType.ICE)) {
             beamColorSettings = EffectManager.Instance.iceBeamColorSettings;
         }
 

@@ -22,7 +22,7 @@ public class AttackManager : MonoBehaviour
 
     public Transform cursor;
 
-    public ClickBurst clickBurst;
+    public BurstAttack burstAttack;
 
     public Rewired.Player player;
 
@@ -81,13 +81,13 @@ public class AttackManager : MonoBehaviour
         // Burst attack P1
         if ((Input.GetButtonDown("Fire1") || player.GetButtonDown("FireBurst")) && playerNum.Equals(PlayerNumber.ONE))
         {
-            clickBurst.Burst(cursor.position);
+            burstAttack.Burst(cursor.position);
         }
 
         // Burst attack P2
         if ((Input.GetButtonDown("Fire2") || player.GetButtonDown("IceBurst")) && playerNum.Equals(PlayerNumber.TWO))
         {
-            clickBurst.Burst(cursor.position);
+            burstAttack.Burst(cursor.position);
         }
     }
 }

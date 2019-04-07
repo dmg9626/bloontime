@@ -216,7 +216,7 @@ MonoBehaviour:
   playerNum: 0
   beam: {fileID: 1539353571586373523}
   cursor: {fileID: 8845161632690398578}
-  clickBurst: {fileID: 8845161633541279630}
+  burstAttack: {fileID: 8845161633541279630}
 --- !u!1 &1625361226514847440
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 692277687950685977}
   - component: {fileID: 7790534383175638143}
   m_Layer: 9
-  m_Name: ClickBurst_PlayerTwo
+  m_Name: Burst_PlayerTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5382,7 +5382,7 @@ MonoBehaviour:
   playerNum: 1
   beam: {fileID: 5494782348152621126}
   cursor: {fileID: 9003574820412403997}
-  clickBurst: {fileID: 7790534383175638143}
+  burstAttack: {fileID: 7790534383175638143}
 --- !u!1 &7473874584258249579
 GameObject:
   m_ObjectHideFlags: 0
@@ -5661,28 +5661,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   temperature: 0
+  comfort: 5
   minTemperature: -25
   maxTemperature: 25
-  comfort: 5
+  tempMultiplier: 150
   minComfort: 0
-  defaultMaxComfort: 10
   maxComfort: 10
+  defaultMaxComfort: 10
+  defaultComfortRegen: 0.1
+  comfortRegen: 0
+  comfortTemp: 2
   firePower: 1
   icePower: 1
   fireResist: 0
   iceResist: 0
-  tempMultiplier: 150
-  defaultComfortRegen: 0.1
-  comfortRegen: 0
-  comfortTemp: 2
-  cursorSpeed: 0.1
   collisionComfortLoss: -1
   tempSmoothTime: 1
   bottomCollision: 0
   topCollision: 0
   balloonVerticalSpeed: 0
   balloonHorizontalSpeed: 0.02
-  charPos: {x: 0, y: 0}
 --- !u!50 &8845161633209413416
 Rigidbody2D:
   serializedVersion: 4
@@ -5733,7 +5731,7 @@ GameObject:
   - component: {fileID: 8845161633541279627}
   - component: {fileID: 8845161633541279630}
   m_Layer: 9
-  m_Name: ClickBurst_PlayerOne
+  m_Name: Burst_PlayerOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

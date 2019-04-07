@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AbstractObstacle : MonoBehaviour
 {
-    public ClickBurst.EffectType typeVunerable;
+    public BurstAttack.EffectType typeVunerable;
 
     public float maxHealth;
 
@@ -16,7 +16,7 @@ public class AbstractObstacle : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void takeDamage(ClickBurst.EffectType effectType, float damage)
+    public void takeDamage(BurstAttack.EffectType effectType, float damage)
     {
         if (effectType.Equals(typeVunerable))
         {
