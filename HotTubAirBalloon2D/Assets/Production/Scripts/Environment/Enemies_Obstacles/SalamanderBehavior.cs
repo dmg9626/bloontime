@@ -14,7 +14,7 @@ public class SalamanderBehavior : AbstractObstacle
     void Start()
     {
         base.Start();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = BalloonController.Instance.gameObject;
         StartCoroutine(takeTheShot());
     }
 
