@@ -5,33 +5,9 @@ using UnityEngine;
 
 public class PowerUpManager : Singleton<PowerUpManager>
 {
-    public enum PowerUpName
-    {
-        WATERJETS,
-        TEMPREG,
-        SNOCONE,
-        HOTCOCOA
-    };
-
-    [System.Serializable]
-    public class PowerUp
-    {
-        public PowerUpName name;
-
-        public string displayName;
-        public string description;
-
-        public bool isApplied;
-    }
-
-    /// <summary>
-    /// Base settings for powerups
-    /// </summary>
-    public List<PowerUp> powerUps;
     
-    /// <summary>
-    /// Powerups on balloon
-    /// </summary>
+    public List<PowerUp> powerUps;
+
     [SerializeField]
     private List<PowerUp> activePowerUps;
 
@@ -46,16 +22,16 @@ public class PowerUpManager : Singleton<PowerUpManager>
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
-            addPowerUp(PowerUpName.WATERJETS);
+            addPowerUp(PowerUp.PowerUpName.WATERJETS);
         if(Input.GetKeyDown(KeyCode.Alpha2))
-            addPowerUp(PowerUpName.TEMPREG);
+            addPowerUp(PowerUp.PowerUpName.TEMPREG);
         if(Input.GetKeyDown(KeyCode.Alpha3))
-            addPowerUp(PowerUpName.HOTCOCOA);
+            addPowerUp(PowerUp.PowerUpName.HOTCOCOA);
         if(Input.GetKeyDown(KeyCode.Alpha4))
-            addPowerUp(PowerUpName.SNOCONE);
+            addPowerUp(PowerUp.PowerUpName.SNOCONE);
     }
 
-    public void addPowerUp(PowerUpName p)
+    public void addPowerUp(PowerUp.PowerUpName p)
     {
         // Add to active powerup list if not already there
         PowerUp n = powerUps.First(pow => pow.name.Equals(p));
@@ -67,7 +43,7 @@ public class PowerUpManager : Singleton<PowerUpManager>
     }
     public void addPowerUp(int p)
     {
-        addPowerUp((PowerUpName)p);
+        addPowerUp((PowerUp.PowerUpName)p);
     }
 
 
@@ -82,23 +58,23 @@ public class PowerUpManager : Singleton<PowerUpManager>
             {
                 switch(e.name)
                 {
-                    case PowerUpName.WATERJETS:
+                    case PowerUp.PowerUpName.WATERJETS:
                         float newMax = (float)(Mathf.RoundToInt(BalloonController.Instance.getDefaultMaxComfort() * 1.5f));
                         BalloonController.Instance.setMaxComfort(newMax);
                         float newRegen = BalloonController.Instance.getDefaultRegen() * 1.5f;
                         BalloonController.Instance.setComfortRegen(newRegen);
                         e.isApplied = true;
                         break;
-                    case PowerUpName.TEMPREG:
+                    case PowerUp.PowerUpName.TEMPREG:
                         BalloonController.Instance.setFireRes(BalloonController.Instance.getFireResist() + 1);
                         BalloonController.Instance.setIceRes(BalloonController.Instance.getIceResist() + 1);
                         e.isApplied = true;
                         break;
-                    case PowerUpName.HOTCOCOA:
+                    case PowerUp.PowerUpName.HOTCOCOA:
                         BalloonController.Instance.setFirePower(2);
                         e.isApplied = true;
                         break;
-                    case PowerUpName.SNOCONE:
+                    case PowerUp.PowerUpName.SNOCONE:
                         BalloonController.Instance.setIcePower(2);
                         e.isApplied = true;
                         break;
@@ -107,8 +83,5 @@ public class PowerUpManager : Singleton<PowerUpManager>
             }
         });
     }
-
-    
-
 
 }

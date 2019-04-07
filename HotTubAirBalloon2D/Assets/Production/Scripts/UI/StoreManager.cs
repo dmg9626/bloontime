@@ -27,8 +27,8 @@ public class StoreManager : Singleton<StoreManager>
             rand2 = Random.Range(0, 3);
         }
 
-        PowerUpManager.PowerUp p1 = PowerUpManager.Instance.powerUps[rand1];
-        PowerUpManager.PowerUp p2 = PowerUpManager.Instance.powerUps[rand2];
+        PowerUp p1 = PowerUpManager.Instance.powerUps[rand1];
+        PowerUp p2 = PowerUpManager.Instance.powerUps[rand2];
 
         button1.onClick.RemoveAllListeners();
         button1.onClick.AddListener(delegate { choosePowerUp(p1.name); });
@@ -41,7 +41,7 @@ public class StoreManager : Singleton<StoreManager>
         description2.text = p2.description;
     }
 
-    public void choosePowerUp(PowerUpManager.PowerUpName p)
+    public void choosePowerUp(PowerUp.PowerUpName p)
     {
         PowerUpManager.Instance.addPowerUp(p);
 
