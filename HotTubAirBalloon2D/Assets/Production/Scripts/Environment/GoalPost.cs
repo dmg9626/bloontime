@@ -12,7 +12,7 @@ public class GoalPost : MonoBehaviour
         {
             if(collision.tag == "Player")
             {
-                GM.Instance.Victory();
+                GameController.Instance.Victory();
             }
         }
     }

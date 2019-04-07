@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GM : Singleton<GM>
+public class GameController : Singleton<GameController>
 {
     public Slider comfortSlider;
     public Text endText;

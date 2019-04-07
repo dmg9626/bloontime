@@ -35,7 +35,7 @@ public class AttackManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if(!GM.Instance.isFrozen)
+        if(!GameController.Instance.isFrozen)
         {
             HandleBurstAttack();
 

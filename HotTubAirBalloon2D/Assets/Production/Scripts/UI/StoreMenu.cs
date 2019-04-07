@@ -46,6 +46,6 @@ public class StoreMenu : Singleton<StoreMenu>
         PowerUpManager.Instance.addPowerUp(p);
 
         // Advance to next level
-        GM.Instance.NextLevel();
+        GameController.Instance.NextLevel();
     }
 }
