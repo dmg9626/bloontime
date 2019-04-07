@@ -70,7 +70,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb592abe4f12f5947b1926522ba80a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8845161633209413590}
   colliderSide: 1
 --- !u!1 &421302099438152155
 GameObject:
@@ -162,7 +161,6 @@ GameObject:
   - component: {fileID: 7126494869107849993}
   - component: {fileID: 6761938443469522600}
   - component: {fileID: 3867545352096485828}
-  - component: {fileID: 2610525793313175226}
   m_Layer: 9
   m_Name: AttackManager
   m_TagString: Untagged
@@ -196,10 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db8a5863bed4fa4884122d330a95798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  balloon: {fileID: 0}
   moveSpeed: 0.15
   playerNum: 0
   cursor: {fileID: 8845161632690398578}
   centralizedAnalog: 0
+  pauseTemp: 0
 --- !u!114 &3867545352096485828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,22 +217,6 @@ MonoBehaviour:
   beam: {fileID: 1539353571586373523}
   cursor: {fileID: 8845161632690398578}
   clickBurst: {fileID: 8845161633541279630}
---- !u!114 &2610525793313175226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767503770124598816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc12027af20944c209560bf4865df3ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 211159825716821553, guid: d86d8b370edcb41ecaf95801e9200337,
-    type: 3}
-  maxSpeed: 3
-  lifetime: 5
 --- !u!1 &1625361226514847440
 GameObject:
   m_ObjectHideFlags: 0
@@ -4948,64 +4932,6 @@ MonoBehaviour:
   burstTriggerPrefab: {fileID: 2995179753382932844, guid: d33b2d14b3a534a4d814ca2e1f2cd618,
     type: 3}
   burstTrigger: {fileID: 0}
-  fireGradient:
-    serializedVersion: 2
-    key0: {r: 1, g: 0.8311321, b: 0.15566039, a: 1}
-    key1: {r: 0.96304107, g: 0.39238945, b: 0.017505318, a: 0.20784314}
-    key2: {r: 0.8867924, g: 0.037646834, b: 0.053619895, a: 0}
-    key3: {r: 0.8867924, g: 0.037646834, b: 0.053619895, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 8867
-    ctime2: 65535
-    ctime3: 65535
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
-  iceGradient:
-    serializedVersion: 2
-    key0: {r: 0.15686274, g: 1, b: 0.98397994, a: 1}
-    key1: {r: 0, g: 0.6349025, b: 1, a: 0.20784314}
-    key2: {r: 0.039215703, g: 0.34828514, b: 0.8862745, a: 0}
-    key3: {r: 0.8867924, g: 0.037646834, b: 0.053619895, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 13685
-    ctime2: 65535
-    ctime3: 65535
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
   effectType: 1
 --- !u!1 &1942496745767308246
 GameObject:
@@ -5112,7 +5038,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb592abe4f12f5947b1926522ba80a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8845161633209413590}
   colliderSide: 0
 --- !u!70 &8719222289380194835
 CapsuleCollider2D:
@@ -5296,7 +5221,6 @@ MonoBehaviour:
   expansionSpeed: 2
   animationSpeed: 1.5
   hitAnimationSpeed: 4
-  effectManager: {fileID: 0}
 --- !u!212 &2014211221315715535
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5403,7 +5327,6 @@ GameObject:
   - component: {fileID: 5068208483094167170}
   - component: {fileID: 8988967853613666201}
   - component: {fileID: 5590871659491735033}
-  - component: {fileID: 1559089214502734539}
   m_Layer: 9
   m_Name: AttackManager
   m_TagString: Untagged
@@ -5437,10 +5360,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db8a5863bed4fa4884122d330a95798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  balloon: {fileID: 0}
   moveSpeed: 0.15
   playerNum: 1
   cursor: {fileID: 9003574820412403997}
   centralizedAnalog: 0
+  pauseTemp: 0
 --- !u!114 &5590871659491735033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5458,22 +5383,6 @@ MonoBehaviour:
   beam: {fileID: 5494782348152621126}
   cursor: {fileID: 9003574820412403997}
   clickBurst: {fileID: 7790534383175638143}
---- !u!114 &1559089214502734539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6741183691665858988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc12027af20944c209560bf4865df3ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 211159825716821553, guid: d86d8b370edcb41ecaf95801e9200337,
-    type: 3}
-  maxSpeed: 3
-  lifetime: 5
 --- !u!1 &7473874584258249579
 GameObject:
   m_ObjectHideFlags: 0
@@ -5527,7 +5436,6 @@ MonoBehaviour:
   expansionSpeed: 2
   animationSpeed: 1.5
   hitAnimationSpeed: 4
-  effectManager: {fileID: 0}
 --- !u!212 &1909669001690995254
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5752,7 +5660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00cceb987a0c0d043bdd2f717b4800e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BalloonChar: {fileID: 8845161633209413585}
   temperature: 0
   minTemperature: -25
   maxTemperature: 25
@@ -10528,62 +10435,4 @@ MonoBehaviour:
   burstTriggerPrefab: {fileID: 2995179753382932844, guid: d33b2d14b3a534a4d814ca2e1f2cd618,
     type: 3}
   burstTrigger: {fileID: 0}
-  fireGradient:
-    serializedVersion: 2
-    key0: {r: 1, g: 0.8311321, b: 0.15566039, a: 1}
-    key1: {r: 0.96304107, g: 0.39238945, b: 0.017505318, a: 0.20784314}
-    key2: {r: 0.8867924, g: 0.037646834, b: 0.053619895, a: 0}
-    key3: {r: 0.8867924, g: 0.037646834, b: 0.053619895, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 8867
-    ctime2: 65535
-    ctime3: 65535
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
-  iceGradient:
-    serializedVersion: 2
-    key0: {r: 0.15686274, g: 1, b: 0.98397994, a: 1}
-    key1: {r: 0, g: 0.6349025, b: 1, a: 0.20784314}
-    key2: {r: 0.039215703, g: 0.34828514, b: 0.8862745, a: 0}
-    key3: {r: 0.8867924, g: 0.037646834, b: 0.053619895, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 13685
-    ctime2: 65535
-    ctime3: 65535
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
   effectType: 0
