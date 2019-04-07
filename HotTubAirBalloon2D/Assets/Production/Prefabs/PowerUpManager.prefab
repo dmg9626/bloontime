@@ -43,9 +43,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bc8209bafc5bb4693f239828ad21f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  BCtrl: {fileID: 0}
-  button1: {fileID: 0}
-  button2: {fileID: 0}
-  button1Text: {fileID: 0}
-  button2Text: {fileID: 0}
+  powerUps:
+  - name: 0
+    displayName: Water Jets
+    description: Comfy Meter increases faster, decreasese slower
+    isApplied: 0
+    effects:
+      firePowerChange: 0
+      icePowerChange: 0
+      fireResistanceChange: 0
+      iceResistanceChange: 0
+      comfortRegenChange: 1.5
+      maxComfort: 1.5
+  - name: 1
+    displayName: Temp Reg
+    description: +Fire/Ice Resistance
+    isApplied: 0
+    effects:
+      firePowerChange: 0
+      icePowerChange: 0
+      fireResistanceChange: 1
+      iceResistanceChange: 1
+      comfortRegenChange: 0
+      maxComfort: 0
+  - name: 2
+    displayName: Sno Cone
+    description: +Fire Resistance from enemies/obstacles, +Ice Power
+    isApplied: 0
+    effects:
+      firePowerChange: 0
+      icePowerChange: 2
+      fireResistanceChange: 0
+      iceResistanceChange: 0
+      comfortRegenChange: 0
+      maxComfort: 0
+  - name: 3
+    displayName: Hot Cocoa
+    description: +Ice Resistance, +Fire Power
+    isApplied: 0
+    effects:
+      firePowerChange: 2
+      icePowerChange: 0
+      fireResistanceChange: 0
+      iceResistanceChange: 0
+      comfortRegenChange: 0
+      maxComfort: 0
+  activePowerUps: []

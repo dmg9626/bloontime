@@ -24,7 +24,7 @@ public class PowerUp
 
     /// <summary>
     /// Values used to apply powerup effects.
-    /// All values applied as percent changes.
+    /// All values should be applied as percent changes.
     /// </summary>
     [System.Serializable]
     public class Effects 
@@ -58,5 +58,46 @@ public class PowerUp
         /// New max comfort
         /// </summary>
         public float maxComfort;
+    }
+
+
+    public void Activate()
+    {
+        // Fallback check to ensure not applied
+        if(!isApplied) {
+            BalloonController balloonController = BalloonController.Instance;
+
+            Debug.Log("Applying powerup " + name);            
+            
+            float defaultMaxComfort = balloonController.getDefaultMaxComfort();
+            float defaultComfortRegen = balloonController.getDefaultRegen();
+            
+            // Calculate comfort values (scaled)
+            float maxComfort = (float)(Mathf.RoundToInt((defaultMaxComfort * effects.maxComfort)) + defaultMaxComfort);
+            float comfortRegen = (defaultComfortRegen * effects.comfortRegenChange) + defaultComfortRegen;
+            
+            // Calculate resistance values (additive)
+            float fireRes = balloonController.getFireResist() + effects.fireResistanceChange;
+            float iceRes = balloonController.getIceResist() + effects.iceResistanceChange;
+
+            // Calculate power values (additive)
+            float firePower = balloonController.firePower + effects.firePowerChange;
+            float icePower = balloonController.icePower + effects.icePowerChange;
+            
+            // Set max comfort/regeneration rate
+            balloonController.setMaxComfort(maxComfort);
+            balloonController.setComfortRegen(comfortRegen);
+
+            // Set fire/ice resistance
+            balloonController.setFireRes(fireRes);
+            balloonController.setIceRes(iceRes);
+
+            // Set fire/ice power
+            balloonController.setFirePower(firePower);
+            balloonController.setIcePower(icePower);
+
+            // Flag as applied so we don't activate it again
+            isApplied = true;
+        }
     }
 }

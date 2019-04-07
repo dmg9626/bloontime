@@ -5,20 +5,23 @@ using UnityEngine;
 
 public class PowerUpManager : Singleton<PowerUpManager>
 {
-    
+    /// <summary>
+    /// Settings for each powerup stored here
+    /// </summary>
     public List<PowerUp> powerUps;
 
+    /// <summary>
+    /// Powerups currently applied to balloon
+    /// </summary>
     [SerializeField]
     private List<PowerUp> activePowerUps;
 
-    // Start is called before the first frame update
     void Start()
     {
         Debug.Log(BalloonController.Instance.temperature);
         activePowerUps = new List<PowerUp>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
@@ -41,10 +44,6 @@ public class PowerUpManager : Singleton<PowerUpManager>
         // Apply powerups
         checkPowerUps();
     }
-    public void addPowerUp(int p)
-    {
-        addPowerUp((PowerUp.PowerUpName)p);
-    }
 
 
     public List<PowerUp> getPowerUps()
@@ -52,36 +51,12 @@ public class PowerUpManager : Singleton<PowerUpManager>
         return activePowerUps;
     }
 
+    /// <summary>
+    /// Checks list of active powerups and applies new ones
+    /// </summary>
     void checkPowerUps(){
-        activePowerUps.ForEach(e =>{
-            if(!e.isApplied)
-            {
-                switch(e.name)
-                {
-                    case PowerUp.PowerUpName.WATERJETS:
-                        float newMax = (float)(Mathf.RoundToInt(BalloonController.Instance.getDefaultMaxComfort() * 1.5f));
-                        BalloonController.Instance.setMaxComfort(newMax);
-                        float newRegen = BalloonController.Instance.getDefaultRegen() * 1.5f;
-                        BalloonController.Instance.setComfortRegen(newRegen);
-                        e.isApplied = true;
-                        break;
-                    case PowerUp.PowerUpName.TEMPREG:
-                        BalloonController.Instance.setFireRes(BalloonController.Instance.getFireResist() + 1);
-                        BalloonController.Instance.setIceRes(BalloonController.Instance.getIceResist() + 1);
-                        e.isApplied = true;
-                        break;
-                    case PowerUp.PowerUpName.HOTCOCOA:
-                        BalloonController.Instance.setFirePower(2);
-                        e.isApplied = true;
-                        break;
-                    case PowerUp.PowerUpName.SNOCONE:
-                        BalloonController.Instance.setIcePower(2);
-                        e.isApplied = true;
-                        break;
-                    default: break;
-                }
-            }
-        });
+        activePowerUps.Where(p => !p.isApplied).ToList()
+        .ForEach(powerUp => powerUp.Activate());
     }
 
 }

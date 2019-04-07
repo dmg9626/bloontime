@@ -123,7 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202015cc3dd93784b916b41bbd20fbfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloonController: {fileID: 0}
   minAngle: 180
   maxAngle: -180
   dialType: 0
@@ -3626,8 +3625,6 @@ MonoBehaviour:
   button2Text: {fileID: 6024483352654906358}
   description1: {fileID: 1331509476}
   description2: {fileID: 1259353748}
-  powerUpManager: {fileID: 3352193774455880449}
-  gm: {fileID: 8691173825605012015}
 --- !u!1 &7143059028378742755
 GameObject:
   m_ObjectHideFlags: 0
@@ -4439,7 +4436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489145310776f6d4ca430bbf6a667ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BCtrl: {fileID: 0}
   comfortSlider: {fileID: 1187285807}
   endText: {fileID: 1956125750360537262}
   isEnd: 0
@@ -4449,7 +4445,6 @@ MonoBehaviour:
   pauseMenu: {fileID: 5577901132214366771}
   victoryMenu: {fileID: 5767155849365116546}
   powerUpMenu: {fileID: 3463362558589487765}
-  procGen: {fileID: 0}
   isPaused: 0
   isFrozen: 0
 --- !u!1 &8691173825625062257
@@ -4604,6 +4599,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8691173825279543754}
     m_Modifications:
+    - target: {fileID: 7233172522438121581, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: m_Name
+      value: PowerUpManager
+      objectReference: {fileID: 0}
     - target: {fileID: 7932296911630217961, guid: a636ddece589e1d4ab0ccb83e77b5e63,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4659,95 +4659,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7233172522438121581, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: m_Name
-      value: PowerUpManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: powerUps.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: BCtrl
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: powerUps.Array.data[0].displayName
-      value: Water Jets
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: powerUps.Array.data[0].description
-      value: Comfy Meter increases faster, decreasese slower
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: powerUps.Array.data[1].name
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: powerUps.Array.data[1].displayName
-      value: Temp Reg
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: powerUps.Array.data[1].description
-      value: +Fire/Ice Resistance
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: powerUps.Array.data[2].name
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: powerUps.Array.data[2].displayName
-      value: Sno Cone
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: powerUps.Array.data[2].description
-      value: +Fire Resistance from enemies/obstacles, +Ice Power
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: powerUps.Array.data[3].name
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: powerUps.Array.data[3].displayName
-      value: Hot Cocoa
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: powerUps.Array.data[3].description
-      value: +Ice Resistance, +Fire Power
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-        type: 3}
-      propertyPath: gm
-      value: 
-      objectReference: {fileID: 8691173825605012015}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a636ddece589e1d4ab0ccb83e77b5e63, type: 3}
---- !u!114 &3352193774455880449 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
-    type: 3}
-  m_PrefabInstance: {fileID: 7857676081208974469}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26bc8209bafc5bb4693f239828ad21f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &223276452033785452 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7932296911630217961, guid: a636ddece589e1d4ab0ccb83e77b5e63,
