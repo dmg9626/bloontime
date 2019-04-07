@@ -14,33 +14,36 @@ public class BalloonController : Singleton<BalloonController>
 {
 /**************************************************************************Public Fields */
 
-    public float temperature,
-        minTemperature,
-        maxTemperature;
-
+    public float temperature;
+    public float comfort;
+    
+    [Header("Temperature/Comfort Settings")]
+    public float minTemperature;
+    public float maxTemperature;
+    public float tempMultiplier;
+    
     public float
-        comfort,
         minComfort,
-        defaultMaxComfort,
         maxComfort,
-        firePower,
-        icePower,
-        fireResist,
-        iceResist;
+        defaultMaxComfort;
+    
+    public float defaultComfortRegen;
+    public float comfortRegen;
+    public float comfortTemp;
+    
+    [Header("Fire/Ice Settings")]
+    public float firePower;
+    public float icePower;
 
-    public float
-        tempMultiplier,
-        defaultComfortRegen,
-        comfortRegen,
-        comfortTemp;
+    public float fireResist;
+    public float iceResist;
 
-    public float
-        cursorSpeed,
-        collisionComfortLoss,
-        tempSmoothTime;
-        //, balloonSpeed;
+    [Space(10)]
+    public float collisionComfortLoss;
+    public float tempSmoothTime;
 
-    public bool bottomCollision, topCollision;
+    public bool bottomCollision;
+    public bool topCollision;
 
     public delegate void OnTempChanged();
     public OnTempChanged onTempChanged;
@@ -49,9 +52,13 @@ public class BalloonController : Singleton<BalloonController>
     public OnComfortChanged onComfortChanged;
 
 /****************************************************************************Private Fields */
+
+    [Header("Movement")]
     [SerializeField]
-    private float balloonVerticalSpeed, balloonHorizontalSpeed;
+    private float balloonVerticalSpeed;
     [SerializeField]
+    private float balloonHorizontalSpeed;
+    
     private Vector2 charPos;
 
 /***************************************************************************Mono Methods */
