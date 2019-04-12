@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PowerUp
 {
-    public enum PowerUpName
+    public enum PowerUpType
     {
         WATERJETS,
         TEMPREG,
@@ -13,7 +13,7 @@ public class PowerUp
         HOTCOCOA
     };
     
-    public PowerUpName name;
+    public PowerUpType type;
 
     public string displayName;
     public string description;
@@ -60,14 +60,18 @@ public class PowerUp
         public float maxComfort;
     }
 
+    public PowerUpCustom customPowerUp;
 
-    public void Activate()
+    /// <summary>
+    /// Can be overriden by derived class
+    /// </summary>
+    public virtual void Activate()
     {
         // Fallback check to ensure not applied
         if(!isApplied) {
             BalloonController balloonController = BalloonController.Instance;
 
-            Debug.Log("Applying powerup " + name);            
+            Debug.Log("Applying powerup " + type);            
             
             float defaultMaxComfort = balloonController.getDefaultMaxComfort();
             float defaultComfortRegen = balloonController.getDefaultRegen();
@@ -95,6 +99,11 @@ public class PowerUp
             // Set fire/ice power
             balloonController.setFirePower(firePower);
             balloonController.setIcePower(icePower);
+
+            // Call custom powerup script if provided
+            if(customPowerUp != null) {
+                customPowerUp.Activate();
+            }
 
             // Flag as applied so we don't activate it again
             isApplied = true;

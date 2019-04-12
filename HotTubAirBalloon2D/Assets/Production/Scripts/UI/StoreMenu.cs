@@ -31,17 +31,17 @@ public class StoreMenu : Singleton<StoreMenu>
         PowerUp p2 = PowerUpManager.Instance.powerUps[rand2];
 
         button1.onClick.RemoveAllListeners();
-        button1.onClick.AddListener(delegate { choosePowerUp(p1.name); });
+        button1.onClick.AddListener(delegate { choosePowerUp(p1.type); });
         button1Text.text = p1.displayName;
         description1.text = p1.description;
 
         button2.onClick.RemoveAllListeners();
-        button2.onClick.AddListener(delegate { choosePowerUp(p2.name); });
+        button2.onClick.AddListener(delegate { choosePowerUp(p2.type); });
         button1Text.text = p1.displayName;
         description2.text = p2.description;
     }
 
-    public void choosePowerUp(PowerUp.PowerUpName p)
+    public void choosePowerUp(PowerUp.PowerUpType p)
     {
         PowerUpManager.Instance.addPowerUp(p);
 

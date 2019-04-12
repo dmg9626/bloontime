@@ -4628,6 +4628,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: activePowerUps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[1].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[2].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: powerUps.Array.data[3].type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: activePowerUps.Array.data[0].displayName
+      value: Test Powerup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: activePowerUps.Array.data[0].description
+      value: 'Replace the Name '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866544815245666180, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+        type: 3}
+      propertyPath: activePowerUps.Array.data[0].customPowerUp
+      value: 
+      objectReference: {fileID: 5559096228825321799}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a636ddece589e1d4ab0ccb83e77b5e63, type: 3}
 --- !u!4 &223276452033785452 stripped
@@ -4636,3 +4671,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7857676081208974469}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5559096228825321799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2317649919605968322, guid: a636ddece589e1d4ab0ccb83e77b5e63,
+    type: 3}
+  m_PrefabInstance: {fileID: 7857676081208974469}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31ce5a03a63a48289b6f96ef5ff910d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -19,25 +19,27 @@ public class PowerUpManager : Singleton<PowerUpManager>
     void Start()
     {
         Debug.Log(BalloonController.Instance.temperature);
-        activePowerUps = new List<PowerUp>();
+
+        // Activate any powerups set on start
+        checkPowerUps();
     }
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
-            addPowerUp(PowerUp.PowerUpName.WATERJETS);
+            addPowerUp(PowerUp.PowerUpType.WATERJETS);
         if(Input.GetKeyDown(KeyCode.Alpha2))
-            addPowerUp(PowerUp.PowerUpName.TEMPREG);
+            addPowerUp(PowerUp.PowerUpType.TEMPREG);
         if(Input.GetKeyDown(KeyCode.Alpha3))
-            addPowerUp(PowerUp.PowerUpName.HOTCOCOA);
+            addPowerUp(PowerUp.PowerUpType.HOTCOCOA);
         if(Input.GetKeyDown(KeyCode.Alpha4))
-            addPowerUp(PowerUp.PowerUpName.SNOCONE);
+            addPowerUp(PowerUp.PowerUpType.SNOCONE);
     }
 
-    public void addPowerUp(PowerUp.PowerUpName p)
+    public void addPowerUp(PowerUp.PowerUpType p)
     {
         // Add to active powerup list if not already there
-        PowerUp n = powerUps.First(pow => pow.name.Equals(p));
+        PowerUp n = powerUps.First(pow => pow.type.Equals(p));
         if(!activePowerUps.Contains(n))
             activePowerUps.Add(n);
 
