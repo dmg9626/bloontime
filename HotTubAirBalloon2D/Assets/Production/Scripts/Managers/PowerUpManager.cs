@@ -24,18 +24,6 @@ public class PowerUpManager : Singleton<PowerUpManager>
         checkPowerUps();
     }
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-            addPowerUp(PowerUp.PowerUpType.WATERJETS);
-        if(Input.GetKeyDown(KeyCode.Alpha2))
-            addPowerUp(PowerUp.PowerUpType.TEMPREG);
-        if(Input.GetKeyDown(KeyCode.Alpha3))
-            addPowerUp(PowerUp.PowerUpType.HOTCOCOA);
-        if(Input.GetKeyDown(KeyCode.Alpha4))
-            addPowerUp(PowerUp.PowerUpType.SNOCONE);
-    }
-
     public void addPowerUp(PowerUp.PowerUpType p)
     {
         // Add to active powerup list if not already there
