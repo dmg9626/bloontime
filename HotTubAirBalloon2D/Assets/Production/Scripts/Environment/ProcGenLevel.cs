@@ -5,24 +5,29 @@ using UnityEngine.Tilemaps;
 
 public class ProcGenLevel : Singleton<ProcGenLevel>
 {
-    public Tilemap levelMap;
-    public TileBase[] tileList;
+    [SerializeField] private Tilemap levelMap;
+    [SerializeField] private TileBase[] tileList;
 
-    public int height, width, tunnelHeight, buffer, maxSlope, maxDisturb, minShapes, maxShapes, maxBoulderHeight, maxBoulderWidth, minBoulderNum, maxBoulderNum, minEnemyNum, maxEnemyNum;
+    [SerializeField] private int height, width, tunnelHeight, buffer, maxSlope, maxDisturb, minShapes, maxShapes, maxBoulderHeight, maxBoulderWidth, minBoulderNum, maxBoulderNum, minEnemyNum, maxEnemyNum;
 
-    public List<int> levelShape;
+    [SerializeField] private List<int> levelShape;
 
-    public GameObject goalPost;
-    public CameraController camera;
+    [SerializeField] private GameObject goalPost;
+    [SerializeField] private CameraController camera;
 
     public enum EnemyPositionType { ANY, TOP, BOTTOM, CENTER };
-    public List<GameObject> enemyList;
-    public List<EnemyPositionType> enemyPositions;
+    [SerializeField] private List<GameObject> enemyList;
+    [SerializeField] private List<EnemyPositionType> enemyPositions;
 
     private List<List<int>> map;
     private List<int> floor, ceiling;
 
     // Start is called before the first frame update
+
+    /// <summary>
+    /// Awake function that starts before the OnStart functions
+    /// Allows the ProcGenLevel script to initialize before the other objects that rely on it
+    /// </summary>
     void Awake()
     {
         levelMap.ClearAllTiles();
@@ -48,6 +53,9 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         goalInstance.transform.localScale = new Vector3(10f,15f,1f);
     }
 
+    /// <summary>
+    /// This function constructs the new level and resets the balloon and camera
+    /// </summary>
     public void NextLevel(){
         initializeMap();
         
@@ -78,6 +86,9 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         
     }
 
+    /// <summary>
+    /// Function to initialize the map (also adds the buffer to the level)
+    /// </summary>
     void initializeMap(){
         //map = new int[width+(buffer*2), height+(buffer*2)];
         map = new List<List<int>>();
@@ -99,6 +110,9 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
 
     }
 
+    /// <summary>
+    /// This function takes the map structure and builds the level to the tilemap
+    /// </summary>
     void renderMap(){
 
         //Clear the map (ensures we dont overlap)
@@ -120,6 +134,9 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         }
     }
 
+    /// <summary>
+    /// This function takes a preset level shape and changes it slightly (changes based on maxDisturb)
+    /// </summary>
     void disturbLevelShape(){
 
         float reduction = 0f;
@@ -142,6 +159,9 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         }
     }
 
+    /// <summary>
+    /// This function constructs a new level shape to build the level from (steepness based on maxSlope)
+    /// </summary>
     void randomLevelShape(){
 
         float reduction = 0.3f;
@@ -167,7 +187,9 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         }
     }
 
-
+    /// <summary>
+    /// This function adds boulders and bumps to the floor and ceiling (frequency based on minBoulderNum/maxBoulderNum, and size based on maxBoulderHeight/maxBoulderWidth)
+    /// </summary>
     void createBoulders(){
 
         int boulderNum = Random.Range(minBoulderNum, maxBoulderNum);
@@ -208,6 +230,9 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         }
     }
 
+    /// <summary>
+    /// This function builds the floor and ceiling structures based on the level shape
+    /// </summary>
     void buildFromLevelShape(){
 
         int fillSpace = Mathf.FloorToInt((float)width/(levelShape.Count));
@@ -232,7 +257,9 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         }
     }
 
-
+    /// <summary>
+    /// This function takes the floor and ceiling structures and builds the level to the map structure
+    /// </summary>
     void addFloorCeilingToMap(){
 
         int x = buffer;
@@ -254,7 +281,9 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         }
     }
 
-
+    /// <summary>
+    /// This function adds enemies and obstacles to the level (frequency based on minEnemyNum/maxEnemyNum, and enemy type based on enemyList, position based on EnemyPositionType)
+    /// </summary>
     void addEnemies(){
 
         int enemyNum = Random.Range(minEnemyNum, maxEnemyNum); //replace with some kind of density variable
