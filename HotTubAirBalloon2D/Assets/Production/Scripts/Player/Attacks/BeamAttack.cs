@@ -6,10 +6,12 @@ public class BeamAttack : MonoBehaviour
 {
     public Transform cursor;
 
+    [Header("Effects")]
     public BurstAttack.EffectType effectType;
 
     public float damagePerSecond;
 
+    [Header("Movement Settings")]
     /// <summary>
     /// Max speed for beam to rotate towards cursor
     /// </summary>
@@ -19,7 +21,18 @@ public class BeamAttack : MonoBehaviour
     /// Rate at which beam expands towards cursor
     /// </summary>
     public float expansionSpeed;
-    
+
+    /// <summary>
+    /// Speed beam travels away from balloon after releasing fire button
+    /// </summary>
+    public float releaseMoveSpeed;
+
+    /// <summary>
+    /// Duration released beam travels before disappearing
+    /// </summary>
+    public float releaseLifetime;
+
+    [Header("Animation Settings")]
     /// <summary>
     /// Rate at which beam color iterates over gradient
     /// </summary>
@@ -39,16 +52,6 @@ public class BeamAttack : MonoBehaviour
     /// Value used to animate beam color over gradient
     /// </summary>
     private float colorAnimationValue;
-
-    /// <summary>
-    /// Speed beam travels away from balloon after releasing fire button
-    /// </summary>
-    public float releaseMoveSpeed;
-
-    /// <summary>
-    /// Duration released beam travels before disappearing
-    /// </summary>
-    public float releaseLifetime;
 
     /// <summary>
     /// Settings used for animating beam
