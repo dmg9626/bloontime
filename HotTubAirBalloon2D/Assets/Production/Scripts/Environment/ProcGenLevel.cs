@@ -5,13 +5,48 @@ using UnityEngine.Tilemaps;
 
 public class ProcGenLevel : Singleton<ProcGenLevel>
 {
+
+    [Space(5)]
+    [Header("Level Settings")]
+    [SerializeField] private int height;
+    [SerializeField] private int width;
+    [SerializeField] private int tunnelHeight; 
+    [SerializeField] private int buffer;  
+    [SerializeField] private int minSlope; 
+    [SerializeField] private int maxSlope;
+    [SerializeField] private int minDisturb; 
+    [SerializeField] private int maxDisturb; 
+    [SerializeField] private int minShapes; 
+    [SerializeField] private int maxShapes; 
+    [SerializeField] private int maxBoulderHeight; 
+    [SerializeField] private int maxBoulderWidth; 
+    [SerializeField] private int minBoulderNum; 
+    [SerializeField] private int maxBoulderNum; 
+    [SerializeField] private int minEnemyNum; 
+    [SerializeField] private int maxEnemyNum;
+    [SerializeField] private int minDifficulty;
+    [SerializeField] private int maxDifficulty;
+    [SerializeField] private int initialDifficulty;
+    [SerializeField] private float difficultyIncrease;
+    [SerializeField] private int difficultyStdDev;
+
+
+    [Space(5)]
+    [Header("Debug Variables")]
+    [SerializeField] private bool debugFlag = false;
+    [SerializeField] private float currentDifficulty;
+    [SerializeField] private int enemyNum;
+    [SerializeField] private int enemyGroupSize;
+    [SerializeField] private int boulderNum;
+    [SerializeField] private int currentMaxSlope;
+    [SerializeField] private List<int> levelShape;
+    [SerializeField] private List<int> concentrationPoints;
+
+
+    [Space(5)]
+    [Header("Prefab Variables")]
     [SerializeField] private Tilemap levelMap;
     [SerializeField] private TileBase[] tileList;
-
-    [SerializeField] private int height, width, tunnelHeight, buffer, maxSlope, maxDisturb, minShapes, maxShapes, maxBoulderHeight, maxBoulderWidth, minBoulderNum, maxBoulderNum, minEnemyNum, maxEnemyNum;
-
-    [SerializeField] private List<int> levelShape;
-
     [SerializeField] private GameObject goalPost;
     [SerializeField] private CameraController camera;
 
@@ -21,6 +56,9 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
 
     private List<List<int>> map;
     private List<int> floor, ceiling;
+
+    //this is to fix the multiple goal instance bug, but I'm not sure if we will need a goal post later so this is temporary
+    private GameObject goalInstance;
 
     // Start is called before the first frame update
 
@@ -32,15 +70,12 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
     {
         levelMap.ClearAllTiles();
         initializeMap();
-        
-        // if(Random.Range(0,2) == 0){
-        //     randomLevelShape();
-        // }else{
-        //     disturbLevelShape();
-        //     Debug.Log("this was a defined shape");
-        // }
 
-        randomLevelShape();
+        if(!debugFlag){
+            currentDifficulty = initialDifficulty;
+        }      
+
+        initializeConfiguration();
 
         buildFromLevelShape();
         createBoulders();
@@ -49,7 +84,7 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         addEnemies();
         BalloonController.Instance.moveBalloon(new Vector2(buffer+1, levelShape[0]+(buffer*2)+Mathf.FloorToInt(tunnelHeight/2)));
         
-        GameObject goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + (buffer*2) + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
+        goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + (buffer*2) + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
         goalInstance.transform.localScale = new Vector3(10f,15f,1f);
     }
 
@@ -57,16 +92,14 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
     /// This function constructs the new level and resets the balloon and camera
     /// </summary>
     public void NextLevel(){
-        initializeMap();
         
-        // if(Random.Range(0,2) == 0){
-        //     randomLevelShape();
-        // }else{
-        //     disturbLevelShape();
-        //     Debug.Log("this was a defined shape");
-        // }
+        initializeMap();
 
-        randomLevelShape();
+        if(!debugFlag){
+            currentDifficulty += difficultyIncrease;
+        }
+
+        initializeConfiguration();
 
         buildFromLevelShape();
         createBoulders();
@@ -76,8 +109,7 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         BalloonController.Instance.moveBalloon(new Vector2(buffer+1, levelShape[0]+(buffer*2)+Mathf.FloorToInt(tunnelHeight/2)));
         BalloonController.Instance.resetValues();
         CameraController.Instance.resetCameraToPlayer();
-        GameObject goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + (buffer*2) + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
-        goalInstance.transform.localScale = new Vector3(10f,15f,1f);
+        goalInstance.transform.position = new Vector2(width+buffer, levelShape[levelShape.Count-1] + (buffer*2) + Mathf.FloorToInt(tunnelHeight/2));
     }
 
     // Update is called once per frame
@@ -135,6 +167,37 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
     }
 
     /// <summary>
+    /// This function sets up the level configuration based on the currentDifficulty
+    /// </summary>
+    void initializeConfiguration(){
+
+        //if debugFlag is toggled then only take the preset debug values
+        if(debugFlag){
+            return; 
+        }
+
+        float difficultyDisturb = difficultyIncrease*difficultyStdDev;
+        float slopeLerp = (currentDifficulty+Random.Range(0-difficultyDisturb, difficultyDisturb))/(maxDifficulty/minDifficulty);
+        float boulderLerp = (currentDifficulty+Random.Range(0-difficultyDisturb, difficultyDisturb))/(maxDifficulty/minDifficulty);
+        float enemyLerp = (currentDifficulty+Random.Range(0-difficultyDisturb, difficultyDisturb))/(maxDifficulty/minDifficulty);
+
+        currentMaxSlope = Mathf.RoundToInt(Mathf.Lerp(minSlope, maxSlope, Mathf.Clamp(slopeLerp, 0, 1)));
+        boulderNum = Mathf.RoundToInt(Mathf.Lerp(minBoulderNum, maxBoulderNum, Mathf.Clamp(boulderLerp, 0, 1)));
+        enemyNum = Mathf.RoundToInt(Mathf.Lerp(minEnemyNum, maxEnemyNum, Mathf.Clamp(enemyLerp, 0, 1)));
+
+        randomLevelShape();
+
+        //TODO: Add randomly choose an appropriate preselected level (disturbed by a lerped disturb)
+        // if(Random.Range(0,2) == 0){
+        //     randomLevelShape();
+        // }else{
+        //     disturbLevelShape();
+        //     Debug.Log("this was a defined shape");
+        // }
+
+    }
+
+    /// <summary>
     /// This function takes a preset level shape and changes it slightly (changes based on maxDisturb)
     /// </summary>
     void disturbLevelShape(){
@@ -171,11 +234,12 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
 
         levelShape = new List<int>();
         int shapeNum = Random.Range(minShapes, maxShapes);
-        
-        for(int x = 0; x < shapeNum; x++){
+
+        levelShape.Add(lastHeight);
+        for(int x = 0; x < shapeNum-1; x++){
             float ran = Random.Range(-1f, 1f);
 
-            lastHeight = lastHeight + Mathf.FloorToInt(ran * maxSlope);
+            lastHeight = lastHeight + Mathf.FloorToInt(ran * currentMaxSlope);
             if(lastHeight>height){
                 lastHeight = height;
             }else if(lastHeight<0){
@@ -192,7 +256,6 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
     /// </summary>
     void createBoulders(){
 
-        int boulderNum = Random.Range(minBoulderNum, maxBoulderNum);
         List<int> boulderPlaces = new List<int>();
         int lastPlace = buffer;
 
@@ -286,7 +349,6 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
     /// </summary>
     void addEnemies(){
 
-        int enemyNum = Random.Range(minEnemyNum, maxEnemyNum); //replace with some kind of density variable
         List<float> enemyPlaces = new List<float>();
         float lastPlace = buffer+10;   //replace with some enemy buffer so enemy isn't too close to player at start
 

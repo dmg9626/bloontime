@@ -857,17 +857,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39705c4f0ef3b24a8979492fe52e16c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelMap: {fileID: 757809204}
-  tileList:
-  - {fileID: 11400000, guid: a4f32fc107a79034bb944bea689dc70a, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
   height: 100
   width: 200
   tunnelHeight: 10
   buffer: 15
-  maxSlope: 40
-  maxDisturb: 30
+  minSlope: 20
+  maxSlope: 50
+  minDisturb: 20
+  maxDisturb: 40
   minShapes: 2
   maxShapes: 7
   maxBoulderHeight: 5
@@ -876,10 +873,26 @@ MonoBehaviour:
   maxBoulderNum: 15
   minEnemyNum: 10
   maxEnemyNum: 15
+  minDifficulty: 1
+  maxDifficulty: 10
+  initialDifficulty: 1
+  difficultyIncrease: 0.5
+  difficultyStdDev: 3
+  debugFlag: 0
+  currentDifficulty: 0
+  enemyNum: 0
+  enemyGroupSize: 0
+  boulderNum: 0
+  currentMaxSlope: 0
   levelShape: 140000002d0000002300000037000000140000001e000000
+  concentrationPoints: 
+  levelMap: {fileID: 757809204}
+  tileList:
+  - {fileID: 11400000, guid: a4f32fc107a79034bb944bea689dc70a, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   goalPost: {fileID: 9075341021122426737, guid: d6ed14c176240ed4ab448208523596fd,
     type: 3}
-  player: {fileID: 414670792}
   camera: {fileID: 1316125387}
   enemyList:
   - {fileID: 5170851323378231382, guid: da1e92d2ae85dea4b830e52bf1da067e, type: 3}
