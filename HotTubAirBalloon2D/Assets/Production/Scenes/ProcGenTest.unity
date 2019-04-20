@@ -395,11 +395,6 @@ PrefabInstance:
       propertyPath: gm
       value: 
       objectReference: {fileID: 1790239270}
-    - target: {fileID: 1539353571586373523, guid: ef509f8445375cc449bde52a697f48fe,
-        type: 3}
-      propertyPath: effectManager
-      value: 
-      objectReference: {fileID: 1144901394}
     - target: {fileID: 3867545352096485828, guid: ef509f8445375cc449bde52a697f48fe,
         type: 3}
       propertyPath: gm
@@ -411,11 +406,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1790239270}
     - target: {fileID: 7790534383175638143, guid: ef509f8445375cc449bde52a697f48fe,
-        type: 3}
-      propertyPath: effectManager
-      value: 
-      objectReference: {fileID: 1144901394}
-    - target: {fileID: 8845161633541279630, guid: ef509f8445375cc449bde52a697f48fe,
         type: 3}
       propertyPath: effectManager
       value: 
@@ -779,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2050870265, guid: 0c47859198323da4fba8b490565a4682, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5.0000153
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c47859198323da4fba8b490565a4682, type: 3}

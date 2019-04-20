@@ -5221,6 +5221,8 @@ MonoBehaviour:
   expansionSpeed: 2
   animationSpeed: 1.5
   hitAnimationSpeed: 4
+  releaseMoveSpeed: 15
+  releaseLifetime: 1.5
 --- !u!212 &2014211221315715535
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5436,6 +5438,8 @@ MonoBehaviour:
   expansionSpeed: 2
   animationSpeed: 1.5
   hitAnimationSpeed: 4
+  releaseMoveSpeed: 15
+  releaseLifetime: 1.5
 --- !u!212 &1909669001690995254
 SpriteRenderer:
   m_ObjectHideFlags: 0

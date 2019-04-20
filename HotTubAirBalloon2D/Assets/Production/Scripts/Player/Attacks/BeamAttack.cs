@@ -41,6 +41,16 @@ public class BeamAttack : MonoBehaviour
     private float colorAnimationValue;
 
     /// <summary>
+    /// Speed beam travels away from balloon after releasing fire button
+    /// </summary>
+    public float releaseMoveSpeed;
+
+    /// <summary>
+    /// Duration released beam travels before disappearing
+    /// </summary>
+    public float releaseLifetime;
+
+    /// <summary>
     /// Settings used for animating beam
     /// </summary>
     EffectManager.BeamColorSettings beamColorSettings;
@@ -52,7 +62,11 @@ public class BeamAttack : MonoBehaviour
     /// </summary>
     Vector3 initalScale;
 
+    Vector3 initialPosition;
+
     Rigidbody2D rb;
+
+    Coroutine releaseBeam;
 
     void Start()
     {
@@ -68,8 +82,9 @@ public class BeamAttack : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
-        // Capture initial scale values
+        // Capture initial transform values
         initalScale = transform.localScale;
+        initialPosition = transform.localPosition;
 
         // Set curve values to 0
         beamInterpolationValue = 0;
@@ -78,37 +93,33 @@ public class BeamAttack : MonoBehaviour
 
     void Update()
     {
-        RotateTowardsCursor();
+        if(releaseBeam == null)
+        {
+            RotateTowardsCursor();
+        }
 
-        //if (Input.GetKey(KeyCode.Space))
-        //{
-        //    FireBeam();
-        //}
-        //else
-        //{
-        //    // Shrink beam back to inital scale
-        //    transform.localScale = initalScale;
-
-        //    // Set curve values back to 0
-        //    beamInterpolationValue = 0;
-        //    colorAnimationValue = 0;
-        //}
+        // Flash beam color
+        AnimateBeamColor(animationSpeed);
     }
 
     public void SetActive(bool active)
     {
-        // Hide beam and disable collision
-        spriteRenderer.enabled = active;
-        rb.simulated = active;
-
-        if(!active)
+        if(releaseBeam == null)
         {
-            // Set curve values to 0
-            beamInterpolationValue = 0;
-            colorAnimationValue = 0;
+            // Hide beam and disable collision
+            spriteRenderer.enabled = active;
+            rb.simulated = active;
 
-            // Reset scale
-            transform.localScale = initalScale;
+            if (!active)
+            {
+                // Set curve values to 0
+                beamInterpolationValue = 0;
+                colorAnimationValue = 0;
+
+                // Reset scale
+                transform.localScale = initalScale;
+                transform.localPosition = initialPosition;
+            }
         }
     }
 
@@ -125,22 +136,45 @@ public class BeamAttack : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, Time.fixedDeltaTime * rotationSpeed);
     }
 
+    public void ReleaseBeam()
+    {
+        if(releaseBeam == null) {
+            releaseBeam = StartCoroutine(ReleaseBeamCoroutine());
+        }
+    }
+
+    IEnumerator ReleaseBeamCoroutine()
+    {
+        float t = 0;
+        while(t < releaseLifetime) {
+            transform.localPosition += transform.up * releaseMoveSpeed * Time.fixedDeltaTime;
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        // Dereference coroutine instance
+        releaseBeam = null;
+
+        // Reset beam
+        SetActive(false);
+    }
+
     // Update is called once per frame
     public void FireBeam()
     {
-        // Calculate distance to cursor
-        Vector3 vectorToCursor = cursor.position - transform.position;
-        float distanceToCursor = vectorToCursor.magnitude;
+        if(releaseBeam == null)
+        {
+            // Calculate distance to cursor
+            Vector3 vectorToCursor = cursor.position - transform.position;
+            float distanceToCursor = vectorToCursor.magnitude;
 
-        // Get time value to interpolate over beam growth curve
-        beamInterpolationValue = Mathf.Clamp01(beamInterpolationValue + (Time.fixedDeltaTime * expansionSpeed));
+            // Get time value to interpolate over beam growth curve
+            beamInterpolationValue = Mathf.Clamp01(beamInterpolationValue + (Time.fixedDeltaTime * expansionSpeed));
 
-        // Scale beam length towards distanceToCursor
-        float beamLength = Mathfx.Sinerp(1, distanceToCursor, beamInterpolationValue);
-        transform.localScale = new Vector3(initalScale.x, beamLength, initalScale.z);
-
-        // Flash beam color
-        AnimateBeamColor(animationSpeed);
+            // Scale beam length towards distanceToCursor
+            float beamLength = Mathfx.Sinerp(1, distanceToCursor, beamInterpolationValue);
+            transform.localScale = new Vector3(initalScale.x, beamLength, initalScale.z);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

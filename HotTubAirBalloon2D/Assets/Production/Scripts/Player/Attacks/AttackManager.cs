@@ -56,7 +56,7 @@ public class AttackManager : MonoBehaviour
             }
             else if (Input.GetKeyUp(KeyCode.LeftControl) || player.GetButtonUp("FireBeam"))
             {
-                beam.SetActive(false);
+                beam.ReleaseBeam();
             }
         }
 
@@ -71,7 +71,7 @@ public class AttackManager : MonoBehaviour
             }
             else if (Input.GetKeyUp(KeyCode.RightControl) || player.GetButtonUp("IceBeam"))
             {
-                beam.SetActive(false);
+                beam.ReleaseBeam();
             }
         }
     }
