@@ -58,18 +58,21 @@ public class BeamAttack : MonoBehaviour
     /// </summary>
     EffectManager.BeamColorSettings beamColorSettings;
 
-    SpriteRenderer spriteRenderer;
     
     /// <summary>
     /// Default transform.scale values
     /// </summary>
     Vector3 initalScale;
 
+    /// <summary>
+    /// Default transform.position values
+    /// </summary>
     Vector3 initialPosition;
 
-    Rigidbody2D rb;
-
     Coroutine releaseBeam;
+    
+    Rigidbody2D rb;
+    SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -105,6 +108,10 @@ public class BeamAttack : MonoBehaviour
         AnimateBeamColor(animationSpeed);
     }
 
+    /// <summary>
+    /// Show/hide beam and initialize values as necessary
+    /// </summary>
+    /// <param name="active"></param>
     public void SetActive(bool active)
     {
         if(releaseBeam == null)
@@ -126,19 +133,29 @@ public class BeamAttack : MonoBehaviour
         }
     }
 
-    void RotateTowardsCursor()
+    /// <summary>
+    /// Fires beam towards cursor position
+    /// </summary>
+    public void FireBeam()
     {
-        // Get angle to target (in degrees)
-        Vector3 vectorToCursor = cursor.position - transform.position;
-        float angle = Mathf.Atan2(vectorToCursor.y, vectorToCursor.x) * Mathf.Rad2Deg;
+        if (releaseBeam == null)
+        {
+            // Calculate distance to cursor
+            Vector3 vectorToCursor = cursor.position - transform.position;
+            float distanceToCursor = vectorToCursor.magnitude;
 
-        // Calculate rotation towards cursor
-        Quaternion q = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+            // Get time value to interpolate over beam growth curve
+            beamInterpolationValue = Mathf.Clamp01(beamInterpolationValue + (Time.fixedDeltaTime * expansionSpeed));
 
-        // Smooth rotation towards cursor
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, q, Time.fixedDeltaTime * rotationSpeed);
+            // Scale beam length towards distanceToCursor
+            float beamLength = Mathfx.Sinerp(1, distanceToCursor, beamInterpolationValue);
+            transform.localScale = new Vector3(initalScale.x, beamLength, initalScale.z);
+        }
     }
 
+    /// <summary>
+    /// Shoots beam off away from origin (if coroutine not already active)
+    /// </summary>
     public void ReleaseBeam()
     {
         if(releaseBeam == null) {
@@ -146,6 +163,9 @@ public class BeamAttack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shoots beam off away from origin
+    /// </summary>
     IEnumerator ReleaseBeamCoroutine()
     {
         float t = 0;
@@ -162,22 +182,20 @@ public class BeamAttack : MonoBehaviour
         SetActive(false);
     }
 
-    // Update is called once per frame
-    public void FireBeam()
+    /// <summary>
+    /// Rotates beam towards cursor
+    /// </summary>
+    void RotateTowardsCursor()
     {
-        if(releaseBeam == null)
-        {
-            // Calculate distance to cursor
-            Vector3 vectorToCursor = cursor.position - transform.position;
-            float distanceToCursor = vectorToCursor.magnitude;
+        // Get angle to target (in degrees)
+        Vector3 vectorToCursor = cursor.position - transform.position;
+        float angle = Mathf.Atan2(vectorToCursor.y, vectorToCursor.x) * Mathf.Rad2Deg;
 
-            // Get time value to interpolate over beam growth curve
-            beamInterpolationValue = Mathf.Clamp01(beamInterpolationValue + (Time.fixedDeltaTime * expansionSpeed));
+        // Calculate rotation towards cursor
+        Quaternion q = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 
-            // Scale beam length towards distanceToCursor
-            float beamLength = Mathfx.Sinerp(1, distanceToCursor, beamInterpolationValue);
-            transform.localScale = new Vector3(initalScale.x, beamLength, initalScale.z);
-        }
+        // Smooth rotation towards cursor
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, q, Time.fixedDeltaTime * rotationSpeed);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
