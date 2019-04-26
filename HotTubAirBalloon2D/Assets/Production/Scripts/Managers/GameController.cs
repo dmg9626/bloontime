@@ -6,13 +6,20 @@ using UnityEngine.UI;
 
 public class GameController : Singleton<GameController>
 {
+    public BalloonController BCtrl;
     public Slider comfortSlider;
     public Text endText;
     public bool isEnd = false;
-    public GameObject Player1, Player2, endMenu, pauseMenu, victoryMenu, powerUpMenu;
-
+    public GameObject 
+        Player1,
+        Player2,
+        endMenu,
+        pauseMenu,
+        victoryMenu,
+        powerUpMenu;
     public bool isPaused;
     public bool isFrozen;
+    public Button retryButton;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +27,7 @@ public class GameController : Singleton<GameController>
         if(Time.timeScale == 0.0f){
             Freeze();
         }
+        retryButton.Select();
         
     }
 
@@ -29,9 +37,9 @@ public class GameController : Singleton<GameController>
         // Update slider values
         comfortSlider.value = BalloonController.Instance.comfort;
 
-        if(BalloonController.Instance.comfort <= 0){
-            GameOver();
-        }
+        // if(BalloonController.Instance.comfort <= 0){
+        //     GameOver();
+        // }
     }
 
     void Update(){
@@ -40,6 +48,7 @@ public class GameController : Singleton<GameController>
             PauseGame();
         }
     }
+    
 
     public void PauseGame()
     {

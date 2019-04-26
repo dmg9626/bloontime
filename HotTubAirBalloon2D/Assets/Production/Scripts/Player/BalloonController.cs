@@ -30,6 +30,12 @@ public class BalloonController : Singleton<BalloonController>
     public float defaultComfortRegen;
     public float comfortRegen;
     public float comfortTemp;
+
+    [Header("Passenger Values")]
+    public int maxPass;
+    public int currentPass;
+    public int passLost;
+    public Text passNumText;
     
     [Header("Fire/Ice Settings")]
     public float firePower;
@@ -75,6 +81,9 @@ public class BalloonController : Singleton<BalloonController>
         // Initialize temperature/comfort to neutral values
         temperature = (minTemperature + maxTemperature) / 2;
         comfort = (minComfort + maxComfort) / 2;
+
+        currentPass = maxPass;
+        passNumText.text = "Passengers: " + currentPass;
     }
 
     // Update is called once per frame
@@ -157,6 +166,14 @@ public class BalloonController : Singleton<BalloonController>
 
     public void changeComfort(float comfortChange)
     {
+        if(comfort <= 0 && currentPass > 0)
+        {
+            currentPass -= passLost;
+            passNumText.text = "Passengers: " + currentPass;
+        }
+        if(currentPass <= 0)
+            GameController.Instance.GameOver();
+
         // Update comfort
         comfort += comfortChange;
 
