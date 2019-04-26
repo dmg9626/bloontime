@@ -410,6 +410,16 @@ PrefabInstance:
       propertyPath: effectManager
       value: 
       objectReference: {fileID: 1144901394}
+    - target: {fileID: 6696340295919249842, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3442540185400935706, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef509f8445375cc449bde52a697f48fe, type: 3}
 --- !u!114 &751561651 stripped
@@ -769,7 +779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2050870265, guid: 0c47859198323da4fba8b490565a4682, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5.0000153
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c47859198323da4fba8b490565a4682, type: 3}
