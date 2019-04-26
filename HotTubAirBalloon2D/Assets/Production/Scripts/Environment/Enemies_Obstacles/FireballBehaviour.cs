@@ -36,8 +36,4 @@ public class FireballBehaviour : AbstractProjectile
         }
     }
 
-    public void takeDamage(float temp)
-    {
-        Destroy(this.gameObject);
-    }
 }

@@ -96,7 +96,7 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         initializeMap();
 
         if(!debugFlag){
-            currentDifficulty += difficultyIncrease;
+            currentDifficulty = Mathf.Clamp(currentDifficulty + difficultyIncrease, minDifficulty, maxDifficulty);
         }
 
         initializeConfiguration();

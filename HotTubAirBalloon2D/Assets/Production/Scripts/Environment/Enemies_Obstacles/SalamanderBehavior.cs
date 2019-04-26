@@ -6,6 +6,7 @@ public class SalamanderBehavior : AbstractObstacle
 {
     public GameObject player;
     public float attackRange;
+    public float attackCooldown;
 
     public GameObject fireball;
     public GameObject Cannon;
@@ -27,7 +28,7 @@ public class SalamanderBehavior : AbstractObstacle
                 shootFireball();
                 Cannon.SetActive(true);
                 Cannon.transform.right = player.transform.position - Cannon.transform.position;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(attackCooldown);
             }
             yield return new WaitForFixedUpdate();
         }

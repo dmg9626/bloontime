@@ -769,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2050870265, guid: 0c47859198323da4fba8b490565a4682, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5
+      value: -5.0000153
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c47859198323da4fba8b490565a4682, type: 3}
@@ -887,7 +887,8 @@ MonoBehaviour:
   enemyList:
   - {fileID: 5170851323378231382, guid: da1e92d2ae85dea4b830e52bf1da067e, type: 3}
   - {fileID: 2472763730620242514, guid: 422e917754d6a26449d46c3f5a90d34d, type: 3}
-  enemyPositions: 0000000001000000
+  - {fileID: 1691763967896920639, guid: 937edbf8b2db1b04890e31071f5bef61, type: 3}
+  enemyPositions: 000000000100000000000000
 --- !u!114 &1790239270 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8691173825605012015, guid: 0c47859198323da4fba8b490565a4682,

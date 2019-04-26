@@ -36,7 +36,7 @@ public class BurstTrigger : AbstractProjectile
 
             // Destroy projectile
             if(collision.tag == "Projectile" && collision.GetComponent<AbstractProjectile>() != null) {
-                collision.GetComponent<AbstractProjectile>().takeDamage(effectType);
+                collision.GetComponent<AbstractProjectile>().takeDamage(effectType, damage);
             }
 
             // Increase balloon temperature

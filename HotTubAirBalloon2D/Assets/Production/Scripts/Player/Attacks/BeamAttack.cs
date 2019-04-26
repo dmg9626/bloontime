@@ -213,7 +213,7 @@ public class BeamAttack : MonoBehaviour
             // Destroy projectile
             if (collision.tag == "Projectile" && collision.GetComponent<AbstractProjectile>() != null)
             {
-                collision.GetComponent<AbstractProjectile>().takeDamage(effectType);
+                collision.GetComponent<AbstractProjectile>().takeDamage(effectType, damagePerSecond * Time.fixedDeltaTime);
             }
         }
     }

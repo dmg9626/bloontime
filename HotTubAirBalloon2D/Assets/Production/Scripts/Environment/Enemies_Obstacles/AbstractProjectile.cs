@@ -7,6 +7,8 @@ public abstract class AbstractProjectile : MonoBehaviour
 
     public float tempChange, comfortChange;
     public BurstAttack.EffectType typeVunerable;
+    public float maxHealth;
+    private float currentHealth;
 
     public float getTemp()
     {
@@ -40,11 +42,19 @@ public abstract class AbstractProjectile : MonoBehaviour
         comfortChange = newComfort;
     }
 
-    public void takeDamage(BurstAttack.EffectType effectType)
+    public void takeDamage(BurstAttack.EffectType effectType, float damage)
     {
         if (effectType.Equals(typeVunerable))
         {
-            Destroy(this.gameObject);
+            // Reduce health
+            Debug.LogWarningFormat(name + " | Reducing health ({0}) by ({1})", currentHealth, damage);
+            currentHealth -= damage;
+
+            // Destroy if below 0
+            if(currentHealth <= 0) {
+                Debug.LogWarning(name + " | health below 0, destroying object");
+                Destroy(gameObject);
+            }
         }
     }
 }
