@@ -12,18 +12,18 @@ public class AttackManager : MonoBehaviour
 
     public void HandleBeam(bool activate)
     {
-        if(activate)
-        {
-            beam.SetActive(true);
+        //if(activate)
+        //{
+        //    beam.SetActive(true);
 
-            Vector2 cursorPos = cursor.position;
-            beam.FireBeam();
-        }
-        else beam.ReleaseBeam();
+        //    Vector2 cursorPos = cursor.position;
+        //    beam.FireBeam();
+        //}
+        //else beam.ReleaseBeam();
     }
 
     public void HandleBurstAttack()
     {
-        burstAttack.Burst(cursor.position);
+        burstAttack.Burst(burstAttack.transform.position);
     }
 }
