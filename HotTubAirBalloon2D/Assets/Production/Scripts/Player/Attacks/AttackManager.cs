@@ -39,7 +39,7 @@ public class AttackManager : MonoBehaviour
         {
             HandleBurstAttack();
 
-            HandleBeamAttack();
+            // HandleBeamAttack();
         }
     }
 
