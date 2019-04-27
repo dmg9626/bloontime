@@ -9,6 +9,7 @@ public class GameController : Singleton<GameController>
     public BalloonController BCtrl;
     public Slider comfortSlider;
     public Text endText;
+    public Button endMenuButton, pauseMenuButton;
     public bool isEnd = false;
     public GameObject 
         Player1,
@@ -19,7 +20,6 @@ public class GameController : Singleton<GameController>
         powerUpMenu;
     public bool isPaused;
     public bool isFrozen;
-    public Button retryButton;
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +27,7 @@ public class GameController : Singleton<GameController>
         if(Time.timeScale == 0.0f){
             Freeze();
         }
-        retryButton.Select();
-        
+        endMenuButton.Select();
     }
 
     // Update is called once per frame
@@ -36,17 +35,6 @@ public class GameController : Singleton<GameController>
     {
         // Update slider values
         comfortSlider.value = BalloonController.Instance.comfort;
-
-        // if(BalloonController.Instance.comfort <= 0){
-        //     GameOver();
-        // }
-    }
-
-    void Update(){
-        if(Input.GetKeyDown("escape"))
-        {
-            PauseGame();
-        }
     }
     
 
@@ -57,6 +45,7 @@ public class GameController : Singleton<GameController>
                 Freeze();
                 pauseMenu.SetActive(true);
                 isPaused = true;
+                pauseMenuButton.Select();
             }
             else{
                 UnFreeze();
@@ -91,6 +80,7 @@ public class GameController : Singleton<GameController>
         endMenu.SetActive(true);
         isEnd = true;
         Freeze();
+        endMenuButton.Select();
     }
 
     public void Retry(){

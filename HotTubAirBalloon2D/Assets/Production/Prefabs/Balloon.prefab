@@ -96,7 +96,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421302099438152155}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.31, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 647312988018792802}
@@ -138,7 +138,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fd8f4b88058824a9cb1dbd4d738e112c, type: 3}
   m_Color: {r: 0.1764706, g: 1, b: 0.9608457, a: 0.69411767}
   m_FlipX: 0
@@ -194,12 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db8a5863bed4fa4884122d330a95798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloon: {fileID: 0}
+  balloon: {fileID: 8845161633209413585}
   moveSpeed: 0.15
   playerNum: 0
   cursor: {fileID: 8845161632690398578}
-  centralizedAnalog: 0
-  pauseTemp: 0
+  pauseTemp: 1
+  centralizedRadius: 2
 --- !u!114 &3867545352096485828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,8 +212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119cb5edb18604d21960ffee1e9ba034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootMode: 1
-  playerNum: 0
   beam: {fileID: 1539353571586373523}
   cursor: {fileID: 8845161632690398578}
   burstAttack: {fileID: 8845161633541279630}
@@ -4957,7 +4955,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942496745767308246}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6885843607037721757}
@@ -5079,7 +5077,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4317481473466923010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8845161633541279629}
@@ -5115,7 +5113,7 @@ Transform:
   m_GameObject: {fileID: 5813175509366027668}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 8845161633209413588}
   m_RootOrder: 0
@@ -5157,7 +5155,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0fdbea9038c62854991f83911e6a5416, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd1dc2e96d7bec44384dde51e39c556d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5219,10 +5217,10 @@ MonoBehaviour:
   damagePerSecond: 5
   rotationSpeed: 200
   expansionSpeed: 2
-  animationSpeed: 1.5
-  hitAnimationSpeed: 4
   releaseMoveSpeed: 15
   releaseLifetime: 1.5
+  animationSpeed: 1.5
+  hitAnimationSpeed: 4
 --- !u!212 &2014211221315715535
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5362,12 +5360,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db8a5863bed4fa4884122d330a95798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloon: {fileID: 0}
+  balloon: {fileID: 8845161633209413585}
   moveSpeed: 0.15
   playerNum: 1
   cursor: {fileID: 9003574820412403997}
-  centralizedAnalog: 0
   pauseTemp: 0
+  centralizedRadius: 2
 --- !u!114 &5590871659491735033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5380,8 +5378,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119cb5edb18604d21960ffee1e9ba034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootMode: 1
-  playerNum: 1
   beam: {fileID: 5494782348152621126}
   cursor: {fileID: 9003574820412403997}
   burstAttack: {fileID: 7790534383175638143}
@@ -5436,10 +5432,10 @@ MonoBehaviour:
   damagePerSecond: 5
   rotationSpeed: 200
   expansionSpeed: 2
-  animationSpeed: 1.5
-  hitAnimationSpeed: 4
   releaseMoveSpeed: 15
   releaseLifetime: 1.5
+  animationSpeed: 1.5
+  hitAnimationSpeed: 4
 --- !u!212 &1909669001690995254
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5560,7 +5556,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8845161632690398577}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 8427480381808918872}
@@ -5602,7 +5598,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fd8f4b88058824a9cb1dbd4d738e112c, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0.59607846}
   m_FlipX: 0
@@ -5675,6 +5671,10 @@ MonoBehaviour:
   defaultComfortRegen: 0.1
   comfortRegen: 0
   comfortTemp: 2
+  maxPass: 5
+  currentPass: 0
+  passLost: 1
+  passNumText: {fileID: 0}
   firePower: 1
   icePower: 1
   fireResist: 0
@@ -5684,7 +5684,7 @@ MonoBehaviour:
   bottomCollision: 0
   topCollision: 0
   balloonVerticalSpeed: 0
-  balloonHorizontalSpeed: 0.02
+  balloonHorizontalSpeed: 0.04
 --- !u!50 &8845161633209413416
 Rigidbody2D:
   serializedVersion: 4

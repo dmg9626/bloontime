@@ -169,7 +169,7 @@ public class BalloonController : Singleton<BalloonController>
         if(comfort <= 0 && currentPass > 0)
         {
             currentPass -= passLost;
-            passNumText.text = "Passengers: " + currentPass;
+            passNumText.text = currentPass+"";
         }
         if(currentPass <= 0)
             GameController.Instance.GameOver();

@@ -15,22 +15,22 @@ public class CursorMovement : MonoBehaviour
 
     public Transform cursor;
 
-    public bool centralizedAnalog;
-
     public bool pauseTemp = false;
+
+    public float centralizedRadius;
 
     ///<summary>
     ///Updates cursor position from x and y
     ///CALLED IN INPUTMANAGER.CS
     ///</summary>
-    public void UpdateCursor(float x, float y)
+    public void UpdateCursor(float x, float y, bool centralized)
     {
         Vector2 cursorPos = cursor.position;
 
-        if(centralizedAnalog)
+        if(centralized)
         {
-            cursorPos.y = y * 5 + transform.parent.position.y;
-            cursorPos.x = x * 5 + transform.parent.position.x;
+            cursorPos.y = y * centralizedRadius + transform.parent.position.y;
+            cursorPos.x = x * centralizedRadius + transform.parent.position.x;
         }
         else
         {
