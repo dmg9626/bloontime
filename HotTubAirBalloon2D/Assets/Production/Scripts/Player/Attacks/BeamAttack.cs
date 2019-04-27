@@ -18,16 +18,6 @@ public class BeamAttack : MonoBehaviour
     public float rotationSpeed;
 
     /// <summary>
-    /// Rate at which beam expands towards cursor
-    /// </summary>
-    public float expansionSpeed;
-
-    /// <summary>
-    /// Speed beam travels away from balloon after releasing fire button
-    /// </summary>
-    public float releaseMoveSpeed;
-
-    /// <summary>
     /// Duration released beam travels before disappearing
     /// </summary>
     public float releaseLifetime;
@@ -58,21 +48,7 @@ public class BeamAttack : MonoBehaviour
     /// </summary>
     EffectManager.BeamColorSettings beamColorSettings;
 
-    
-    /// <summary>
-    /// Default transform.scale values
-    /// </summary>
-    Vector3 initalScale;
-
-    /// <summary>
-    /// Default transform.position values
-    /// </summary>
-    Vector3 initialPosition;
-
-    Coroutine releaseBeam;
-    
-    Rigidbody2D rb;
-    SpriteRenderer spriteRenderer;
+    public ParticleSystem particleSystem;
 
     void Start()
     {
@@ -84,53 +60,15 @@ public class BeamAttack : MonoBehaviour
             beamColorSettings = EffectManager.Instance.iceBeamColorSettings;
         }
 
-        // Get sprite renderer and set initial color
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-
         // Capture initial transform values
-        initalScale = transform.localScale;
-        initialPosition = transform.localPosition;
 
         // Set curve values to 0
-        beamInterpolationValue = 0;
-        colorAnimationValue = 0;
+        //beamInterpolationValue = 0;
     }
 
     void Update()
     {
-        if(releaseBeam == null)
-        {
-            RotateTowardsCursor();
-        }
-
-        // Flash beam color
-        AnimateBeamColor(animationSpeed);
-    }
-
-    /// <summary>
-    /// Show/hide beam and initialize values as necessary
-    /// </summary>
-    /// <param name="active"></param>
-    public void SetActive(bool active)
-    {
-        if(releaseBeam == null)
-        {
-            // Hide beam and disable collision
-            spriteRenderer.enabled = active;
-            rb.simulated = active;
-
-            if (!active)
-            {
-                // Set curve values to 0
-                beamInterpolationValue = 0;
-                colorAnimationValue = 0;
-
-                // Reset scale
-                transform.localScale = initalScale;
-                transform.localPosition = initialPosition;
-            }
-        }
+        RotateTowardsCursor();
     }
 
     /// <summary>
@@ -138,48 +76,7 @@ public class BeamAttack : MonoBehaviour
     /// </summary>
     public void FireBeam()
     {
-        if (releaseBeam == null)
-        {
-            // Calculate distance to cursor
-            Vector3 vectorToCursor = cursor.position - transform.position;
-            float distanceToCursor = vectorToCursor.magnitude;
-
-            // Get time value to interpolate over beam growth curve
-            beamInterpolationValue = Mathf.Clamp01(beamInterpolationValue + (Time.fixedDeltaTime * expansionSpeed));
-
-            // Scale beam length towards distanceToCursor
-            float beamLength = Mathfx.Sinerp(1, distanceToCursor, beamInterpolationValue);
-            transform.localScale = new Vector3(initalScale.x, beamLength, initalScale.z);
-        }
-    }
-
-    /// <summary>
-    /// Shoots beam off away from origin (if coroutine not already active)
-    /// </summary>
-    public void ReleaseBeam()
-    {
-        if(releaseBeam == null) {
-            releaseBeam = StartCoroutine(ReleaseBeamCoroutine());
-        }
-    }
-
-    /// <summary>
-    /// Shoots beam off away from origin
-    /// </summary>
-    IEnumerator ReleaseBeamCoroutine()
-    {
-        float t = 0;
-        while(t < releaseLifetime) {
-            transform.localPosition += transform.up * releaseMoveSpeed * Time.fixedDeltaTime;
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        // Dereference coroutine instance
-        releaseBeam = null;
-
-        // Reset beam
-        SetActive(false);
+        
     }
 
     /// <summary>
@@ -192,44 +89,29 @@ public class BeamAttack : MonoBehaviour
         float angle = Mathf.Atan2(vectorToCursor.y, vectorToCursor.x) * Mathf.Rad2Deg;
 
         // Calculate rotation towards cursor
-        Quaternion q = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // Smooth rotation towards cursor
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, Time.fixedDeltaTime * rotationSpeed);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        GameObject obj = collision.gameObject;
-        if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
-        {
-            // Damage enemy
-            if (collision.tag == "Enemy" && collision.GetComponent<AbstractObstacle>() != null)
-            {
-                Debug.Log(name + " collided with " + obj.name);
-                collision.GetComponent<AbstractObstacle>().takeDamage(effectType, damagePerSecond * Time.fixedDeltaTime);
-            }
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    GameObject obj = collision.gameObject;
+    //    if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
+    //    {
+    //        // Damage enemy
+    //        if (collision.tag == "Enemy" && collision.GetComponent<AbstractObstacle>() != null)
+    //        {
+    //            Debug.Log(name + " collided with " + obj.name);
+    //            collision.GetComponent<AbstractObstacle>().takeDamage(effectType, damagePerSecond * Time.fixedDeltaTime);
+    //        }
 
-            // Destroy projectile
-            if (collision.tag == "Projectile" && collision.GetComponent<AbstractProjectile>() != null)
-            {
-                collision.GetComponent<AbstractProjectile>().takeDamage(effectType, damagePerSecond * Time.fixedDeltaTime);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Animate beam color over gradient at rate
-    /// </summary>
-    /// <param name="rate">Speed of color animation</param>
-    void AnimateBeamColor(float rate)
-    {
-        // Calculate gradient position
-        colorAnimationValue += Time.fixedDeltaTime * rate;
-        float pingPong = Mathf.PingPong(colorAnimationValue, 1);
-
-        // Evaluate gradient at pingPong and update beam
-        Color color = beamColorSettings.hitEffectGradient.Evaluate(pingPong);
-        spriteRenderer.color = color;
-    }
+    //        // Destroy projectile
+    //        if (collision.tag == "Projectile" && collision.GetComponent<AbstractProjectile>() != null)
+    //        {
+    //            collision.GetComponent<AbstractProjectile>().takeDamage(effectType, damagePerSecond * Time.fixedDeltaTime);
+    //        }
+    //    }
+    //}
 }
