@@ -15,6 +15,7 @@ public class BeamAttack : MonoBehaviour
     /// <summary>
     /// Max speed for beam to rotate towards cursor
     /// </summary>
+    [Range(0f, 1.5f)]
     public float rotationSpeed;
 
     /// <summary>
@@ -48,7 +49,13 @@ public class BeamAttack : MonoBehaviour
     /// </summary>
     EffectManager.BeamColorSettings beamColorSettings;
 
+    /// <summary>
+    /// Beam's particle system
+    /// </summary>
     public ParticleSystem particleSystem;
+
+
+    ParticleSystem.EmissionModule emission;
 
     void Start()
     {
@@ -60,39 +67,57 @@ public class BeamAttack : MonoBehaviour
             beamColorSettings = EffectManager.Instance.iceBeamColorSettings;
         }
 
-        // Capture initial transform values
+        // Disable particle emission
+        emission = particleSystem.emission;
+        emission.enabled = false;
 
         // Set curve values to 0
         //beamInterpolationValue = 0;
     }
 
-    void Update()
+    /// <summary>
+    /// Called on update - fires beam if true, stops firing if false
+    /// </summary>
+    public void FireBeam(bool fire)
     {
-        RotateTowardsCursor();
+        if(fire) {
+            // Initialize beam before firing
+            if (!emission.enabled) {
+                InitBeam();
+                emission.enabled = true;
+            }
+
+            // Smooth rotation towards target
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, GetRotationTowards(cursor.position), Time.fixedDeltaTime * rotationSpeed * 360f);
+        }
+
+        // Stop emitting particles
+        else {
+            emission.enabled = false;
+        }
     }
 
     /// <summary>
-    /// Fires beam towards cursor position
+    /// Initializes beam before firing particles
     /// </summary>
-    public void FireBeam()
+    void InitBeam()
     {
-        
+        // Set beam rotation towards cursor
+        transform.rotation = GetRotationTowards(cursor.position);
     }
 
     /// <summary>
-    /// Rotates beam towards cursor
+    /// Rotates beam towards target at given speed (float between 0 and 1)
     /// </summary>
-    void RotateTowardsCursor()
+    Quaternion GetRotationTowards(Vector3 target)
     {
         // Get angle to target (in degrees)
-        Vector3 vectorToCursor = cursor.position - transform.position;
-        float angle = Mathf.Atan2(vectorToCursor.y, vectorToCursor.x) * Mathf.Rad2Deg;
+        Vector3 vectorToTarget = target - transform.position;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 
-        // Calculate rotation towards cursor
+        // Calculate rotation towards target
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-
-        // Smooth rotation towards cursor
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, q, Time.fixedDeltaTime * rotationSpeed);
+        return q;
     }
 
     //private void OnTriggerStay2D(Collider2D collision)
