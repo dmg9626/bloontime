@@ -6,15 +6,18 @@ using Rewired;
 public class InputManager : MonoBehaviour
 {
 /**************************************************************************Public Fields */
+    [Header("PUBLICS")]
     public GameController gm;
-
     public GameObject cursor1, cursor2;
+    public bool centralizedAnalog;
 
 /****************************************************************************Private Fields */
+    [Header("PRIVATES")]
+    [SerializeField]
+    private Vector2 cursor1Movement;
+    private Vector2 cursor2Movement;
     [SerializeField]
     private Rewired.Player player { get { return GetRewiredPlayer(0); } }
-    [SerializeField]
-    private Vector2 cursor1Movement, cursor2Movement;
 
     ///<summary>
     ///CursorMovement, AttackManager, and ShootProjectile references for both cursors
@@ -24,7 +27,14 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private AttackManager c1AM, c2AM;
 
-/***************************************************************************Mono Methods */
+/***************************************************************************Mono Methods */    
+    ///<summary>
+    ///Gets the player id for rewired
+    ///</summary>
+    public static Rewired.Player GetRewiredPlayer(int gamePlayerId) {
+        return ReInput.players.GetPlayer(0);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,22 +50,18 @@ public class InputManager : MonoBehaviour
     {
         checkPause();
         checkAnalogs();
+        HandleBeamAttack();
+        HandleBurstAttack();
     }
 
 /*************************************************************************Methods*/
-    ///<summary>
-    ///Gets the player id for rewired
-    ///</summary>
-    public static Rewired.Player GetRewiredPlayer(int gamePlayerId) {
-        return ReInput.players.GetPlayer(0);
-    }
 
     ///<summary>
     ///
     ///</summary>
     void checkPause()
     {
-        if((player.GetButtonDown("Pause")) || Input.GetKeyDown("escape"))
+        if((player.GetButtonDown("Pause")))
             gm.PauseGame();
     }
 
@@ -70,8 +76,31 @@ public class InputManager : MonoBehaviour
             cursor1Movement.y = player.GetAxis("Fire_MoveCursorY");
             cursor2Movement.x = player.GetAxis("Ice_MoveCursorX");
             cursor2Movement.y = player.GetAxis("Ice_MoveCursorY");
-            c1M.UpdateCursor(cursor1Movement.x, cursor1Movement.y);
-            c2M.UpdateCursor(cursor2Movement.x, cursor2Movement.y);
+            c1M.UpdateCursor(cursor1Movement.x, cursor1Movement.y, centralizedAnalog);
+            c2M.UpdateCursor(cursor2Movement.x, cursor2Movement.y, centralizedAnalog);
         }
+    }
+
+    ///<summary>
+    ///Checks for Beam Attack Input
+    ///</summary>
+    void HandleBeamAttack()
+    {
+        if (player.GetButton("FireBeam"))
+            c1AM.HandleBeam(true);
+        else if (player.GetButtonUp("FireBeam"))
+            c1AM.HandleBeam(false);
+        if (player.GetButton("IceBeam"))
+            c2AM.HandleBeam(true);
+        else if (player.GetButtonUp("IceBeam"))
+            c2AM.HandleBeam(false);
+    }
+
+    void HandleBurstAttack()
+    {
+        if (player.GetButtonDown("FireBurst"))
+            c1AM.HandleBurstAttack();
+        if (player.GetButtonDown("IceBurst"))
+            c2AM.HandleBurstAttack();
     }
 }
