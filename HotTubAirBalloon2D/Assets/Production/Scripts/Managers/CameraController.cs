@@ -99,6 +99,8 @@ public class CameraController : Singleton<CameraController>
         transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
         currentTarget.transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
         yIncrement = 0f;
+
+        BackgroundParent.Instance.resetBackgroundToCamera();
         
     }
 }

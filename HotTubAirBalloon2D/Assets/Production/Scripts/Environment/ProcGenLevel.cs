@@ -83,7 +83,6 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
         renderMap();
         addEnemies();
         BalloonController.Instance.moveBalloon(new Vector2(buffer+1, levelShape[0]+(buffer*2)+Mathf.FloorToInt(tunnelHeight/2)));
-        
         goalInstance = Instantiate(goalPost, new Vector2(width+buffer, levelShape[levelShape.Count-1] + (buffer*2) + Mathf.FloorToInt(tunnelHeight/2)), goalPost.transform.rotation);
         goalInstance.transform.localScale = new Vector3(10f,15f,1f);
     }
