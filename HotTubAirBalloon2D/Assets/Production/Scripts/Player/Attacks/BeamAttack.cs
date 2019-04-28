@@ -19,9 +19,9 @@ public class BeamAttack : MonoBehaviour
     public float rotationSpeed;
 
     /// <summary>
-    /// Duration released beam travels before disappearing
+    /// Controls beam length via particle lifetime
     /// </summary>
-    public float releaseLifetime;
+    public float beamLength;
 
     [Header("Animation Settings")]
     /// <summary>
@@ -54,6 +54,7 @@ public class BeamAttack : MonoBehaviour
     /// </summary>
     public ParticleSystem particleSystem;
 
+    ParticleSystem.MainModule main;
 
     ParticleSystem.EmissionModule emission;
 
@@ -67,9 +68,14 @@ public class BeamAttack : MonoBehaviour
             beamColorSettings = EffectManager.Instance.iceBeamColorSettings;
         }
 
+
         // Disable particle emission
         emission = particleSystem.emission;
         emission.enabled = false;
+
+        // Set particle system params
+        main = particleSystem.main;
+        main.startLifetime = beamLength;
 
         // Set curve values to 0
         //beamInterpolationValue = 0;

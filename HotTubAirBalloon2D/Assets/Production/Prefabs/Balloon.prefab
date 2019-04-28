@@ -5228,7 +5228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119cb5edb18604d21960ffee1e9ba034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beam: {fileID: 0}
+  beam: {fileID: 6475396191311190628}
   cursor: {fileID: 9003574820412403997}
   burstAttack: {fileID: 7790534383175638143}
 --- !u!1 &8845161632690398577
@@ -10228,6 +10228,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1456013824836430516}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6475396191311190628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5614289281773973712, guid: 56a66ee250e804937a022a7199d55941,
+    type: 3}
+  m_PrefabInstance: {fileID: 1456013824836430516}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f48fe2ed02f6764089d5ee38c2ffe4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &4230029693062844113 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3350917009334559845, guid: 56a66ee250e804937a022a7199d55941,
