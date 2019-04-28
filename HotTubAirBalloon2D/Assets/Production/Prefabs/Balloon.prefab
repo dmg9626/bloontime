@@ -5681,10 +5681,14 @@ MonoBehaviour:
   iceResist: 0
   collisionComfortLoss: -1
   tempSmoothTime: 1
+  horizontalMomentumSmoothTime: 0.5
+  verticalMomentumSmoothTime: 0.5
   bottomCollision: 0
   topCollision: 0
   balloonVerticalSpeed: 0
   balloonHorizontalSpeed: 0.04
+  balloonVerticalMomentum: 0
+  balloonHorizontalMomentum: 0
 --- !u!50 &8845161633209413416
 Rigidbody2D:
   serializedVersion: 4

@@ -47,6 +47,8 @@ public class BalloonController : Singleton<BalloonController>
     [Space(10)]
     public float collisionComfortLoss;
     public float tempSmoothTime;
+    public float horizontalMomentumSmoothTime;
+    public float verticalMomentumSmoothTime;
 
     public bool bottomCollision;
     public bool topCollision;
@@ -64,6 +66,13 @@ public class BalloonController : Singleton<BalloonController>
     private float balloonVerticalSpeed;
     [SerializeField]
     private float balloonHorizontalSpeed;
+    [SerializeField]
+    private float balloonVerticalMomentum;
+    [SerializeField]
+    private float balloonHorizontalMomentum;
+
+    private float horizontalDampVelocity = 0.0f;
+    private float verticalDampVelocity = 0.0f;
     
     private Vector2 charPos;
 
@@ -83,7 +92,7 @@ public class BalloonController : Singleton<BalloonController>
         comfort = (minComfort + maxComfort) / 2;
 
         currentPass = maxPass;
-        passNumText.text = "Passengers: " + currentPass;
+        passNumText.text = "" + currentPass;
     }
 
     // Update is called once per frame
@@ -106,14 +115,19 @@ public class BalloonController : Singleton<BalloonController>
     //controls the vertical movement of the ballon using temperature and preset horizontal temp
     void BalloonMovement()
     {
-        balloonVerticalSpeed = temperature / tempMultiplier;
+        balloonVerticalSpeed = (temperature / tempMultiplier) + balloonVerticalMomentum;
+        balloonVerticalMomentum = Mathf.SmoothDamp(balloonVerticalMomentum, 0f, ref verticalDampVelocity, verticalMomentumSmoothTime);
 
         if(!bottomCollision || balloonVerticalSpeed > 0)
         {
             if((!topCollision && balloonVerticalSpeed > 0) || (balloonVerticalSpeed < 0))
                 charPos.y += balloonVerticalSpeed;
 
-            charPos.x += balloonHorizontalSpeed;
+            charPos.x += balloonHorizontalMomentum;
+
+            balloonHorizontalMomentum = Mathf.SmoothDamp(balloonHorizontalMomentum, balloonHorizontalSpeed, ref horizontalDampVelocity, horizontalMomentumSmoothTime);
+        }else{
+            balloonHorizontalMomentum = 0;
         }
 
         transform.position = charPos;
@@ -179,6 +193,14 @@ public class BalloonController : Singleton<BalloonController>
 
         // Fire event
         onComfortChanged?.Invoke();
+    }
+
+    public void changeVerticalMomentum(float y){
+        balloonVerticalMomentum += y;
+    }
+
+    public void changeHorizontalMomentum(float x){
+        balloonHorizontalMomentum += x;
     }
 
     public void moveBalloon(Vector2 newPos){
@@ -251,5 +273,9 @@ public class BalloonController : Singleton<BalloonController>
     public void resetValues(){
         temperature = (minTemperature + maxTemperature) / 2;
         comfort = (minComfort + maxComfort) / 2;
+        balloonHorizontalMomentum = 0;
+        balloonVerticalMomentum = 0;
+        currentPass = maxPass;
+        passNumText.text = "" + currentPass;
     }
 }

@@ -8,6 +8,8 @@ public class DolphinBehaviour : AbstractProjectile
     public float attackRange;
     public float speedFactor;
 
+    public bool collided = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,9 +43,9 @@ public class DolphinBehaviour : AbstractProjectile
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject obj = collision.gameObject;
-        if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
+        if ((!collided) && (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player"))
         {
-            StopCoroutine(diveBomb());
+            collided = true;
             Debug.Log("Collided with vulnerable object " + obj.name);
             if(obj.tag == "Player" && obj.GetComponent<BalloonController>() != null)
             {
@@ -51,10 +53,10 @@ public class DolphinBehaviour : AbstractProjectile
                 BalloonController.Instance.changeTemp(getTemp() - BalloonController.Instance.getIceResist());
                 BalloonController.Instance.changeComfort(getComfort());
             }
-            Debug.Log(getTemp() - BalloonController.Instance.getIceResist());
             Destroy(gameObject);
 
             // Execute code here
         }
     }
+    
 }

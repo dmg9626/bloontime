@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbstractObstacle : MonoBehaviour
+public abstract class AbstractObstacle : MonoBehaviour
 {
     public BurstAttack.EffectType typeVunerable;
 
     public float maxHealth;
 
-    private float currentHealth;
+    public float currentHealth;
 
     public void Start()
     {
@@ -16,7 +16,7 @@ public class AbstractObstacle : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void takeDamage(BurstAttack.EffectType effectType, float damage)
+    public virtual void takeDamage(BurstAttack.EffectType effectType, float damage)
     {
         if (effectType.Equals(typeVunerable))
         {

@@ -40,4 +40,5 @@ public class SalamanderBehavior : AbstractObstacle
         fb.transform.right = player.transform.position - fb.transform.position;
         Destroy (fb, 1.5f);
     }
+    
 }
