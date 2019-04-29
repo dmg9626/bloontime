@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119cb5edb18604d21960ffee1e9ba034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beam: {fileID: 2031847897587190501}
+  beam: {fileID: 0}
   cursor: {fileID: 8845161632690398578}
   burstAttack: {fileID: 8845161633541279630}
 --- !u!1 &1625361226514847440
@@ -5228,7 +5228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119cb5edb18604d21960ffee1e9ba034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beam: {fileID: 8494829891111939630}
+  beam: {fileID: 0}
   cursor: {fileID: 9003574820412403997}
   burstAttack: {fileID: 7790534383175638143}
 --- !u!1 &8845161632690398577
@@ -10152,6 +10152,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 647312988018792802}
     m_Modifications:
+    - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: effectType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: cursor
+      value: 
+      objectReference: {fileID: 9003574820412403997}
+    - target: {fileID: 5189623982506556657, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: m_Name
+      value: BeamPivot
+      objectReference: {fileID: 0}
     - target: {fileID: 8989249879597003882, guid: 56a66ee250e804937a022a7199d55941,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10207,7 +10222,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5189623982506556657, guid: 56a66ee250e804937a022a7199d55941,
+    - target: {fileID: 733112616278109295, guid: 56a66ee250e804937a022a7199d55941,
         type: 3}
       propertyPath: m_Name
       value: Beam_PlayerTwo
@@ -10230,18 +10245,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4038115454398717694}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8494829891111939630 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5614289281773973712, guid: 56a66ee250e804937a022a7199d55941,
-    type: 3}
-  m_PrefabInstance: {fileID: 4038115454398717694}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f48fe2ed02f6764089d5ee38c2ffe4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5898418908190521909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10249,6 +10252,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8427480381808918872}
     m_Modifications:
+    - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: cursor
+      value: 
+      objectReference: {fileID: 8845161632690398578}
+    - target: {fileID: 5189623982506556657, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: m_Name
+      value: BeamPivot
+      objectReference: {fileID: 0}
     - target: {fileID: 8989249879597003882, guid: 56a66ee250e804937a022a7199d55941,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10304,7 +10317,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5189623982506556657, guid: 56a66ee250e804937a022a7199d55941,
+    - target: {fileID: 733112616278109295, guid: 56a66ee250e804937a022a7199d55941,
         type: 3}
       propertyPath: m_Name
       value: Beam_PlayerOne
@@ -10377,15 +10390,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5898418908190521909}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2031847897587190501 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5614289281773973712, guid: 56a66ee250e804937a022a7199d55941,
-    type: 3}
-  m_PrefabInstance: {fileID: 5898418908190521909}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f48fe2ed02f6764089d5ee38c2ffe4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

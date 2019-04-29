@@ -6,6 +6,11 @@ public class BeamAttack : MonoBehaviour
 {
     public Transform cursor;
 
+    /// <summary>
+    /// Used to rotate beam direction
+    /// </summary>
+    public Transform pivot;
+
     [Header("Effects")]
     public BurstAttack.EffectType effectType;
 
@@ -78,7 +83,7 @@ public class BeamAttack : MonoBehaviour
             }
 
             // Smooth rotation towards target
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, GetRotationTowards(cursor.position), Time.fixedDeltaTime * rotationSpeed * 360f);
+            pivot.rotation = Quaternion.RotateTowards(pivot.rotation, GetRotationTowards(cursor.position), Time.fixedDeltaTime * rotationSpeed * 360f);
         }
 
         // Stop emitting particles
@@ -93,7 +98,7 @@ public class BeamAttack : MonoBehaviour
     void InitBeam()
     {
         // Set beam rotation towards cursor
-        transform.rotation = GetRotationTowards(cursor.position);
+        pivot.rotation = GetRotationTowards(cursor.position);
     }
 
     /// <summary>
@@ -102,7 +107,7 @@ public class BeamAttack : MonoBehaviour
     Quaternion GetRotationTowards(Vector3 target)
     {
         // Get angle to target (in degrees)
-        Vector3 vectorToTarget = target - transform.position;
+        Vector3 vectorToTarget = target - pivot.position;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 
         // Calculate rotation towards target
