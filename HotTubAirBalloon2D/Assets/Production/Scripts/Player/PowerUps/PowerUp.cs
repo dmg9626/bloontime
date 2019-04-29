@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class PowerUp
@@ -21,6 +22,8 @@ public class PowerUp
     public bool isApplied;
 
     public Effects effects;
+
+    public Sprite icon;
 
     /// <summary>
     /// Values used to apply powerup effects.

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1965190087215509235}
   - component: {fileID: 6486464160972764136}
   - component: {fileID: 2659412521141927398}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wind
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 2380891796590580650}
   - component: {fileID: 5150217356687292426}
   - component: {fileID: 7609072054040737069}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

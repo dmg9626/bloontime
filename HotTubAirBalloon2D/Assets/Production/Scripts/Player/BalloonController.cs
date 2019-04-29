@@ -36,6 +36,8 @@ public class BalloonController : Singleton<BalloonController>
     public int currentPass;
     public int passLost;
     public Text passNumText;
+    public GameObject passPrefab;
+    public List<GameObject> passList;
     
     [Header("Fire/Ice Settings")]
     public float firePower;
@@ -93,6 +95,13 @@ public class BalloonController : Singleton<BalloonController>
 
         currentPass = maxPass;
         passNumText.text = "" + currentPass;
+
+        for(int i = 0; i < currentPass; i++)
+        {
+            Vector2 pos = new Vector2(transform.position.x + .5f + Random.Range(-0.5f,0.5f), transform.position.y - .5f);
+            GameObject p = (GameObject)Instantiate(passPrefab,pos,transform.rotation,transform);
+            passList.Add(p);
+        }
     }
 
     // Update is called once per frame
@@ -182,11 +191,8 @@ public class BalloonController : Singleton<BalloonController>
     {
         if(comfort <= 0 && currentPass > 0)
         {
-            currentPass -= passLost;
-            passNumText.text = currentPass+"";
+            addCurrentPassengers(-passLost);
         }
-        if(currentPass <= 0)
-            GameController.Instance.GameOver();
 
         // Update comfort
         comfort += comfortChange;
@@ -268,6 +274,17 @@ public class BalloonController : Singleton<BalloonController>
         return (comfort - minComfort) / (maxComfort - minComfort);
     }
 
+    public void addCurrentPassengers(int p)
+    {
+        if(currentPass > 0){
+            currentPass += p;
+            if(p < 0) passList[currentPass].GetComponent<PassengerManager>().fall();
+        }
+        passNumText.text = currentPass+"";
+        if(currentPass <= 0)
+            GameController.Instance.GameOver();
+    }
+
     #endregion
 
     public void resetValues(){
@@ -277,5 +294,10 @@ public class BalloonController : Singleton<BalloonController>
         balloonVerticalMomentum = 0;
         currentPass = maxPass;
         passNumText.text = "" + currentPass;
+        for(int i = 0; i < currentPass; i++)
+        {
+            Vector2 pos = new Vector2(transform.position.x + Random.Range(-0.5f,0.5f), transform.position.y);
+            GameObject p = (GameObject)Instantiate(passPrefab,pos,transform.rotation,transform);
+        }
     }
 }

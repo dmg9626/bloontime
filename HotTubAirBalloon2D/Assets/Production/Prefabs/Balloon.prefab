@@ -5675,6 +5675,9 @@ MonoBehaviour:
   currentPass: 0
   passLost: 1
   passNumText: {fileID: 0}
+  passPrefab: {fileID: 7307743345515235283, guid: c8132765c38298b4b8e91f110d936b0e,
+    type: 3}
+  passList: []
   firePower: 1
   icePower: 1
   fireResist: 0

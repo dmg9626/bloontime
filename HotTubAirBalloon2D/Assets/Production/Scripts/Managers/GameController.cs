@@ -8,7 +8,7 @@ public class GameController : Singleton<GameController>
 {
     public BalloonController BCtrl;
     public Slider comfortSlider;
-    public Text endText;
+    public Text endText, endScoreText, winScoreText;
     public Button endMenuButton, pauseMenuButton;
     public bool isEnd = false;
     public GameObject 
@@ -20,6 +20,7 @@ public class GameController : Singleton<GameController>
         powerUpMenu;
     public bool isPaused;
     public bool isFrozen;
+    public float obstaclesDestroyed, totalScore;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class GameController : Singleton<GameController>
             Freeze();
         }
         endMenuButton.Select();
+        obstaclesDestroyed = 0;
     }
 
     // Update is called once per frame
@@ -53,7 +55,6 @@ public class GameController : Singleton<GameController>
                 isPaused = false;
             }
         }
-            
     }
 
     public void Freeze(){
@@ -73,12 +74,16 @@ public class GameController : Singleton<GameController>
     public void Victory(){
         victoryMenu.SetActive(true);
         isEnd = true;
+        totalScore = (BCtrl.currentPass + BCtrl.comfort) * 100;
+        winScoreText.text = "$" + totalScore.ToString("0.##");
         Freeze();
     }
 
     public void GameOver(){
         endMenu.SetActive(true);
         isEnd = true;
+        // score = (BCtrl.currentPass + BCtrl.comfort) * 100;
+        // endScoreText.text = "$" + score.ToString("0.##");
         Freeze();
         endMenuButton.Select();
     }
@@ -98,6 +103,7 @@ public class GameController : Singleton<GameController>
         victoryMenu.SetActive(false);
         powerUpMenu.SetActive(false);
         isEnd = false;
+        BCtrl.currentPass = BCtrl.maxPass;
         UnFreeze();
     }
 
