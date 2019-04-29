@@ -43,9 +43,14 @@ public class BeamAttack : MonoBehaviour
     private ParticleSystem.EmissionModule emission;
 
     /// <summary>
-    /// Last gameobject hit by particle - saved to avoid redundant GetComponent() calls
+    /// Last AbstractObstacle hit by particle - saved to avoid redundant GetComponent() calls
     /// </summary>
     AbstractObstacle previousObstacleHit;
+
+    /// <summary>
+    /// Last AbstractProjectile hit by particle - saved to avoid redundant GetComponent() calls
+    /// </summary>
+    AbstractProjectile previousProjectileHit;
 
     void Start()
     {
@@ -125,48 +130,63 @@ public class BeamAttack : MonoBehaviour
     {
         // Ignore everything outside Vulnerable layer
         if(other.layer.Equals(LayerMask.NameToLayer("Vulnerable"))) {
-
-            // Get reference to AbstractObstacle component (if exists)
-            AbstractObstacle enemy;
-
-            // Check if we already have a reference to this enemy
-            if(previousObstacleHit != null && other.Equals(previousObstacleHit.gameObject)) {
-                enemy = previousObstacleHit;
-                Debug.Log("Collided with previous enemy " + other.name);
-            }
-            // Otherwise get component on gameobject
-            else {
-                enemy = other.GetComponent<AbstractObstacle>();
-                Debug.LogWarning("Called GetComponent<> on " + other.name);
-            }
             
-            // Apply damage if collided with enemy
-            if(enemy != null) {
-                enemy.takeDamage(effectType, particleDamage);
+            // Handles collision with AbstractObstacle
+            HandleObstacleCollision(other);
 
-                // Save reference to enemy for subsequent particle collisions (saves a GetComponent<> call)
-                previousObstacleHit = enemy;
-            }
+            // Handles collision with AbstractProjectile
+            HandleProjectileCollision(other);
         }
     }
 
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    GameObject obj = collision.gameObject;
-    //    if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
-    //    {
-    //        // Damage enemy
-    //        if (collision.tag == "Enemy" && collision.GetComponent<AbstractObstacle>() != null)
-    //        {
-    //            Debug.Log(name + " collided with " + obj.name);
-    //            collision.GetComponent<AbstractObstacle>().takeDamage(effectType, damagePerSecond * Time.fixedDeltaTime);
-    //        }
+    void HandleObstacleCollision(GameObject obj)
+    {
+        // Get reference to AbstractObstacle component (if exists)
+        AbstractObstacle obstacle;
 
-    //        // Destroy projectile
-    //        if (collision.tag == "Projectile" && collision.GetComponent<AbstractProjectile>() != null)
-    //        {
-    //            collision.GetComponent<AbstractProjectile>().takeDamage(effectType, damagePerSecond * Time.fixedDeltaTime);
-    //        }
-    //    }
-    //}
+        // Check if we already have a reference to this enemy
+        if(previousObstacleHit != null && obj.Equals(previousObstacleHit.gameObject)) {
+            obstacle = previousObstacleHit;
+            // Debug.Log(effectType + " beam with previous obstacle " + obj.name);
+        }
+        // Otherwise get component on gameobject
+        else {
+            obstacle = obj.GetComponent<AbstractObstacle>();
+            // Debug.LogWarning(effectType + " beam called GetComponent<> on " + obj.name);
+        }
+        
+        // Apply damage if collided with enemy
+        if(obstacle != null) {
+            obstacle.takeDamage(effectType, particleDamage);
+
+            // Save reference to obstacle for subsequent particle collisions (saves a GetComponent<> call)
+            previousObstacleHit = obstacle;
+        }
+    }
+
+    void HandleProjectileCollision(GameObject obj)
+    {
+        // Get reference to AbstractProjectile component (if exists)
+        AbstractProjectile projectile;
+
+        // Check if we already have a reference to this enemy
+        if(previousObstacleHit != null && obj.Equals(previousObstacleHit.gameObject)) {
+            projectile = previousProjectileHit;
+            Debug.Log(effectType + " beam hit previous projectile " + obj.name);
+        }
+        // Otherwise get component on gameobject
+        else {
+            projectile = obj.GetComponent<AbstractProjectile>();
+            Debug.LogWarning(effectType + " beam called GetComponent<> on " + obj.name);
+        }
+        
+        // Apply damage if collided with enemy
+        if(projectile != null) {
+            projectile.takeDamage(effectType, particleDamage);
+            Debug.Log("Dealing " + particleDamage + " to " + projectile.name);
+
+            // Save reference to projectile for subsequent particle collisions (saves a GetComponent<> call)
+            previousProjectileHit = projectile;
+        }
+    }
 }
