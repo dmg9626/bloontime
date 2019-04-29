@@ -4744,9 +4744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursor: {fileID: 0}
   effectType: 0
-  damagePerSecond: 0
+  damagePerSecond: 4
   rotationSpeed: 0.5
   beamLength: 4.5
-  animationSpeed: 0
-  hitAnimationSpeed: 0
   particleSystem: {fileID: 3350917009334559845}

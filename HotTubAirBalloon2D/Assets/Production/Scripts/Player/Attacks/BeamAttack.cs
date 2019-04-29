@@ -23,26 +23,10 @@ public class BeamAttack : MonoBehaviour
     /// </summary>
     public float beamLength;
 
-    [Header("Animation Settings")]
     /// <summary>
-    /// Rate at which beam color iterates over gradient
+    /// Damage done by a single particle
     /// </summary>
-    public float animationSpeed;
-
-    /// <summary>
-    /// Rate of animation while hitting enemy/obstacle
-    /// </summary>
-    public float hitAnimationSpeed;
-
-    /// <summary>
-    /// Interpolation value used for beam growth in FireBeam()
-    /// </summary>
-    private float beamInterpolationValue;
-
-    /// <summary>
-    /// Value used to animate beam color over gradient
-    /// </summary>
-    private float colorAnimationValue;
+    private float particleDamage;
 
     /// <summary>
     /// Settings used for animating beam
@@ -68,7 +52,6 @@ public class BeamAttack : MonoBehaviour
             beamColorSettings = EffectManager.Instance.iceBeamColorSettings;
         }
 
-
         // Disable particle emission
         emission = particleSystem.emission;
         emission.enabled = false;
@@ -77,8 +60,9 @@ public class BeamAttack : MonoBehaviour
         main = particleSystem.main;
         main.startLifetime = beamLength;
 
-        // Set curve values to 0
-        //beamInterpolationValue = 0;
+        // Calculate individual particle damage (based on particles emitted per second)
+        particleDamage = (1 / emission.rateOverTime.constant) * damagePerSecond;
+        Debug.Log(effectType + " particle damage: " + particleDamage);
     }
 
     /// <summary>
