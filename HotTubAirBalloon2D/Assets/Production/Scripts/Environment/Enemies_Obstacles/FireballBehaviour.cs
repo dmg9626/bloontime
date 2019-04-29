@@ -24,7 +24,7 @@ public class FireballBehaviour : AbstractProjectile
         if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
         {
             Debug.Log("Collided with vulnerable object " + obj.name);
-            if(collision.tag == "Player" && collision.GetComponent<BalloonController>() != null)
+            if(collision.tag == "Player")
             {
                 // update temperature/confort meters
                 BalloonController.Instance.changeTemp(getTemp() - BalloonController.Instance.getIceResist());

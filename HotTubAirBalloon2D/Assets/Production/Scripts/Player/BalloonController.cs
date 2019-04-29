@@ -110,16 +110,6 @@ public class BalloonController : Singleton<BalloonController>
         BalloonMovement();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if(other.gameObject.tag == "Environment")
-        {
-            changeComfort(collisionComfortLoss);
-        }else if(other.gameObject.tag == "Enemy"){  //TODO: change this if we want enemys to do specific damage if run into
-            changeComfort(collisionComfortLoss);
-        }
-    }
-
 /*************************************************************************Methods*/
     //controls the vertical movement of the ballon using temperature and preset horizontal temp
     void BalloonMovement()

@@ -47,7 +47,7 @@ public class DolphinBehaviour : AbstractProjectile
         {
             collided = true;
             Debug.Log("Collided with vulnerable object " + obj.name);
-            if(obj.tag == "Player" && obj.GetComponent<BalloonController>() != null)
+            if(obj.tag == "Player")
             {
                 // update temperature/confort meters
                 BalloonController.Instance.changeTemp(getTemp() - BalloonController.Instance.getIceResist());

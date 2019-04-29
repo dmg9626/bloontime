@@ -5,7 +5,7 @@ using UnityEngine;
 public class BorderCollisionCheck : MonoBehaviour
 {
     
-    public enum SIDE { TOP, BOTTOM, LEFT, RIGHT };
+    public enum SIDE { TOP, BOTTOM, LEFT, RIGHT, CENTER };
 
     public SIDE colliderSide;
 
@@ -32,9 +32,14 @@ public class BorderCollisionCheck : MonoBehaviour
                 default:
                     break;
             }
+
+            BalloonController.Instance.changeComfort(BalloonController.Instance.collisionComfortLoss);
             
+        }else if(other.gameObject.tag == "Enemy"){  //TODO: change this if we want enemys to do specific damage if run into
+            BalloonController.Instance.changeComfort(BalloonController.Instance.collisionComfortLoss);
         }
     }
+
     private void OnCollisionExit2D(Collision2D other)
     {
         if(other.gameObject.tag == "Environment")

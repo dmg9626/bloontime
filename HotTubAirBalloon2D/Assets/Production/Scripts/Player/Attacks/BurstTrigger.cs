@@ -40,7 +40,7 @@ public class BurstTrigger : AbstractProjectile
             }
 
             // Increase balloon temperature
-            if(collision.tag == "Player" && collision.GetComponent<BalloonController>() != null)
+            if(collision.tag == "Player")
             {
                 BalloonController.Instance.changeTemp(effectType);
             }
