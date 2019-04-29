@@ -38,14 +38,14 @@ public class BeamAttack : MonoBehaviour
     /// </summary>
     EffectManager.BeamColorSettings beamColorSettings;
 
+    private ParticleSystem particleSystem;
+    private ParticleSystem.MainModule main;
+    private ParticleSystem.EmissionModule emission;
+
     /// <summary>
-    /// Beam's particle system
+    /// Last gameobject hit by particle - saved to avoid redundant GetComponent() calls
     /// </summary>
-    public ParticleSystem particleSystem;
-
-    ParticleSystem.MainModule main;
-
-    ParticleSystem.EmissionModule emission;
+    AbstractObstacle previousObstacleHit;
 
     void Start()
     {
@@ -56,6 +56,8 @@ public class BeamAttack : MonoBehaviour
         else if (effectType.Equals(BurstAttack.EffectType.ICE)) {
             beamColorSettings = EffectManager.Instance.iceBeamColorSettings;
         }
+
+        particleSystem = GetComponent<ParticleSystem>();
 
         // Disable particle emission
         emission = particleSystem.emission;
@@ -113,6 +115,39 @@ public class BeamAttack : MonoBehaviour
         // Calculate rotation towards target
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         return q;
+    }
+
+    /// <summary>
+    /// OnParticleCollision is called when a particle hits a collider.
+    /// </summary>
+    /// <param name="other">The GameObject hit by the particle.</param>
+    protected void OnParticleCollision(GameObject other)
+    {
+        // Ignore everything outside Vulnerable layer
+        if(other.layer.Equals(LayerMask.NameToLayer("Vulnerable"))) {
+
+            // Get reference to AbstractObstacle component (if exists)
+            AbstractObstacle enemy;
+
+            // Check if we already have a reference to this enemy
+            if(previousObstacleHit != null && other.Equals(previousObstacleHit.gameObject)) {
+                enemy = previousObstacleHit;
+                Debug.Log("Collided with previous enemy " + other.name);
+            }
+            // Otherwise get component on gameobject
+            else {
+                enemy = other.GetComponent<AbstractObstacle>();
+                Debug.LogWarning("Called GetComponent<> on " + other.name);
+            }
+            
+            // Apply damage if collided with enemy
+            if(enemy != null) {
+                enemy.takeDamage(effectType, particleDamage);
+
+                // Save reference to enemy for subsequent particle collisions (saves a GetComponent<> call)
+                previousObstacleHit = enemy;
+            }
+        }
     }
 
     //private void OnTriggerStay2D(Collider2D collision)
