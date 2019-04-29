@@ -373,7 +373,11 @@ public class ProcGenLevel : Singleton<ProcGenLevel>
                 enemyHeight = Random.Range(floor[intPlace] + (buffer*2) + 1f, ceiling[intPlace] + (buffer*2) - 1f);
             }
             
-            Instantiate(enemyList[enemyType], new Vector2(enemyPlaces[x]+buffer, enemyHeight), enemyList[enemyType].transform.rotation); //create enemy
+            GameObject enemy = Instantiate(enemyList[enemyType], new Vector2(enemyPlaces[x]+buffer, enemyHeight), enemyList[enemyType].transform.rotation); //create enemy
+            
+            if(enemy.GetComponent<FanBehaviour>() != null){
+                enemy.GetComponent<FanBehaviour>().randomize(enemyPositions[enemyType]);
+            }
         }
 
     }

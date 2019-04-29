@@ -119,6 +119,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2563933722978528314, guid: a1af1e34d5a7b644081ff4382c8c5e85,
+        type: 3}
+      propertyPath: m_Name
+      value: Rewired Input Manager
+      objectReference: {fileID: 0}
     - target: {fileID: 2563933722978528315, guid: a1af1e34d5a7b644081ff4382c8c5e85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -173,11 +178,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2563933722978528314, guid: a1af1e34d5a7b644081ff4382c8c5e85,
-        type: 3}
-      propertyPath: m_Name
-      value: Rewired Input Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1af1e34d5a7b644081ff4382c8c5e85, type: 3}
@@ -380,6 +380,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1965403150}
     - target: {fileID: 148592583, guid: 0c47859198323da4fba8b490565a4682, type: 3}
+      propertyPath: BCtrl
+      value: 
+      objectReference: {fileID: 414670792}
+    - target: {fileID: 148592583, guid: 0c47859198323da4fba8b490565a4682, type: 3}
       propertyPath: cursor1
       value: 
       objectReference: {fileID: 1938758999}
@@ -389,7 +393,7 @@ PrefabInstance:
       objectReference: {fileID: 2052329540}
     - target: {fileID: 2050870265, guid: 0c47859198323da4fba8b490565a4682, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5.0000153
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c47859198323da4fba8b490565a4682, type: 3}

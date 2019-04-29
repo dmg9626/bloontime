@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUpManager : Singleton<PowerUpManager>
 {
@@ -16,9 +17,19 @@ public class PowerUpManager : Singleton<PowerUpManager>
     [SerializeField]
     private List<PowerUp> activePowerUps;
 
+    /// <summary>
+    /// Powerup UI
+    /// </summary>
+    public List<Image> powerUpSlots;
+    public Sprite inactiveIcon;
+
     void Start()
     {
         Debug.Log(BalloonController.Instance.temperature);
+
+        powerUpSlots.ForEach (p => {
+
+        });
 
         // Activate any powerups set on start
         checkPowerUps();
@@ -44,9 +55,18 @@ public class PowerUpManager : Singleton<PowerUpManager>
     /// <summary>
     /// Checks list of active powerups and applies new ones
     /// </summary>
-    void checkPowerUps(){
+    public void checkPowerUps(){
         activePowerUps.Where(p => !p.isApplied).ToList()
-        .ForEach(powerUp => powerUp.Activate());
+        .ForEach(powerUp => {
+            powerUp.Activate();
+        });
+        string dlog = "";
+        for(int i = 0; i < activePowerUps.Count; i++)
+        {
+            powerUpSlots[i].sprite = activePowerUps[i].icon;
+            dlog += activePowerUps[i].type.ToString() + ", ";
+        }
+        Debug.Log(dlog);
     }
 
 }

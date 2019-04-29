@@ -8,6 +8,8 @@ public class InputManager : MonoBehaviour
 /**************************************************************************Public Fields */
     [Header("PUBLICS")]
     public GameController gm;
+    public PowerUpManager pum;
+    public BalloonController BCtrl;
     public GameObject cursor1, cursor2;
     public bool centralizedAnalog;
 
@@ -38,6 +40,8 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pum = FindObjectOfType<PowerUpManager>();
+
         c1M = cursor1.GetComponent<CursorMovement>();
         c2M = cursor2.GetComponent<CursorMovement>();
 
@@ -49,9 +53,14 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         checkPause();
-        checkAnalogs();
-        HandleBeamAttack();
-        HandleBurstAttack();
+        if(!gm.isFrozen)
+        {
+            checkAnalogs();
+            HandleBeamAttack();
+            HandleBurstAttack();
+        }
+
+        checkDebug();
     }
 
 /*************************************************************************Methods*/
@@ -70,15 +79,12 @@ public class InputManager : MonoBehaviour
     ///</summary>
     void checkAnalogs()
     {
-        if(!gm.isFrozen)
-        {
-            cursor1Movement.x = player.GetAxis("Fire_MoveCursorX");
-            cursor1Movement.y = player.GetAxis("Fire_MoveCursorY");
-            cursor2Movement.x = player.GetAxis("Ice_MoveCursorX");
-            cursor2Movement.y = player.GetAxis("Ice_MoveCursorY");
-            c1M.UpdateCursor(cursor1Movement.x, cursor1Movement.y, centralizedAnalog);
-            c2M.UpdateCursor(cursor2Movement.x, cursor2Movement.y, centralizedAnalog);
-        }
+        cursor1Movement.x = player.GetAxis("Fire_MoveCursorX");
+        cursor1Movement.y = player.GetAxis("Fire_MoveCursorY");
+        cursor2Movement.x = player.GetAxis("Ice_MoveCursorX");
+        cursor2Movement.y = player.GetAxis("Ice_MoveCursorY");
+        c1M.UpdateCursor(cursor1Movement.x, cursor1Movement.y, centralizedAnalog);
+        c2M.UpdateCursor(cursor2Movement.x, cursor2Movement.y, centralizedAnalog);
     }
 
     ///<summary>
@@ -102,5 +108,26 @@ public class InputManager : MonoBehaviour
             c1AM.HandleBurstAttack();
         if (player.GetButtonDown("IceBurst"))
             c2AM.HandleBurstAttack();
+    }
+
+    void checkDebug()
+    {
+        if(player.GetButtonDown("DebugPU0"))
+            pum.addPowerUp(pum.powerUps[0].type);
+        if(player.GetButtonDown("DebugPU1"))
+            pum.addPowerUp(pum.powerUps[1].type);
+        if(player.GetButtonDown("DebugPU2"))
+            pum.addPowerUp(pum.powerUps[2].type);
+        if(player.GetButtonDown("DebugPU3"))
+            pum.addPowerUp(pum.powerUps[3].type);
+        if(player.GetButtonDown("DebugGO"))
+            gm.GameOver();
+        if(player.GetButtonDown("DebugWin"))
+            gm.Victory();
+        if(player.GetButtonDown("DebugPass+"))
+            BCtrl.addCurrentPassengers(1);
+        if(player.GetButtonDown("DebugPass-"))
+            BCtrl.addCurrentPassengers(-1);
+        
     }
 }

@@ -30,7 +30,7 @@ public class IcicleBehavior : AbstractProjectile
         }
     }
 
-    IEnumerator fall() 
+    protected IEnumerator fall() 
     {
         while(true){
             
@@ -40,7 +40,7 @@ public class IcicleBehavior : AbstractProjectile
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject obj = collision.gameObject;
         if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")

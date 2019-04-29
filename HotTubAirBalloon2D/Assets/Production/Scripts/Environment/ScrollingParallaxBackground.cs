@@ -43,8 +43,6 @@ public class ScrollingParallaxBackground : MonoBehaviour
             float deltaY = cameraTransform.position.y - lastCameraY;
             transform.position += Vector3.up * (deltaY * parallaxVerticalSpeed);
             lastCameraY = cameraTransform.position.y;
-
-            Debug.Log(deltaY);
         }
 
         if(scrollingToggle){
