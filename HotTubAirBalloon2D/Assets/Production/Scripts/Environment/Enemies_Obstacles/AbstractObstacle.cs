@@ -21,12 +21,12 @@ public abstract class AbstractObstacle : MonoBehaviour
         if (effectType.Equals(typeVunerable))
         {
             // Reduce health
-            Debug.LogWarningFormat(name + " | Reducing health ({0}) by ({1})", currentHealth, damage);
+            Debug.Log(name + " | Reducing health " + currentHealth + " by " + damage);
             currentHealth -= damage;
 
             // Destroy if below 0
             if(currentHealth <= 0) {
-                Debug.LogWarning(name + " | health below 0, destroying object");
+                Debug.Log(name + " | health below 0, destroying object");
                 Destroy(gameObject);
             }
         }

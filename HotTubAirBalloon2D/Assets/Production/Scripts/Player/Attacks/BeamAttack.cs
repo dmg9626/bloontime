@@ -6,6 +6,11 @@ public class BeamAttack : MonoBehaviour
 {
     public Transform cursor;
 
+    /// <summary>
+    /// Used to rotate beam direction
+    /// </summary>
+    public Transform pivot;
+
     [Header("Effects")]
     public BurstAttack.EffectType effectType;
 
@@ -15,64 +20,37 @@ public class BeamAttack : MonoBehaviour
     /// <summary>
     /// Max speed for beam to rotate towards cursor
     /// </summary>
+    [Range(0f, 1.5f)]
     public float rotationSpeed;
 
     /// <summary>
-    /// Rate at which beam expands towards cursor
+    /// Controls beam length via particle lifetime
     /// </summary>
-    public float expansionSpeed;
+    public float beamLength;
 
     /// <summary>
-    /// Speed beam travels away from balloon after releasing fire button
+    /// Damage done by a single particle
     /// </summary>
-    public float releaseMoveSpeed;
-
-    /// <summary>
-    /// Duration released beam travels before disappearing
-    /// </summary>
-    public float releaseLifetime;
-
-    [Header("Animation Settings")]
-    /// <summary>
-    /// Rate at which beam color iterates over gradient
-    /// </summary>
-    public float animationSpeed;
-
-    /// <summary>
-    /// Rate of animation while hitting enemy/obstacle
-    /// </summary>
-    public float hitAnimationSpeed;
-
-    /// <summary>
-    /// Interpolation value used for beam growth in FireBeam()
-    /// </summary>
-    private float beamInterpolationValue;
-
-    /// <summary>
-    /// Value used to animate beam color over gradient
-    /// </summary>
-    private float colorAnimationValue;
+    private float particleDamage;
 
     /// <summary>
     /// Settings used for animating beam
     /// </summary>
     EffectManager.BeamColorSettings beamColorSettings;
 
-    
-    /// <summary>
-    /// Default transform.scale values
-    /// </summary>
-    Vector3 initalScale;
+    private ParticleSystem particleSystem;
+    private ParticleSystem.MainModule main;
+    private ParticleSystem.EmissionModule emission;
 
     /// <summary>
-    /// Default transform.position values
+    /// Last AbstractObstacle hit by particle - saved to avoid redundant GetComponent() calls
     /// </summary>
-    Vector3 initialPosition;
+    AbstractObstacle previousObstacleHit;
 
-    Coroutine releaseBeam;
-    
-    Rigidbody2D rb;
-    SpriteRenderer spriteRenderer;
+    /// <summary>
+    /// Last AbstractProjectile hit by particle - saved to avoid redundant GetComponent() calls
+    /// </summary>
+    AbstractProjectile previousProjectileHit;
 
     void Start()
     {
@@ -84,152 +62,131 @@ public class BeamAttack : MonoBehaviour
             beamColorSettings = EffectManager.Instance.iceBeamColorSettings;
         }
 
-        // Get sprite renderer and set initial color
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
+        particleSystem = GetComponent<ParticleSystem>();
 
-        // Capture initial transform values
-        initalScale = transform.localScale;
-        initialPosition = transform.localPosition;
+        // Disable particle emission
+        emission = particleSystem.emission;
+        emission.enabled = false;
 
-        // Set curve values to 0
-        beamInterpolationValue = 0;
-        colorAnimationValue = 0;
-    }
+        // Set particle system params
+        main = particleSystem.main;
+        main.startLifetime = beamLength;
 
-    void Update()
-    {
-        if(releaseBeam == null)
-        {
-            RotateTowardsCursor();
-        }
-
-        // Flash beam color
-        AnimateBeamColor(animationSpeed);
+        // Calculate individual particle damage (based on particles emitted per second)
+        particleDamage = (1 / emission.rateOverTime.constant) * damagePerSecond;
+        Debug.Log(effectType + " particle damage: " + particleDamage);
     }
 
     /// <summary>
-    /// Show/hide beam and initialize values as necessary
+    /// Called on update - fires beam if true, stops firing if false
     /// </summary>
-    /// <param name="active"></param>
-    public void SetActive(bool active)
+    public void FireBeam(bool fire)
     {
-        if(releaseBeam == null)
-        {
-            // Hide beam and disable collision
-            spriteRenderer.enabled = active;
-            rb.simulated = active;
-
-            if (!active)
-            {
-                // Set curve values to 0
-                beamInterpolationValue = 0;
-                colorAnimationValue = 0;
-
-                // Reset scale
-                transform.localScale = initalScale;
-                transform.localPosition = initialPosition;
+        if(fire) {
+            // Initialize beam before firing
+            if (!emission.enabled) {
+                InitBeam();
+                emission.enabled = true;
             }
+
+            // Smooth rotation towards target
+            pivot.rotation = Quaternion.RotateTowards(pivot.rotation, GetRotationTowards(cursor.position), Time.fixedDeltaTime * rotationSpeed * 360f);
+        }
+
+        // Stop emitting particles
+        else {
+            emission.enabled = false;
         }
     }
 
     /// <summary>
-    /// Fires beam towards cursor position
+    /// Initializes beam before firing particles
     /// </summary>
-    public void FireBeam()
+    void InitBeam()
     {
-        if (releaseBeam == null)
-        {
-            // Calculate distance to cursor
-            Vector3 vectorToCursor = cursor.position - transform.position;
-            float distanceToCursor = vectorToCursor.magnitude;
-
-            // Get time value to interpolate over beam growth curve
-            beamInterpolationValue = Mathf.Clamp01(beamInterpolationValue + (Time.fixedDeltaTime * expansionSpeed));
-
-            // Scale beam length towards distanceToCursor
-            float beamLength = Mathfx.Sinerp(1, distanceToCursor, beamInterpolationValue);
-            transform.localScale = new Vector3(initalScale.x, beamLength, initalScale.z);
-        }
+        // Set beam rotation towards cursor
+        pivot.rotation = GetRotationTowards(cursor.position);
     }
 
     /// <summary>
-    /// Shoots beam off away from origin (if coroutine not already active)
+    /// Rotates beam towards target at given speed (float between 0 and 1)
     /// </summary>
-    public void ReleaseBeam()
-    {
-        if(releaseBeam == null) {
-            releaseBeam = StartCoroutine(ReleaseBeamCoroutine());
-        }
-    }
-
-    /// <summary>
-    /// Shoots beam off away from origin
-    /// </summary>
-    IEnumerator ReleaseBeamCoroutine()
-    {
-        float t = 0;
-        while(t < releaseLifetime) {
-            transform.localPosition += transform.up * releaseMoveSpeed * Time.fixedDeltaTime;
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        // Dereference coroutine instance
-        releaseBeam = null;
-
-        // Reset beam
-        SetActive(false);
-    }
-
-    /// <summary>
-    /// Rotates beam towards cursor
-    /// </summary>
-    void RotateTowardsCursor()
+    Quaternion GetRotationTowards(Vector3 target)
     {
         // Get angle to target (in degrees)
-        Vector3 vectorToCursor = cursor.position - transform.position;
-        float angle = Mathf.Atan2(vectorToCursor.y, vectorToCursor.x) * Mathf.Rad2Deg;
+        Vector3 vectorToTarget = target - pivot.position;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 
-        // Calculate rotation towards cursor
-        Quaternion q = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-
-        // Smooth rotation towards cursor
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, q, Time.fixedDeltaTime * rotationSpeed);
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        GameObject obj = collision.gameObject;
-        if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
-        {
-            // Damage enemy
-            if (collision.tag == "Enemy" && collision.GetComponent<AbstractObstacle>() != null)
-            {
-                Debug.Log(name + " collided with " + obj.name);
-                collision.GetComponent<AbstractObstacle>().takeDamage(effectType, damagePerSecond * Time.fixedDeltaTime);
-            }
-
-            // Destroy projectile
-            if (collision.tag == "Projectile" && collision.GetComponent<AbstractProjectile>() != null)
-            {
-                collision.GetComponent<AbstractProjectile>().takeDamage(effectType, damagePerSecond * Time.fixedDeltaTime);
-            }
-        }
+        // Calculate rotation towards target
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        return q;
     }
 
     /// <summary>
-    /// Animate beam color over gradient at rate
+    /// OnParticleCollision is called when a particle hits a collider.
     /// </summary>
-    /// <param name="rate">Speed of color animation</param>
-    void AnimateBeamColor(float rate)
+    /// <param name="other">The GameObject hit by the particle.</param>
+    protected void OnParticleCollision(GameObject other)
     {
-        // Calculate gradient position
-        colorAnimationValue += Time.fixedDeltaTime * rate;
-        float pingPong = Mathf.PingPong(colorAnimationValue, 1);
+        // Ignore everything outside Vulnerable layer
+        if(other.layer.Equals(LayerMask.NameToLayer("Vulnerable"))) {
+            
+            // Handles collision with AbstractObstacle
+            HandleObstacleCollision(other);
 
-        // Evaluate gradient at pingPong and update beam
-        Color color = beamColorSettings.hitEffectGradient.Evaluate(pingPong);
-        spriteRenderer.color = color;
+            // Handles collision with AbstractProjectile
+            HandleProjectileCollision(other);
+        }
+    }
+
+    void HandleObstacleCollision(GameObject obj)
+    {
+        // Get reference to AbstractObstacle component (if exists)
+        AbstractObstacle obstacle;
+
+        // Check if we already have a reference to this enemy
+        if(previousObstacleHit != null && obj.Equals(previousObstacleHit.gameObject)) {
+            obstacle = previousObstacleHit;
+            // Debug.Log(effectType + " beam with previous obstacle " + obj.name);
+        }
+        // Otherwise get component on gameobject
+        else {
+            obstacle = obj.GetComponent<AbstractObstacle>();
+            // Debug.LogWarning(effectType + " beam called GetComponent<> on " + obj.name);
+        }
+        
+        // Apply damage if collided with enemy
+        if(obstacle != null) {
+            obstacle.takeDamage(effectType, particleDamage);
+
+            // Save reference to obstacle for subsequent particle collisions (saves a GetComponent<> call)
+            previousObstacleHit = obstacle;
+        }
+    }
+
+    void HandleProjectileCollision(GameObject obj)
+    {
+        // Get reference to AbstractProjectile component (if exists)
+        AbstractProjectile projectile;
+
+        // Check if we already have a reference to this enemy
+        if(previousObstacleHit != null && obj.Equals(previousObstacleHit.gameObject)) {
+            projectile = previousProjectileHit;
+            Debug.Log(effectType + " beam hit previous projectile " + obj.name);
+        }
+        // Otherwise get component on gameobject
+        else {
+            projectile = obj.GetComponent<AbstractProjectile>();
+            Debug.LogWarning(effectType + " beam called GetComponent<> on " + obj.name);
+        }
+        
+        // Apply damage if collided with enemy
+        if(projectile != null) {
+            projectile.takeDamage(effectType, particleDamage);
+            Debug.Log("Dealing " + particleDamage + " to " + projectile.name);
+
+            // Save reference to projectile for subsequent particle collisions (saves a GetComponent<> call)
+            previousProjectileHit = projectile;
+        }
     }
 }
