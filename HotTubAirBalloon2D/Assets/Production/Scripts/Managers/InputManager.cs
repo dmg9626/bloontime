@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     public BalloonController BCtrl;
     public GameObject cursor1, cursor2;
     public bool centralizedAnalog;
+    public bool debugMode;
 
 /****************************************************************************Private Fields */
     [Header("PRIVATES")]
@@ -112,22 +113,25 @@ public class InputManager : MonoBehaviour
 
     void checkDebug()
     {
-        if(player.GetButtonDown("DebugPU0"))
-            pum.addPowerUp(pum.powerUps[0].type);
-        if(player.GetButtonDown("DebugPU1"))
-            pum.addPowerUp(pum.powerUps[1].type);
-        if(player.GetButtonDown("DebugPU2"))
-            pum.addPowerUp(pum.powerUps[2].type);
-        if(player.GetButtonDown("DebugPU3"))
-            pum.addPowerUp(pum.powerUps[3].type);
-        if(player.GetButtonDown("DebugGO"))
-            gm.GameOver();
-        if(player.GetButtonDown("DebugWin"))
-            gm.Victory();
-        if(player.GetButtonDown("DebugPass+"))
-            BCtrl.addCurrentPassengers(1);
-        if(player.GetButtonDown("DebugPass-"))
-            BCtrl.addCurrentPassengers(-1);
+        if(debugMode){
+            if(player.GetButtonDown("DebugPU0"))
+                pum.addPowerUp(pum.powerUps[0].type);
+            if(player.GetButtonDown("DebugPU1"))
+                pum.addPowerUp(pum.powerUps[1].type);
+            if(player.GetButtonDown("DebugPU2"))
+                pum.addPowerUp(pum.powerUps[2].type);
+            if(player.GetButtonDown("DebugPU3"))
+                pum.addPowerUp(pum.powerUps[3].type);
+            if(player.GetButtonDown("DebugGO"))
+                gm.GameOver();
+            if(player.GetButtonDown("DebugWin"))
+                gm.Victory();
+            if(player.GetButtonDown("DebugPass+"))
+                BCtrl.addCurrentPassengers(1);
+            if(player.GetButtonDown("DebugPass-"))
+                BCtrl.addCurrentPassengers(-1);
+        }
+        
         
     }
 }

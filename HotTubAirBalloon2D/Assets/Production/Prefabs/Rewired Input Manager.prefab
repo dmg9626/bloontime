@@ -842,7 +842,7 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 49
-        _modifierKey1: 3
+        _modifierKey1: 2
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
@@ -853,7 +853,7 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 50
-        _modifierKey1: 3
+        _modifierKey1: 2
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
@@ -864,7 +864,7 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 51
-        _modifierKey1: 3
+        _modifierKey1: 2
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
@@ -875,7 +875,7 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 52
-        _modifierKey1: 3
+        _modifierKey1: 2
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
@@ -885,8 +885,8 @@ MonoBehaviour:
         _axisRange: 0
         _invert: 0
         _axisContribution: 0
-        _keyboardKeyCode: 9
-        _modifierKey1: 3
+        _keyboardKeyCode: 8
+        _modifierKey1: 2
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
@@ -897,7 +897,7 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 32
-        _modifierKey1: 3
+        _modifierKey1: 2
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
@@ -908,7 +908,7 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 273
-        _modifierKey1: 3
+        _modifierKey1: 2
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
@@ -919,7 +919,7 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 274
-        _modifierKey1: 3
+        _modifierKey1: 2
         _modifierKey2: 0
         _modifierKey3: 0
     mouseMaps: []

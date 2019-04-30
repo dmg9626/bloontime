@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Production/Scenes/ProcGenTest.unity
-    guid: c54cc9c2b4d1a2f4aa5bc51473af70c1
-  - enabled: 1
     path: Assets/Production/Scenes/MainMenu.unity
     guid: 6421b78204e904c21a6a5bf23de32c95
+  - enabled: 1
+    path: Assets/Production/Scenes/ProcGenTest.unity
+    guid: c54cc9c2b4d1a2f4aa5bc51473af70c1
   m_configObjects: {}
