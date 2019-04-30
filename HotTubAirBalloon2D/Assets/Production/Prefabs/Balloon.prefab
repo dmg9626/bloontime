@@ -5410,11 +5410,11 @@ MonoBehaviour:
   maxTemperature: 25
   tempMultiplier: 150
   minComfort: 0
-  maxComfort: 10
-  defaultMaxComfort: 10
-  defaultComfortRegen: 0.1
+  maxComfort: 4
+  defaultMaxComfort: 4
+  defaultComfortRegen: 0.2
   comfortRegen: 0
-  comfortTemp: 2
+  comfortTemp: 3
   maxPass: 5
   currentPass: 0
   passLost: 1

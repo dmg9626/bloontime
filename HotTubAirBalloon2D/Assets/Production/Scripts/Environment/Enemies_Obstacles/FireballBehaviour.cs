@@ -18,13 +18,13 @@ public class FireballBehaviour : AbstractProjectile
         transform.position += transform.right * Time.deltaTime * speedFactor;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject obj = collision.gameObject;
         if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
         {
             Debug.Log("Collided with vulnerable object " + obj.name);
-            if(collision.tag == "Player")
+            if(obj.tag == "Player")
             {
                 // update temperature/confort meters
                 BalloonController.Instance.changeTemp(getTemp() - BalloonController.Instance.getIceResist());

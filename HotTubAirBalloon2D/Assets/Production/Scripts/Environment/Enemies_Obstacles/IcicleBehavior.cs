@@ -40,13 +40,13 @@ public class IcicleBehavior : AbstractProjectile
         }
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject obj = collision.gameObject;
         if (LayerMask.LayerToName(obj.layer) == "Vulnerable" || LayerMask.LayerToName(obj.layer) == "Player")
         {
             Debug.Log("Collided with vulnerable object " + obj.name);
-            if(collision.tag == "Player")
+            if(obj.tag == "Player")
             {
                 BalloonController.Instance.changeTemp(getTemp());
                 BalloonController.Instance.changeComfort(getComfort());

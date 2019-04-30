@@ -228,6 +228,16 @@ PrefabInstance:
       propertyPath: passNumText
       value: 
       objectReference: {fileID: 1051757201}
+    - target: {fileID: 8845161633209413590, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: collisionComfortLoss
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8845161633209413590, guid: ef509f8445375cc449bde52a697f48fe,
+        type: 3}
+      propertyPath: defaultComfortRegen
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 8845161633209413588, guid: ef509f8445375cc449bde52a697f48fe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -415,7 +425,11 @@ PrefabInstance:
       objectReference: {fileID: 2052329540}
     - target: {fileID: 2050870265, guid: 0c47859198323da4fba8b490565a4682, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5
+      value: -5.0000153
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187285807, guid: 0c47859198323da4fba8b490565a4682, type: 3}
+      propertyPath: m_MaxValue
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c47859198323da4fba8b490565a4682, type: 3}

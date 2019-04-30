@@ -185,7 +185,9 @@ public class BalloonController : Singleton<BalloonController>
         }
 
         // Update comfort
-        comfort += comfortChange;
+        float newComfort = comfort + comfortChange;
+
+        comfort = Mathf.Clamp(newComfort, minComfort, maxComfort);
 
         // Fire event
         onComfortChanged?.Invoke();
@@ -282,12 +284,13 @@ public class BalloonController : Singleton<BalloonController>
         comfort = (minComfort + maxComfort) / 2;
         balloonHorizontalMomentum = 0;
         balloonVerticalMomentum = 0;
-        currentPass = maxPass;
-        passNumText.text = "" + currentPass;
-        for(int i = 0; i < currentPass; i++)
+        for(int i = currentPass; i < maxPass; i++)
         {
             Vector2 pos = new Vector2(transform.position.x + Random.Range(-0.5f,0.5f), transform.position.y);
             GameObject p = (GameObject)Instantiate(passPrefab,pos,transform.rotation,transform);
         }
+        currentPass = maxPass;
+        passNumText.text = "" + currentPass;
+        
     }
 }

@@ -232,13 +232,13 @@ MonoBehaviour:
   maxBoulderHeight: 5
   maxBoulderWidth: 8
   minBoulderNum: 10
-  maxBoulderNum: 15
-  minEnemyNum: 10
-  maxEnemyNum: 15
+  maxBoulderNum: 25
+  minEnemyNum: 15
+  maxEnemyNum: 40
   minDifficulty: 1
   maxDifficulty: 10
   initialDifficulty: 1
-  difficultyIncrease: 0.5
+  difficultyIncrease: 1
   difficultyStdDev: 3
   debugFlag: 0
   currentDifficulty: 0
