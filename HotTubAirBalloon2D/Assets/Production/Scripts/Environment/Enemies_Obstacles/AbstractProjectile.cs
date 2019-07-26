@@ -8,7 +8,7 @@ public abstract class AbstractProjectile : MonoBehaviour
     public float tempChange, comfortChange;
     public BurstAttack.EffectType typeVunerable;
     public float maxHealth;
-    private float currentHealth;
+    protected float currentHealth;
 
     public float getTemp()
     {

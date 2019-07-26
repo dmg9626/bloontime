@@ -30,6 +30,12 @@ public class BalloonController : Singleton<BalloonController>
     public float defaultComfortRegen;
     public float comfortRegen;
     public float comfortTemp;
+    public float collisionBounceForce;
+    private float collisionBounceForceStaticTemp;
+
+    public float invulnerabilityTime;
+    private float currentInvulnerabilityTime;
+    private bool isInvulnerable = false;
 
     [Header("Passenger Values")]
     public int maxPass;
@@ -42,6 +48,8 @@ public class BalloonController : Singleton<BalloonController>
     [Header("Fire/Ice Settings")]
     public float firePower;
     public float icePower;
+    public float selfFirePowerMultiplier;
+    public float selfIcePowerMultiplier;
 
     public float fireResist;
     public float iceResist;
@@ -51,6 +59,9 @@ public class BalloonController : Singleton<BalloonController>
     public float tempSmoothTime;
     public float horizontalMomentumSmoothTime;
     public float verticalMomentumSmoothTime;
+
+    public float verticalSpeedMax;
+    public float horizontalSpeedMax;
 
     public bool bottomCollision;
     public bool topCollision;
@@ -78,6 +89,8 @@ public class BalloonController : Singleton<BalloonController>
     
     private Vector2 charPos;
 
+    public SpriteRenderer playerSpriteRender;
+
 /***************************************************************************Mono Methods */
     // Start is called before the first frame update
     void Start()
@@ -95,6 +108,8 @@ public class BalloonController : Singleton<BalloonController>
 
         currentPass = maxPass;
         passNumText.text = "" + currentPass;
+
+        collisionBounceForceStaticTemp = collisionBounceForce;
 
         for(int i = 0; i < currentPass; i++)
         {
@@ -114,8 +129,10 @@ public class BalloonController : Singleton<BalloonController>
     //controls the vertical movement of the ballon using temperature and preset horizontal temp
     void BalloonMovement()
     {
-        balloonVerticalSpeed = (temperature / tempMultiplier) + balloonVerticalMomentum;
+        balloonVerticalSpeed = Mathf.Clamp((temperature / tempMultiplier) + balloonVerticalMomentum, 0f-verticalSpeedMax, verticalSpeedMax);
         balloonVerticalMomentum = Mathf.SmoothDamp(balloonVerticalMomentum, 0f, ref verticalDampVelocity, verticalMomentumSmoothTime);
+
+        collisionBounceForce = collisionBounceForceStaticTemp * Mathf.Lerp(0.5f, 1f, balloonVerticalSpeed/verticalSpeedMax);
 
         if(!bottomCollision || balloonVerticalSpeed > 0)
         {
@@ -170,23 +187,28 @@ public class BalloonController : Singleton<BalloonController>
     public void changeTemp(BurstAttack.EffectType effectType)
     {
         if(effectType.Equals(BurstAttack.EffectType.FIRE)) {
-            changeTemp(firePower);
+            changeTemp(firePower*selfFirePowerMultiplier);
         }
         else if(effectType.Equals(BurstAttack.EffectType.ICE)) {
-            changeTemp(-icePower);
+            changeTemp(-icePower*selfIcePowerMultiplier);
         }
     }
 
     public void changeComfort(float comfortChange)
     {
-        if(comfort <= 0 && currentPass > 0)
-        {
-            addCurrentPassengers(-passLost);
-        }
-
         // Update comfort
         float newComfort = comfort + comfortChange;
 
+        // Check if lost passengers
+        if(newComfort <= 0 && currentPass > 0 && !isInvulnerable)
+        {
+            currentInvulnerabilityTime = invulnerabilityTime;
+            isInvulnerable = true;
+            addCurrentPassengers(-passLost);
+            StartCoroutine(blinkInvulnerability());
+        }
+
+        //Make sure comfort doesn't go below 0 (done after passenger check so we know if we lost any)
         comfort = Mathf.Clamp(newComfort, minComfort, maxComfort);
 
         // Fire event
@@ -292,5 +314,24 @@ public class BalloonController : Singleton<BalloonController>
         currentPass = maxPass;
         passNumText.text = "" + currentPass;
         
+    }
+
+    IEnumerator blinkInvulnerability(){
+        Color playerColor = playerSpriteRender.color;
+        Color blinkColor = playerColor;
+        blinkColor.a = 0.5f;
+
+        while(currentInvulnerabilityTime > 0f){
+            if((Mathf.Floor(currentInvulnerabilityTime*10f) % 3) == 0){
+                playerSpriteRender.color = blinkColor;
+            }else{
+                playerSpriteRender.color = playerColor;
+            }
+            currentInvulnerabilityTime -= Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        playerSpriteRender.color = playerColor;
+        isInvulnerable = false;
+        currentInvulnerabilityTime = -1f;
     }
 }

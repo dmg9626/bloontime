@@ -4715,9 +4715,9 @@ MonoBehaviour:
   pivot: {fileID: 8989249879597003882}
   effectType: 0
   damagePerSecond: 4
+  powerToDPS: 0
   rotationSpeed: 0.5
   beamLength: 4.5
-  particleSystem: {fileID: 3350917009334559845}
 --- !u!1 &5189623982506556657
 GameObject:
   m_ObjectHideFlags: 0

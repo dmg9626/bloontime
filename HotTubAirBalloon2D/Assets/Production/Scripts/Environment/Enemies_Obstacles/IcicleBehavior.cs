@@ -7,11 +7,14 @@ public class IcicleBehavior : AbstractProjectile
     public GameObject player;
     public float attackRange;
 
+    public ParticleSystem particles;
+
     public float speedFactor;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(takeTheShot());
     }
@@ -32,6 +35,10 @@ public class IcicleBehavior : AbstractProjectile
 
     protected IEnumerator fall() 
     {
+        particles.Clear();
+        var main = particles.main;
+        main.startSpeed = 6f;
+        particles.Emit(1);
         while(true){
             
             transform.position = new Vector2(transform.position.x, transform.position.y - speedFactor);

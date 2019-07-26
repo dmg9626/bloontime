@@ -1423,7 +1423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5.0000153, y: 0}
+  m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &73246915685062346
@@ -1932,6 +1932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  playerTrackOffset: {x: 5.5, y: 0}
   CameraTargetOffset: {fileID: 7466615316787963361}
   maxRaycastDistance: 50
 --- !u!1 &2048392927189172123
@@ -5236,6 +5237,7 @@ MonoBehaviour:
   cursor1: {fileID: 0}
   cursor2: {fileID: 0}
   centralizedAnalog: 1
+  debugMode: 0
   cursor1Movement: {x: 0, y: 0}
   c1M: {fileID: 0}
   c2M: {fileID: 0}

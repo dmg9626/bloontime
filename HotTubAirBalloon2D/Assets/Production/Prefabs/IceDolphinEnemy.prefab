@@ -71,13 +71,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0518ef20da8554a41a5419cebccf7bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempChange: -2
+  tempChange: -6
   comfortChange: -2
   typeVunerable: 0
-  maxHealth: 4
+  maxHealth: 3
   player: {fileID: 0}
   attackRange: 10.5
-  speedFactor: 2
+  speedFactor: 3.5
+  movementTarget: {x: 0, y: 0}
+  movementTargetOffset: -2
+  verticalSinOffset: 0.75
+  maxRaycastDistance: 50
+  WaveFrequency: 1
   collided: 0
 --- !u!1 &2410557612369277800
 GameObject:
@@ -105,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 2410557612369277800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: -1, z: -1}
   m_Children: []
   m_Father: {fileID: 4428342213982463709}
   m_RootOrder: 0

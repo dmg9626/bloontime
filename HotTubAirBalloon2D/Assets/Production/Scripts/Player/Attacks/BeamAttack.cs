@@ -16,6 +16,8 @@ public class BeamAttack : MonoBehaviour
 
     public float damagePerSecond;
 
+    public float powerToDPS;
+
     [Header("Movement Settings")]
     /// <summary>
     /// Max speed for beam to rotate towards cursor
@@ -188,5 +190,21 @@ public class BeamAttack : MonoBehaviour
             // Save reference to projectile for subsequent particle collisions (saves a GetComponent<> call)
             previousProjectileHit = projectile;
         }
+    }
+
+    public void updateBeamLength(float beamTime){
+        beamLength = beamTime;
+        main.startLifetime = beamLength;
+
+    }
+
+    public void updateBeamDamage(float newPowerLevel){
+
+        damagePerSecond = newPowerLevel * powerToDPS;
+
+        // Calculate individual particle damage (based on particles emitted per second)
+        particleDamage = (1 / emission.rateOverTime.constant) * damagePerSecond;
+        Debug.Log(effectType + " particle damage: " + particleDamage);
+
     }
 }

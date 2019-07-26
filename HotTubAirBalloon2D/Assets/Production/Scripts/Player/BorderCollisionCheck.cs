@@ -28,6 +28,7 @@ public class BorderCollisionCheck : MonoBehaviour
                     break;
                 case SIDE.TOP:
                     BalloonController.Instance.topCollision = true;
+                    BalloonController.Instance.changeVerticalMomentum(BalloonController.Instance.collisionBounceForce);
                     break;
                 default:
                     break;

@@ -5408,13 +5408,15 @@ MonoBehaviour:
   comfort: 5
   minTemperature: -25
   maxTemperature: 25
-  tempMultiplier: 150
+  tempMultiplier: 100
   minComfort: 0
-  maxComfort: 4
-  defaultMaxComfort: 4
+  maxComfort: 3
+  defaultMaxComfort: 3
   defaultComfortRegen: 0.2
   comfortRegen: 0
-  comfortTemp: 3
+  comfortTemp: 5
+  collisionBounceForce: -0.5
+  invulnerabilityTime: 1
   maxPass: 5
   currentPass: 0
   passLost: 1
@@ -5424,18 +5426,23 @@ MonoBehaviour:
   passList: []
   firePower: 1
   icePower: 1
+  selfFirePowerMultiplier: 2.5
+  selfIcePowerMultiplier: 2.5
   fireResist: 0
   iceResist: 0
   collisionComfortLoss: -1
-  tempSmoothTime: 1
+  tempSmoothTime: 0.2
   horizontalMomentumSmoothTime: 0.5
-  verticalMomentumSmoothTime: 0.5
+  verticalMomentumSmoothTime: 0.25
+  verticalSpeedMax: 0.15
+  horizontalSpeedMax: 0
   bottomCollision: 0
   topCollision: 0
   balloonVerticalSpeed: 0
-  balloonHorizontalSpeed: 0.04
+  balloonHorizontalSpeed: 0.05
   balloonVerticalMomentum: 0
   balloonHorizontalMomentum: 0
+  playerSpriteRender: {fileID: 5855239361560517892}
 --- !u!50 &8845161633209413416
 Rigidbody2D:
   serializedVersion: 4
@@ -10240,10 +10247,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 733112616278109295, guid: 56a66ee250e804937a022a7199d55941,
+    - target: {fileID: 3350917009334559845, guid: 56a66ee250e804937a022a7199d55941,
         type: 3}
-      propertyPath: m_Name
-      value: Beam_PlayerTwo
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: cursor
+      value: 
+      objectReference: {fileID: 9003574820412403997}
+    - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: damagePerSecond
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: powerToDPS
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
         type: 3}
@@ -10252,19 +10274,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
         type: 3}
-      propertyPath: cursor
-      value: 
-      objectReference: {fileID: 9003574820412403997}
-    - target: {fileID: 5614289281773973712, guid: 56a66ee250e804937a022a7199d55941,
-        type: 3}
-      propertyPath: effectType
-      value: 1
+      propertyPath: rotationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
-    - target: {fileID: 5614289281773973712, guid: 56a66ee250e804937a022a7199d55941,
+    - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
         type: 3}
-      propertyPath: cursor
-      value: 
-      objectReference: {fileID: 9003574820412403997}
+      propertyPath: beamLength
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56a66ee250e804937a022a7199d55941, type: 3}
 --- !u!4 &4956914798389979796 stripped
@@ -10400,11 +10417,36 @@ PrefabInstance:
       propertyPath: ColorModule.gradient.maxGradient.m_NumColorKeys
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3350917009334559845, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
         type: 3}
       propertyPath: cursor
       value: 
       objectReference: {fileID: 8845161632690398578}
+    - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: damagePerSecond
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: powerToDPS
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: beamLength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 785054150035989971, guid: 56a66ee250e804937a022a7199d55941,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5614289281773973712, guid: 56a66ee250e804937a022a7199d55941,
         type: 3}
       propertyPath: cursor

@@ -5,6 +5,9 @@ using UnityEngine;
 public class CameraController : Singleton<CameraController>
 {
     public Transform Player;
+
+    public Vector2 playerTrackOffset;
+
     private GameObject currentTarget;
 
     /// <summary>
@@ -72,6 +75,8 @@ public class CameraController : Singleton<CameraController>
 
         Vector2 playerPos = Player.position;
 
+        playerPos = playerPos + playerTrackOffset;
+
         // If player passed current target
         if(currentTarget != null && playerPos.x >= currentTarget.transform.position.x){
             // Set current target to next
@@ -96,8 +101,12 @@ public class CameraController : Singleton<CameraController>
 
     public void resetCameraToPlayer(){
 
-        transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
-        currentTarget.transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
+        Vector2 playerPos = Player.position;
+
+        playerPos = playerPos + playerTrackOffset;
+
+        transform.position = new Vector3(playerPos.x, playerPos.y, transform.position.z);
+        currentTarget.transform.position = new Vector3(playerPos.x, playerPos.y, transform.position.z);
         yIncrement = 0f;
 
         BackgroundParent.Instance.resetBackgroundToCamera();
